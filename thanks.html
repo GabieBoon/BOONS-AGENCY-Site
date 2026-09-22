@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request received | BOONS AGENCY</title>
+<meta name="description" content="Your booking request has been received. BOONS AGENCY, Hardhouse, Trance and UKG booking from Haarlem.">
+<meta name="robots" content="noindex">
+
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0A0F">
+<link rel="stylesheet" href="css/style.css">
+<style>[hidden]{ display: none !important; }</style>
+</head>
+<body>
+
+<header class="site-header" id="top">
+  <a class="wordmark" href="index.html">
+    <img src="assets/images/logo.png" alt="BOONS AGENCY" class="wordmark-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+    <span class="wordmark-text" style="display:none;">BOONS<span class="dot">•</span>AGENCY</span>
+  </a>
+  <nav class="site-nav">
+    <a href="index.html#roster">Artists</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Booking</a>
+  </nav>
+  <a href="index.html" class="btn btn-ghost nav-cta">Back to site</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html#roster">Artists</a>
+  <a href="index.html#about">About</a>
+  <a href="index.html#contact">Booking</a>
+</div>
+
+<main>
+  <section class="thanks">
+    <div class="thanks-card">
+
+      <div class="pass-top">
+        <span class="pass-label mono">Request received</span>
+        <span class="pass-label mono">✓</span>
+      </div>
+
+      <div class="thanks-body">
+        <h1 class="thanks-title">That's in.</h1>
+        <p class="thanks-lead">Thanks for reaching out. Your request<span id="forArtist"></span>
+        landed in our inbox and a real person will read it, not an autoresponder.</p>
+
+        <div class="thanks-steps">
+          <div class="thanks-step">
+            <span class="thanks-step-num mono">01</span>
+            <p>We read every request properly, including the ones with a small budget and a good idea.</p>
+          </div>
+          <div class="thanks-step">
+            <span class="thanks-step-num mono">02</span>
+            <p>You'll hear back within two working days, also if the answer is no.</p>
+          </div>
+          <div class="thanks-step">
+            <span class="thanks-step-num mono">03</span>
+            <p>Something urgent or a date that's about to go? Mail
+            <a href="mailto:Bookings@boons-agency.nl">Bookings@boons-agency.nl</a> directly.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pass-barcode" aria-hidden="true"></div>
+
+      <div class="thanks-bottom">
+        <a href="index.html#roster" class="btn btn-primary">Back to the artists →</a>
+        <a href="#" class="btn btn-outline" id="presskitLink" hidden>Press kit</a>
+      </div>
+
+    </div>
+
+    <p class="thanks-note mono">Nothing in your inbox within two working days? Check your spam folder,
+    then mail us. We'd rather hear from you twice than not at all.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="wordmark-text">BOONS<span class="dot">•</span>AGENCY</span>
+      <p>Hardhouse, Trance &amp; UKG booking from Haarlem.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <span class="mono footer-label">Artists</span>
+        <a href="gibbs.html">GIBBS</a>
+        <a href="index.html#roster">BURNEY</a>
+      </div>
+      <div>
+        <span class="mono footer-label">Contact</span>
+        <a href="mailto:Bookings@boons-agency.nl">Bookings@boons-agency.nl</a>
+        <a href="https://www.instagram.com/boons.agency/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom mono">
+    <span>© <span id="year"></span> BOONS AGENCY</span>
+    <span>Haarlem, Netherlands</span>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script>
+(function () {
+  var PAGES = { GIBBS: 'gibbs.html', BURNEY: 'burney.html' };
+  var params = new URLSearchParams(window.location.search);
+  var key = (params.get('artist') || '').trim().toUpperCase();
+  var page = Object.prototype.hasOwnProperty.call(PAGES, key) ? PAGES[key] : null;
+
+  var link = document.getElementById('presskitLink');
+  if (link) {
+    if (page) {
+      link.setAttribute('href', page);
+      link.textContent = key + ' press kit';
+      link.hidden = false;
+      link.style.removeProperty('display');
+    } else {
+      // No artist, or "Both / Not sure" - take the button out of the page entirely,
+      // rather than trusting [hidden] against a display rule in the stylesheet.
+      link.remove();
+    }
+  }
+
+  var forArtist = document.getElementById('forArtist');
+  if (forArtist && page) forArtist.textContent = ' for ' + key;
+})();
+</script>
+</body>
+</html>

@@ -372,3 +372,238 @@ main{ width:100%; }
   .btn{ transition:none; }
 }
 
+
+/* ============================================
+   Artist page (gibbs.html) — EPK
+   ============================================ */
+.back-link{ color: var(--muted); font-size: 0.72rem; display:inline-block; margin-bottom: 2.5rem; }
+.back-link:hover{ color: var(--magenta); }
+
+.artist-hero{ padding-top: 3.5rem; }
+.artist-hero-grid{
+  display:grid; grid-template-columns: 360px 1fr; gap: 3rem; align-items: start;
+}
+.artist-portrait{
+  position:relative; aspect-ratio: 4/5; border-radius: 10px; overflow:hidden;
+  background: linear-gradient(160deg, var(--violet), var(--magenta));
+  border: 1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+}
+.artist-portrait img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.artist-portrait:not(.no-photo) .pass-photo-fallback{ display:none; }
+
+.artist-name{ font-size: clamp(3rem, 8vw, 5.5rem); text-transform: uppercase; letter-spacing: -0.02em; }
+.artist-tagline{ color: var(--magenta); font-size: 0.8rem; margin: 0.6rem 0 1.4rem; }
+.artist-lead{ color: var(--fg); font-size: 1.15rem; max-width: 46ch; margin-bottom: 2rem; }
+.artist-actions{ display:flex; gap: 0.8rem; flex-wrap:wrap; }
+
+.stat-row{
+  display:grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  margin-top: 4rem; background: var(--line);
+  border: 1px solid var(--line); border-radius: 10px; overflow:hidden;
+}
+.stat{ background: var(--bg-card); padding: 1.6rem 1.4rem; }
+.stat-num{
+  display:block; font-family: var(--font-display); font-size: 2.2rem;
+  line-height:1; color: var(--magenta); margin-bottom: 0.5rem;
+}
+.stat-label{ font-size: 0.68rem; color: var(--muted); }
+
+/* Listen */
+.listen-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+.listen-label{ font-size: 0.7rem; color: var(--yellow); margin-bottom: 0.8rem; }
+.listen-item iframe{ width:100%; height: 300px; border:0; border-radius: var(--radius); display:block; }
+.listen-more{ font-size: 0.72rem; color: var(--muted); margin-top: 2rem; }
+.listen-more a{ color: var(--fg); border-bottom: 1px solid var(--line); }
+.listen-more a:hover{ border-color: var(--magenta); color: var(--magenta); }
+
+/* Track record */
+.record{ background: var(--bg-alt); max-width:100%; }
+.record .section-head, .record .record-grid, .record .closings{ max-width: var(--container); margin-left:auto; margin-right:auto; }
+.record-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.record-card{
+  background: var(--bg-card); border: 1px solid var(--line); border-radius: 10px;
+  padding: 1.8rem; border-top: 3px solid var(--magenta);
+}
+.record-count{ font-size: 0.68rem; color: var(--yellow); display:block; margin-bottom: 0.7rem; }
+.record-card h3{ font-size: 1.3rem; text-transform: uppercase; margin-bottom: 0.8rem; }
+.record-card p{ color: var(--muted); font-size: 0.92rem; }
+.record-card strong{ color: var(--fg); }
+.closings{ margin-top: 3rem; padding-top: 2.5rem; border-top: 1px dashed var(--line); }
+.closings-lead{ color: var(--muted); max-width: 60ch; margin-bottom: 1.2rem; }
+.closings-lead strong{ color: var(--fg); }
+
+/* Shows */
+.year-block{
+  display:grid; grid-template-columns: 90px 1fr; gap: 1.5rem;
+  padding: 1.5rem 0; border-top: 1px solid var(--line); align-items: start;
+}
+.year-block:last-child{ border-bottom: 1px solid var(--line); }
+.year{ font-size: 0.85rem; color: var(--magenta); }
+
+/* Bio */
+.bio{ background: var(--bg-alt); max-width:100%; }
+.bio-inner{ max-width: 720px; margin: 0 auto; }
+.bio-text{ color: var(--muted); margin-bottom: 1.2rem; font-size: 1.02rem; }
+.bio-short{ margin-top: 2rem; border-top: 1px dashed var(--line); padding-top: 1.5rem; }
+.bio-short summary{ cursor:pointer; font-size: 0.72rem; color: var(--muted); list-style:none; }
+.bio-short summary::-webkit-details-marker{ display:none; }
+.bio-short summary::before{ content:'+ '; color: var(--magenta); }
+.bio-short[open] summary::before{ content:'– '; }
+.bio-short summary:hover{ color: var(--fg); }
+.bio-short-body{ margin-top: 1.5rem; }
+.bio-short-label{ font-size: 0.66rem; color: var(--yellow); margin-bottom: 0.5rem; }
+
+/* Rider */
+.rider-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+.rider-col{
+  background: var(--bg-card); border: 1px solid var(--line);
+  border-radius: 10px; padding: 2rem;
+}
+.rider-title{ font-size: 1.4rem; text-transform: uppercase; margin-bottom: 1.5rem; }
+.rider-label{ font-size: 0.68rem; color: var(--magenta); margin: 1.6rem 0 0.7rem; }
+.rider-label:first-of-type{ margin-top: 0; }
+.rider-list{ margin: 0; padding-left: 1.1rem; color: var(--muted); font-size: 0.92rem; }
+.rider-list li{ margin-bottom: 0.35rem; }
+.rider-note{ color: var(--muted); font-size: 0.92rem; }
+.rider-note a{ color: var(--fg); border-bottom: 1px solid var(--line); }
+.rider-note a:hover{ border-color: var(--magenta); color: var(--magenta); }
+
+/* Press */
+.press-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+.link-list{ list-style:none; margin:0; padding:0; }
+.link-list li{ margin-bottom: 0.7rem; }
+.link-list a{
+  font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted);
+  border-bottom: 1px solid transparent;
+}
+.link-list a:hover{ color: var(--fg); border-color: var(--magenta); }
+.press-col .btn{ margin-top: 1rem; }
+
+@media (max-width: 860px){
+  .artist-hero-grid{ grid-template-columns: 1fr; gap: 2rem; }
+  .artist-portrait{ max-width: 320px; }
+  .stat-row{ grid-template-columns: repeat(2, 1fr); }
+  .listen-grid{ grid-template-columns: 1fr; }
+  .record-grid{ grid-template-columns: 1fr; }
+  .rider-grid{ grid-template-columns: 1fr; gap: 1.5rem; }
+  .press-grid{ grid-template-columns: 1fr; gap: 2rem; }
+  .year-block{ grid-template-columns: 1fr; gap: 0.8rem; }
+}
+
+/* two CTAs side by side in the pass footer */
+.pass-cta-row{ display:flex; gap: 0.6rem; flex-wrap:wrap; }
+.socials{ display:flex; gap: 1.2rem; flex-wrap:wrap; }
+
+/* booking form: keep the unchosen placeholder visibly muted */
+.booking-form select:invalid{ color: var(--muted); }
+.booking-form select option{ color: var(--fg); background: var(--bg-card); }
+.booking-form select option[disabled]{ color: var(--muted); }
+
+/* ============================================
+   Thank-you page (thanks.html)
+   ============================================ */
+.thanks{
+  min-height: calc(100vh - 220px);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding-top: 5rem; padding-bottom: 5rem;
+}
+.thanks-card{
+  width:100%; max-width: 620px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow:hidden;
+}
+.thanks-card .pass-top{
+  display:flex; justify-content:space-between;
+  padding: 1rem 1.6rem;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.72rem; color: var(--yellow);
+}
+.thanks-body{ padding: 2.4rem 1.6rem 1.6rem; }
+.thanks-title{
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 7vw, 3.4rem);
+  text-transform: uppercase; line-height: 1; margin-bottom: 1rem;
+}
+.thanks-lead{ color: var(--fg); font-size: 1.08rem; margin-bottom: 2.2rem; max-width: 44ch; }
+
+.thanks-steps{ display:flex; flex-direction:column; gap: 1.2rem; }
+.thanks-step{ display:grid; grid-template-columns: 34px 1fr; gap: 0.9rem; align-items:start; }
+.thanks-step-num{ font-size: 0.72rem; color: var(--magenta); padding-top: 0.15rem; }
+.thanks-step p{ color: var(--muted); font-size: 0.94rem; }
+.thanks-step a{ color: var(--fg); border-bottom: 1px solid var(--line); }
+.thanks-step a:hover{ color: var(--magenta); border-color: var(--magenta); }
+
+.thanks-card .pass-barcode{ margin: 0.6rem 1.6rem 0; }
+.thanks-bottom{
+  display:flex; gap: 0.8rem; flex-wrap:wrap;
+  padding: 1.6rem;
+}
+.thanks-note{
+  font-size: 0.68rem; color: var(--muted);
+  max-width: 620px; margin-top: 1.6rem; line-height: 1.7;
+  text-transform: none; letter-spacing: 0.02em;
+}
+
+@media (max-width: 480px){
+  .thanks-bottom .btn{ width:100%; justify-content:center; }
+}
+
+/* three-up stat row (artist pages with fewer numbers) */
+.stat-row-3{ grid-template-columns: repeat(3, 1fr); }
+.listen-item-wide{ margin-bottom: 2.5rem; }
+.listen-item-wide iframe{ width:100%; height: 300px; border:0; border-radius: var(--radius); display:block; }
+@media (max-width: 860px){ .stat-row-3{ grid-template-columns: 1fr; } }
+
+/* booking form: error state on the note under the submit button */
+.form-note-error{ color: var(--magenta); text-transform:none; letter-spacing:0.02em; }
+
+/* Rider: present but tucked away - it's an ask, not a sell */
+.rider-details{ border-top: 1px dashed var(--line); padding-top: 1.6rem; }
+.rider-details summary{
+  cursor: pointer; list-style: none;
+  font-size: 0.8rem; color: var(--muted);
+  padding: 0.2rem 0;
+}
+.rider-details summary::-webkit-details-marker{ display:none; }
+.rider-details summary::before{ content: '+ '; color: var(--magenta); }
+.rider-details[open] summary::before{ content: '– '; }
+.rider-details summary:hover{ color: var(--fg); }
+.rider-intro{ color: var(--muted); font-size: 0.94rem; margin: 1.2rem 0 2rem; max-width: 60ch; }
+.rider-details .rider-grid{ margin-top: 0; }
+
+/* ============================================
+   Roster tiles: gradient frame all the way round
+   ============================================
+   Was: the img had inset:2px AND width/height:100%, so it sized to the whole
+   tile and spilled 2px over the right and bottom edge - the frame only showed
+   top-left. And the hover zoom covered whatever frame was left.
+   Now: the image fills the tile, and the frame is drawn as a ring on top of it,
+   so nothing can cover it. */
+.roster-tile img{ inset: 0; width: 100%; height: 100%; }
+.roster-tile::after{
+  content: ''; position: absolute; inset: 0;
+  border-radius: 10px;
+  padding: 2px;
+  background: linear-gradient(165deg, #FFC93C 0%, #FF9E2C 30%, #FF4D1C 65%, #E01B24 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 3;
+}
+/* the "Join us" tile keeps its own dashed outline */
+.roster-tile-coming::after{ display: none; }
+
+/* Artist modal on phones: keep the buttons above the fold.
+   The card lost its player, so the only things still pushing it down are the
+   overlay padding and the photo. */
+@media (max-width: 560px){
+  .modal-overlay{ padding: 1rem; }
+  .pass-photo{ min-height: 170px; }
+  .pass-body{ padding: 1.3rem; }
+  .pass-bottom{ padding: 1rem 1.3rem; }
+}
