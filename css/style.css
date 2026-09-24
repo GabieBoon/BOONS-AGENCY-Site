@@ -914,3 +914,24 @@ main{ width:100%; }
   .about-cta-grid{ grid-template-columns: 1fr; }
 }
 @media (max-width: 480px){ .about-steps{ grid-template-columns: 1fr; } }
+
+/* ============================================
+   Keyboard focus: a clear ring on everything you can Tab to.
+   :focus-visible only shows it for keyboard users, not on mouse clicks.
+   ============================================ */
+a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-visible{
+  outline: 2px solid var(--yellow); outline-offset: 3px; border-radius: 4px;
+}
+.btn:focus-visible{ outline-offset: 4px; }
+.roster-tile:focus-visible{ outline-offset: 5px; border-radius: 12px; }
+.booking-form input:focus-visible, .booking-form select:focus-visible, .booking-form textarea:focus-visible{
+  outline: 2px solid var(--yellow); outline-offset: 1px;
+}
+
+/* "Skip to content": first thing a keyboard user reaches, hidden until focused */
+.skip-link{
+  position: absolute; left: 1rem; top: -100px; z-index: 1000;
+  background: var(--yellow); color: #0B0A0F; padding: 0.7rem 1.1rem; border-radius: var(--radius);
+  font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700;
+}
+.skip-link:focus{ top: 1rem; }

@@ -46,6 +46,7 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 
 <header class="site-header" id="top">
@@ -70,7 +71,7 @@
   <a href="#contact">Booking</a>
 </div>
 
-<main>
+<main id="main">
 
   <!-- HERO -->
   <section class="hero">
@@ -102,14 +103,14 @@
 
     <div class="roster-grid">
       <a href="/burney" class="roster-tile" data-om-label="BUTTON BURNEY" style="background: linear-gradient(180deg, #FDC711, #FF0000, #FF7A00)">
-        <img src="assets/images/burney.jpg" alt="BURNEY" onerror="this.parentElement.classList.add('no-photo')">
+        <picture><source type="image/webp" srcset="assets/images/burney-480.webp 480w, assets/images/burney-720.webp 720w" sizes="(max-width: 860px) 50vw, 260px"><img src="assets/images/burney.jpg" alt="BURNEY" width="924" height="1620" onerror="this.closest('.roster-tile').classList.add('no-photo')"></picture>
         <span class="roster-tile-overlay">
           <span class="roster-tile-name">BURNEY</span>
           <span class="roster-tile-cta mono">View profile →</span>
         </span>
       </a>
       <a href="/gibbs" class="roster-tile" data-om-label="BUTTON GIBBS" style="background: linear-gradient(180deg, #FDC711, #FF0000, #FF7A00)">
-        <img src="assets/images/gibbs.jpg" alt="GIBBS" onerror="this.parentElement.classList.add('no-photo')" style="object-fit: cover">
+        <picture><source type="image/webp" srcset="assets/images/gibbs-480.webp 480w, assets/images/gibbs-720.webp 720w" sizes="(max-width: 860px) 50vw, 260px"><img src="assets/images/gibbs.jpg" alt="GIBBS" width="924" height="1620" onerror="this.closest('.roster-tile').classList.add('no-photo')"></picture>
         <span class="roster-tile-overlay">
           <span class="roster-tile-name">GIBBS</span>
           <span class="roster-tile-cta mono">View profile →</span>

@@ -41,6 +41,7 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header" id="top">
   <a class="wordmark" href="/">
@@ -64,7 +65,7 @@
   <a href="/#contact">Booking</a>
 </div>
 
-<main>
+<main id="main">
 
   <!-- ARTIST HERO -->
   <section class="artist-hero">
@@ -72,7 +73,7 @@
 
     <div class="artist-hero-grid">
       <div class="artist-portrait">
-        <img src="assets/images/gibbs.jpg" alt="GIBBS" onerror="this.parentElement.classList.add('no-photo')">
+        <picture><source type="image/webp" srcset="assets/images/gibbs-480.webp 480w, assets/images/gibbs-720.webp 720w" sizes="(max-width: 860px) 320px, 360px"><img src="assets/images/gibbs.jpg" alt="GIBBS" width="924" height="1620" onerror="this.closest('.artist-portrait').classList.add('no-photo')"></picture>
         <span class="pass-photo-fallback mono">FOTO VOLGT</span>
       </div>
 
