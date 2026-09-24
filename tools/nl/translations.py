@@ -108,7 +108,7 @@ PAGES = {
          "Direct boeken, geen tussenpersonen. High-energy DJ's uit Haarlem: GIBBS en BURNEY."),
         (', high-energy DJ booking from Haarlem</span>', ", boekingskantoor voor high-energy DJ's uit Haarlem</span>"),
         ('View artists ↓', 'Bekijk artiesten ↓'),
-        ('We book high-energy DJs, from the opening set to the close.', "Wij boeken high-energy DJ's, van de openingsset tot de afsluiter."),
+        ('We book high-energy DJs, from the opening set till the closing.', "Wij boeken high-energy DJ's, van de openingsset tot de afsluiter."),
         ('>Book an artist</a>', '>Boek een artiest</a>'),
         ('<p class="eyebrow mono">Roster</p>', '<p class="eyebrow mono">Roster</p>'),
         ('<h2>The artists.</h2>', '<h2>De artiesten.</h2>'),
