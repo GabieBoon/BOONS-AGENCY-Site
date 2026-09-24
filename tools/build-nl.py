@@ -1,6 +1,7 @@
 """Builds the Dutch pages in nl/ from the English pages.
 
-Run from the website folder after changing an English page:
+Run from the website folder after changing an English page (it also refreshes
+sitemap.xml):
     python tools/build-nl.py
 
 The English pages are the source. This script copies each one, swaps in the Dutch
@@ -87,6 +88,22 @@ def english_leftovers(en_html, nl_html):
     return sorted(t for t in same if len(t) > 3 and english.search(t))
 
 
+def write_sitemap():
+    """sitemap.xml with both languages; lastmod = when the English page last changed."""
+    import datetime
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for lang_url in (lambda u: u, nl_url):
+        for page, url in PAGES.items():
+            if page == 'thanks.html':
+                continue  # not a page people should land on from Google
+            day = datetime.date.fromtimestamp(os.path.getmtime(os.path.join(ROOT, page))).isoformat()
+            lines.append(f'  <url><loc>{SITE}{lang_url(url)}</loc><lastmod>{day}</lastmod></url>')
+    lines.append('</urlset>')
+    with open(os.path.join(ROOT, 'sitemap.xml'), 'w', encoding='utf-8', newline=chr(10)) as f:
+        f.write(chr(10).join(lines) + chr(10))
+
+
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     os.makedirs(os.path.join(ROOT, 'nl'), exist_ok=True)
@@ -117,7 +134,8 @@ def main():
         if left:
             leftovers[page] = left
 
-    print('Dutch pages written to nl/ (' + ', '.join(PAGES) + ')')
+    write_sitemap()
+    print('Dutch pages written to nl/ (' + ', '.join(PAGES) + '), sitemap.xml updated')
     if missing:
         print('\nNo longer found on the English page (update tools/nl/translations.py):')
         for page, en in missing:

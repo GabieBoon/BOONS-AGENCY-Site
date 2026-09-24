@@ -22,6 +22,7 @@ $thumbW    = 600      # preview width in px (grid tiles are ~250px, so sharp on 
 $zipEdge   = 3000     # long edge in px for the photos in the ZIP
 $times     = [char]0x00D7
 $down      = [char]0x2193
+$ffmpeg    = (Get-Command ffmpeg -ErrorAction SilentlyContinue).Source   # optional, for WebP previews
 $edge      = @("${env:ProgramFiles(x86)}\Microsoft\Edge\Application\msedge.exe",
                "$env:ProgramFiles\Microsoft\Edge\Application\msedge.exe") | Where-Object { Test-Path $_ } | Select-Object -First 1
 $jpegCodec =[System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Object MimeType -eq 'image/jpeg'
@@ -69,8 +70,18 @@ Get-ChildItem $root -Directory | ForEach-Object {
             Save-Resized $f.FullName $t $thumbW 100000 80
         }
     }
+    # WebP copies of the previews (about a third of the size); browsers without WebP get the JPG
+    if ($ffmpeg) {
+        foreach ($f in $files) {
+            $t = Join-Path $thumbs $f.Name
+            $w = Join-Path $thumbs ($f.BaseName + '.webp')
+            if (-not (Test-Path $w) -or (Get-Item $w).LastWriteTime -lt (Get-Item $t).LastWriteTime) {
+                & $ffmpeg -v error -y -i $t -c:v libwebp -quality 78 -compression_level 6 $w
+            }
+        }
+    }
     # drop previews whose photo was removed
-    Get-ChildItem $thumbs -File | Where-Object { -not (Test-Path (Join-Path $photos $_.Name)) } | Remove-Item
+    Get-ChildItem $thumbs -File | Where-Object { -not (Test-Path (Join-Path $photos ($_.BaseName + '.jpg'))) } | Remove-Item
 
     # 2b. rider PDF, printed from the rider on the artist page (one source of truth)
     $page = Join-Path $site "$slug.html"
@@ -144,7 +155,11 @@ Get-ChildItem $root -Directory | ForEach-Object {
             @(
                 '      <figure class="photo-card">',
                 "        <a href=`"$orig`" class=`"photo-thumb`" data-lightbox aria-label=`"View $name photo $num full size`">",
-                "          <img src=`"assets/presskit/$slug/thumbs/$($f.Name)`" alt=`"$name, press photo $num`" width=`"$tw`" height=`"$th`" loading=`"lazy`">",
+                $(if (Test-Path (Join-Path $thumbs ($f.BaseName + '.webp'))) {
+                    "          <picture><source type=`"image/webp`" srcset=`"assets/presskit/$slug/thumbs/$($f.BaseName).webp`"><img src=`"assets/presskit/$slug/thumbs/$($f.Name)`" alt=`"$name, press photo $num`" width=`"$tw`" height=`"$th`" loading=`"lazy`"></picture>"
+                } else {
+                    "          <img src=`"assets/presskit/$slug/thumbs/$($f.Name)`" alt=`"$name, press photo $num`" width=`"$tw`" height=`"$th`" loading=`"lazy`">"
+                }),
                 '        </a>',
                 '        <figcaption>',
                 "          <span class=`"photo-meta mono`">$w $times $h px</span>",
@@ -157,6 +172,9 @@ Get-ChildItem $root -Directory | ForEach-Object {
         $new = [regex]::Replace($html, '<!-- PHOTOS:START.*?<!-- PHOTOS:END -->', { param($m) $block }, 'Singleline')
         # keep the ZIP size in the button label up to date
         $new = [regex]::Replace($new, "(Download everything \(ZIP)[^)]*(\))", "`$1, $zipMb MB`$2")
+        # 'updated' date: when the newest photo or bio in the kit last changed (MM.YYYY, like the dates on the site)
+        $newest = @($files) + @(Get-ChildItem $_.FullName -Filter '*.txt' -File) | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+        if ($newest) { $new = [regex]::Replace($new, '(<span class="presskit-meta mono">[^<]*?updated )[^<]*(</span>)', "`${1}$($newest.LastWriteTime.ToString('MM.yyyy'))`$2") }
         if ($new -ne $html) { [IO.File]::WriteAllText($page, $new, (New-Object System.Text.UTF8Encoding $false)) }
         if ($new -notmatch 'PHOTOS:START') { Write-Host "  warning: no PHOTOS markers in $slug.html" }
     }

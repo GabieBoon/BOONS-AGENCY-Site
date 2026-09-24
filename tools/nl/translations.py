@@ -57,7 +57,7 @@ ARTIST = [
     ('Photos, bios and the rider, for line-ups, posters, event pages and your production team. Download straight from here, no need to email us for them.',
      "Foto's, bio's en de rider, voor line-ups, posters, eventpagina's en je productieteam. Download ze hier direct, je hoeft er niet om te mailen."),
     ('Download everything (ZIP', 'Download alles (ZIP'),
-    ('Photos, bios + rider · updated Sep 2026', "Foto's, bio's + rider · bijgewerkt sep 2026"),
+    ('re:Photos, bios \\+ rider · updated ([\\d.]+)', r"Foto's, bio's + rider · bijgewerkt \1"),
     ('re:aria-label="View (GIBBS|BURNEY) photo (\\d+) full size"', r'aria-label="Bekijk foto \2 van \1 op volle grootte"'),
     ('re:alt="(GIBBS|BURNEY), press photo (\\d+)"', r'alt="\1, persfoto \2"'),
     ('Photos by <a', "Foto's door <a"),

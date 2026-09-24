@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Page not found | BOONS AGENCY</title>
 <meta name="robots" content="noindex">
+<script>if (location.pathname.indexOf("/nl/") === 0) document.documentElement.lang = "nl";</script>
 
 <link rel="preload" href="/assets/fonts/unbounded-latin-06f2e4.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/space-grotesk-latin-ecea81.woff2" as="font" type="font/woff2" crossorigin>
@@ -16,8 +17,8 @@
 <link rel="stylesheet" href="/css/style.css">
 <style>[hidden]{ display: none !important; }</style>
 </head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
+<body class="page-404">
+<a class="skip-link" href="#main"><span class="lang-en">Skip to content</span><span class="lang-nl">Naar de inhoud</span></a>
 
 <header class="site-header" id="top">
   <a class="wordmark" href="/">
@@ -25,25 +26,25 @@
     <span class="wordmark-text" style="display:none;">BOONS<span class="dot">•</span>AGENCY</span>
   </a>
   <nav class="site-nav">
-    <a href="/#roster">Artists</a>
-    <a href="/about">About</a>
-    <a href="/#contact">Booking</a>
+    <a href="/#roster"><span class="lang-en">Artists</span><span class="lang-nl">Artiesten</span></a>
+    <a href="/about"><span class="lang-en">About</span><span class="lang-nl">Over ons</span></a>
+    <a href="/#contact"><span class="lang-en">Booking</span><span class="lang-nl">Boeken</span></a>
   </nav>
-  <a href="/#contact" class="btn btn-ghost nav-cta">Book an artist</a>
+  <a href="/#contact" class="btn btn-ghost nav-cta"><span class="lang-en">Book an artist</span><span class="lang-nl">Boek een artiest</span></a>
   <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </header>
 
 <div class="mobile-nav" id="mobileNav">
-  <a href="/#roster">Artists</a>
-  <a href="/about">About</a>
-  <a href="/#contact">Booking</a>
+  <a href="/#roster"><span class="lang-en">Artists</span><span class="lang-nl">Artiesten</span></a>
+  <a href="/about"><span class="lang-en">About</span><span class="lang-nl">Over ons</span></a>
+  <a href="/#contact"><span class="lang-en">Booking</span><span class="lang-nl">Boeken</span></a>
 </div>
 
 <main id="main">
   <section class="thanks">
-    <div class="thanks-card">
+    <div class="thanks-card lang-en">
 
       <div class="pass-top">
         <span class="pass-label mono">No access</span>
@@ -81,6 +82,45 @@
       </div>
 
     </div>
+
+    <div class="thanks-card lang-nl">
+
+      <div class="pass-top">
+        <span class="pass-label mono">Geen toegang</span>
+        <span class="pass-label mono">404</span>
+      </div>
+
+      <div class="thanks-body">
+        <h1 class="thanks-title">Verkeerde deur.</h1>
+        <p class="thanks-lead">Deze pagina bestaat niet. Verplaatst, hernoemd, of er zat een typfout in de link.
+        Niks aan de hand.</p>
+
+        <div class="thanks-steps">
+          <div class="thanks-step">
+            <span class="thanks-step-num mono">01</span>
+            <p>Op zoek naar een artiest? <a href="/nl/gibbs">GIBBS</a> en <a href="/nl/burney">BURNEY</a>
+            hebben allebei een complete press kit.</p>
+          </div>
+          <div class="thanks-step">
+            <span class="thanks-step-num mono">02</span>
+            <p>Iemand boeken? Het <a href="/nl/#contact">boekingsformulier</a> is in een minuut ingevuld.</p>
+          </div>
+          <div class="thanks-step">
+            <span class="thanks-step-num mono">03</span>
+            <p>Kwam je hier via een link van ons? Laat het weten op
+            <a href="mailto:Bookings@boons-agency.nl">Bookings@boons-agency.nl</a>, dan lossen we het op.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pass-barcode" aria-hidden="true"></div>
+
+      <div class="thanks-bottom">
+        <a href="/nl/" class="btn btn-primary">Terug naar de site →</a>
+        <a href="/nl/#roster" class="btn btn-outline">Bekijk de artiesten</a>
+      </div>
+
+    </div>
   </section>
 </main>
 
@@ -88,11 +128,11 @@
   <div class="footer-top">
     <div class="footer-brand">
       <span class="wordmark-text">BOONS<span class="dot">•</span>AGENCY</span>
-      <p>Hardhouse, Trance &amp; UKG booking from Haarlem.</p>
+      <p><span class="lang-en">Hardhouse, Trance &amp; UKG booking from Haarlem.</span><span class="lang-nl">Hardhouse, Trance &amp; UKG-bookings uit Haarlem.</span></p>
     </div>
     <div class="footer-links">
       <div>
-        <span class="mono footer-label">Artists</span>
+        <span class="mono footer-label"><span class="lang-en">Artists</span><span class="lang-nl">Artiesten</span></span>
         <a href="/gibbs">GIBBS</a>
         <a href="/burney">BURNEY</a>
       </div>
@@ -105,8 +145,8 @@
   </div>
   <div class="footer-bottom mono">
     <span>© <span id="year"></span> BOONS AGENCY</span>
-    <span class="footer-bottom-links"><a href="/about">About</a> · <a href="/terms">Terms &amp; conditions</a></span>
-    <span>Haarlem, Netherlands</span>
+    <span class="footer-bottom-links"><a href="/about"><span class="lang-en">About</span><span class="lang-nl">Over ons</span></a> · <a href="/terms"><span class="lang-en">Terms &amp; conditions</span><span class="lang-nl">Algemene voorwaarden</span></a></span>
+    <span><span class="lang-en">Haarlem, Netherlands</span><span class="lang-nl">Haarlem, Nederland</span></span>
   </div>
 </footer>
 
