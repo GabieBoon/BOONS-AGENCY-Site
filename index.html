@@ -172,7 +172,12 @@
         </div>
         <div class="form-row">
           <label class="mono" for="email">Email</label>
-          <input type="email" id="email" name="email" required>
+          <input type="email" id="email" name="email" required autocomplete="email"
+            pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}" title="Please enter a full email address, like name@example.com">
+        </div>
+        <div class="form-row">
+          <label class="mono" for="phone">Phone / WhatsApp <span class="form-optional">(optional)</span></label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="e.g. +31 6 12345678">
         </div>
         <div class="form-row">
           <label class="mono" for="artist">Which artist?</label>
@@ -185,7 +190,7 @@
         </div>
         <div class="form-row">
           <label class="mono" for="event_type">Type of event</label>
-          <select id="event_type" name="event_type">
+          <select id="event_type" name="event_type" required>
             <option value="" selected>Make a selection…</option>
             <option value="Club night">Club night</option>
             <option value="Festival">Festival</option>
@@ -196,23 +201,23 @@
         </div>
         <div class="form-row">
           <label class="mono" for="event">Event / Venue</label>
-          <input type="text" id="event" name="event" placeholder="Club, festival, or event name">
+          <input type="text" id="event" name="event" placeholder="Club, festival, or event name" required>
         </div>
         <div class="form-row">
           <label class="mono" for="city">City &amp; country</label>
-          <input type="text" id="city" name="city" placeholder="e.g. Haarlem, NL" autocomplete="address-level2">
+          <input type="text" id="city" name="city" placeholder="e.g. Haarlem, NL" autocomplete="address-level2" required>
         </div>
         <div class="form-row">
           <label class="mono" for="date">Date</label>
-          <input type="date" id="date" name="date">
+          <input type="date" id="date" name="date" required>
         </div>
         <div class="form-row">
-          <label class="mono" for="set_time">Set time &amp; length</label>
+          <label class="mono" for="set_time">Set time &amp; length <span class="form-optional">(optional)</span></label>
           <input type="text" id="set_time" name="set_time" placeholder="e.g. 01:00–02:30, or not sure yet">
         </div>
         <div class="form-row">
           <label class="mono" for="capacity">Capacity</label>
-          <select id="capacity" name="capacity">
+          <select id="capacity" name="capacity" required>
             <option value="" selected>Make a selection…</option>
             <option value="Up to 300">Up to 300</option>
             <option value="300 – 1,000">300 – 1,000</option>
@@ -232,7 +237,7 @@
           </select>
         </div>
         <div class="form-row form-row-full">
-          <label class="mono" for="message">Message</label>
+          <label class="mono" for="message">Message <span class="form-optional">(optional)</span></label>
           <textarea id="message" name="message" rows="4" placeholder="Tell us about your event..."></textarea>
         </div>
         <input type="hidden" name="_subject" value="Booking request via boons-agency.nl">
