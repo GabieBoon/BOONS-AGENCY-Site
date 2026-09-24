@@ -813,3 +813,41 @@ main{ width:100%; }
 .presskit-credit a:hover{ border-color: var(--yellow); }
 .presskit-credit + .presskit-usage{ margin-top: 0.8rem; }
 .presskit-usage strong{ color: var(--fg); font-weight: 600; }
+
+
+/* homepage: "Our artists played" marquee */
+.played-at{
+  max-width: 100%; padding: 2.6rem 0;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden;
+}
+.played-at-label{ max-width: var(--container); margin: 0 auto 1.2rem; padding: 0 2rem; }
+.marquee{
+  overflow: hidden;
+  -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track{ display: flex; width: max-content; animation: marquee 45s linear infinite; }
+.played-at:hover .marquee-track{ animation-play-state: paused; }
+.marquee-list{ display: flex; list-style: none; margin: 0; padding: 0; }
+.marquee-list li{
+  font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+  font-size: clamp(1.1rem, 2.4vw, 1.7rem); white-space: nowrap; color: var(--fg);
+}
+.marquee-list li::after{ content: '✦'; color: var(--magenta); font-size: 0.6em; margin: 0 1.6rem; vertical-align: middle; }
+@keyframes marquee{ from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce){
+  .marquee{ -webkit-mask: none; mask: none; }
+  .marquee-track{ animation: none; width: auto; flex-wrap: wrap; padding: 0 2rem; max-width: var(--container); margin: 0 auto; }
+  .marquee-list[aria-hidden="true"]{ display: none; }
+  .marquee-list{ flex-wrap: wrap; row-gap: 0.6rem; }
+}
+@media (max-width: 480px){ .played-at-label{ padding: 0 1.2rem; } }
+
+/* full-width bands (about, track record): line their content up with the other sections */
+.about-inner,
+.record .section-head, .record .record-grid, .record .closings{ max-width: calc(var(--container) - 4rem); }
+
+/* readability: small mono labels that carry real information, up from ~10px to ~12px */
+.stat-label, .photo-meta, .photo-dl, .rider-label, .contact-role, .roster-tile-cta,
+.record-count, .bio-short-label, .footer-label, .legal-toc, .legal-table th,
+.artist-social .mono{ font-size: 0.74rem; }

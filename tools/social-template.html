@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- Link-preview image (og:image, 1200x630) for an artist page. tools/build-presskits.ps1
+     fills in the {{placeholders}} from the artist page and screenshots it with Edge. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #0B0A0F; }
+  body { display: flex; font-family: 'JetBrains Mono', monospace; color: #F5F1E8; }
+  .photo { position: relative; width: 470px; height: 630px; flex: none; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
+  .photo::after {           /* the site's gradient edge */
+    content: ''; position: absolute; top: 0; right: 0; width: 6px; height: 100%;
+    background: linear-gradient(180deg, #FFC93C 0%, #FF9E2C 30%, #FF4D1C 65%, #E01B24 100%);
+  }
+  .info { min-width: 0;
+    flex: 1; padding: 64px 70px 56px; display: flex; flex-direction: column; justify-content: space-between;
+    background: radial-gradient(ellipse 120% 90% at 100% 100%, rgba(224,27,36,0.22), transparent 60%);
+  }
+  .logo { height: 44px; align-self: flex-start; }
+  .name { font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 104px; line-height: 0.95; letter-spacing: -2px; text-transform: uppercase; margin: 0; }
+  .tagline { color: #E01B24; font-size: 22px; letter-spacing: 3px; text-transform: uppercase; margin: 20px 0 26px; }
+  .tags { display: flex; gap: 12px; }
+  .tags span { border: 2px solid #6B0F1A; border-radius: 999px; padding: 8px 18px; font-size: 18px; letter-spacing: 2px; text-transform: uppercase; }
+  .foot { display: flex; justify-content: space-between; font-size: 18px; letter-spacing: 2px; text-transform: uppercase; color: #948FA3; }
+  .foot b { color: #FF7A45; font-weight: 700; }
+</style>
+</head>
+<body>
+  <div class="photo"><img src="{{PHOTO}}" alt=""></div>
+  <div class="info">
+    <img class="logo" src="{{LOGO}}" alt="">
+    <div>
+      <h1 class="name">{{ARTIST}}</h1>
+      <p class="tagline">{{TAGLINE}}</p>
+      <div class="tags">{{TAGS}}</div>
+    </div>
+    <div class="foot"><span>Booking &amp; press kit</span><b>boons-agency.nl</b></div>
+  </div>
+</body>
+</html>

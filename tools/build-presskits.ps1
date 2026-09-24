@@ -6,6 +6,7 @@
 #   1. renames new photos in photos\ to <ARTIST>-NN.jpg (next free number)
 #   2. makes a small preview of each photo in thumbs\ for the page grid
 #   3. prints <ARTIST>-rider.pdf from the rider on the artist page (needs Edge)
+#   3b. makes assets/images/<artist>-social.jpg (the link preview) from photo 01
 #   4. builds <ARTIST>-presskit.zip with every photo at 3000px (poster-ready, and
 #      it keeps the ZIP under GitHub's 100 MB file limit) plus the .txt and .pdf files
 #   5. rewrites the photo grid on <artist>.html between the PHOTOS:START/END markers
@@ -92,6 +93,29 @@ Get-ChildItem $root -Directory | ForEach-Object {
             Remove-Item $tmp
             if (-not (Test-Path $pdf)) { Write-Host "  warning: rider PDF for $name was not created" }
         }
+    }
+
+    # 2c. link-preview image (og:image) from the first press kit photo + the artist page
+    $first = $files | Select-Object -First 1
+    if ((Test-Path $page) -and $first) {
+        $html    = [IO.File]::ReadAllText($page)
+        $tagline = [regex]::Match($html, '<p class="artist-tagline mono">(.*?)</p>').Groups[1].Value
+        $tags    = ([regex]::Matches($html, '<span class="tag">(.*?)</span>') | Select-Object -First 3 | ForEach-Object { "<span>$($_.Groups[1].Value)</span>" }) -join ''
+        $doc     = [IO.File]::ReadAllText((Join-Path $PSScriptRoot 'social-template.html'))
+        $doc     = $doc.Replace('{{ARTIST}}', $name).Replace('{{TAGLINE}}', $tagline).Replace('{{TAGS}}', $tags).
+                       Replace('{{PHOTO}}', ([Uri](Join-Path $thumbs $first.Name)).AbsoluteUri).
+                       Replace('{{LOGO}}', ([Uri](Join-Path $site 'assets\images\logo.png')).AbsoluteUri)
+        $tmp     = Join-Path ([IO.Path]::GetTempPath()) "social-$slug.html"
+        $png     = Join-Path ([IO.Path]::GetTempPath()) "social-$slug.png"
+        [IO.File]::WriteAllText($tmp, $doc, (New-Object System.Text.UTF8Encoding $false))
+        if (Test-Path $png) { Remove-Item $png -Force }
+        Start-Process -Wait -FilePath $edge -ArgumentList '--headless=new', '--disable-gpu', '--hide-scrollbars',
+            '--window-size=1200,630', '--virtual-time-budget=5000', "--screenshot=$png", ([Uri]$tmp).AbsoluteUri
+        if (Test-Path $png) {
+            Save-Resized $png (Join-Path $site "assets\images\$slug-social.jpg") 1200 630 88
+            Remove-Item $png
+        } else { Write-Host "  warning: link preview for $name was not created" }
+        Remove-Item $tmp
     }
 
     # 3. ZIP with poster-ready copies
