@@ -1144,3 +1144,7 @@ html[lang="nl"] .lang-en, html:not([lang="nl"]) .lang-nl{ display: none !importa
 .clip-link{ font-size: 0.7rem; color: var(--muted); margin-left: auto; }
 .clip-link:hover{ color: var(--yellow); }
 @media (max-width: 860px){ .clip-grid{ grid-template-columns: repeat(2, 1fr); } }
+/* clips are landscape (professional 16:9 footage): 2 x 2 on desktop, stacked on phones */
+.clip-grid{ grid-template-columns: repeat(2, 1fr); gap: 1.6rem; }
+.clip-card video{ aspect-ratio: 16/9; }
+@media (max-width: 700px){ .clip-grid{ grid-template-columns: 1fr; } }

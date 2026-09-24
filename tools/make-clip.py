@@ -1,4 +1,4 @@
-"""Turns a video into a homepage clip: vertical 9:16, muted, a few MB, plus a poster image.
+"""Turns a video into a homepage clip: landscape 16:9, muted, a few MB, plus a poster image.
 
 Run from the website folder:
     python tools/make-clip.py <video> <name> [start] [length]
@@ -7,7 +7,7 @@ Run from the website folder:
 
 This writes assets/video/clips/<name>.mp4 and assets/video/clips/<name>.jpg.
 start = where the clip begins (seconds or m:ss, default 0), length in seconds (default 12).
-Landscape videos are cropped to the middle. Needs ffmpeg.
+Videos are fitted to 16:9 (a taller video is cropped to its middle). Needs ffmpeg.
 """
 import os
 import subprocess
@@ -27,8 +27,8 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     mp4 = os.path.join(OUT, name + '.mp4')
     jpg = os.path.join(OUT, name + '.jpg')
-    # crop the middle to 9:16, 540x960, no audio, small and quick to start
-    vf = "crop='min(iw,ih*9/16)':'min(ih,iw*16/9)',scale=540:960,fps=30"
+    # fit to 16:9 at 1280x720, sharp on retina screens (crops the middle if the video isn't 16:9), no audio
+    vf = "crop='min(iw,ih*16/9)':'min(ih,iw*9/16)',scale=1280:720,fps=30"
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', start, '-t', length, '-i', src,
                     '-vf', vf, '-an', '-c:v', 'libx264', '-preset', 'slow', '-crf', '27',
                     '-profile:v', 'main', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', mp4], check=True)
