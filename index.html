@@ -107,28 +107,23 @@
       <p class="section-lead">High-energy DJs, each with their own sound, from the opening set to the close. Every artist gets our full attention: every booking, every set, every time.</p>
     </div>
 
-    <div class="roster-grid">
-      <a href="/burney" class="roster-tile" data-om-label="BUTTON BURNEY" style="background: linear-gradient(180deg, #FDC711, #FF0000, #FF7A00)">
-        <picture><source type="image/webp" srcset="assets/images/burney-480.webp 480w, assets/images/burney-720.webp 720w" sizes="(max-width: 860px) 50vw, 260px"><img src="assets/images/burney.jpg" alt="BURNEY" width="924" height="1620" onerror="this.closest('.roster-tile').classList.add('no-photo')"></picture>
+    <div class="roster-grid roster-grid-large">
+      <a href="/burney" class="roster-tile roster-tile-large">
+        <picture><source type="image/webp" srcset="assets/images/burney-480.webp 480w, assets/images/burney-720.webp 720w" sizes="(max-width: 860px) 50vw, 380px"><img src="assets/images/burney.jpg" alt="BURNEY" width="924" height="1620" onerror="this.closest('.roster-tile').classList.add('no-photo')"></picture>
         <span class="roster-tile-overlay">
           <span class="roster-tile-name">BURNEY</span>
+          <span class="tag-row roster-tile-tags"><span class="tag">Trance</span><span class="tag">Hardhouse</span><span class="tag">Hardgroove</span></span>
           <span class="roster-tile-cta mono">View profile →</span>
         </span>
       </a>
-      <a href="/gibbs" class="roster-tile" data-om-label="BUTTON GIBBS" style="background: linear-gradient(180deg, #FDC711, #FF0000, #FF7A00)">
-        <picture><source type="image/webp" srcset="assets/images/gibbs-480.webp 480w, assets/images/gibbs-720.webp 720w" sizes="(max-width: 860px) 50vw, 260px"><img src="assets/images/gibbs.jpg" alt="GIBBS" width="924" height="1620" onerror="this.closest('.roster-tile').classList.add('no-photo')"></picture>
+      <a href="/gibbs" class="roster-tile roster-tile-large">
+        <picture><source type="image/webp" srcset="assets/images/gibbs-480.webp 480w, assets/images/gibbs-720.webp 720w" sizes="(max-width: 860px) 50vw, 380px"><img src="assets/images/gibbs.jpg" alt="GIBBS" width="924" height="1620" onerror="this.closest('.roster-tile').classList.add('no-photo')"></picture>
         <span class="roster-tile-overlay">
           <span class="roster-tile-name">GIBBS</span>
+          <span class="tag-row roster-tile-tags"><span class="tag">Hardhouse</span><span class="tag">Trance</span><span class="tag">UKG</span></span>
           <span class="roster-tile-cta mono">View profile →</span>
         </span>
       </a>
-      <div class="roster-tile roster-tile-coming" data-om-label="BUTTON JOIN US">
-        <div class="roster-tile-coming-content">
-          <h3 class="coming-title">Join us</h3>
-          <p class="coming-text">Are you a DJ who brings the energy? Let's talk.</p>
-          <a href="mailto:Bookings@boons-agency.nl?subject=Artist%20application&amp;body=Hi%20Finn%2C%0A%0AArtist%20name%3A%20%0AGenre(s)%3A%20%0ABased%20in%3A%20%0ASoundCloud%20%2F%20mix%20link%3A%20%0AInstagram%3A%20%0A%0AA%20bit%20about%20me%3A%20%0A" class="btn btn-primary btn-small">Get in touch →</a>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -171,28 +166,55 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- LISTEN: one featured set per artist -->
+  <section class="listen home-listen" id="listen">
+    <div class="section-head">
+      <p class="eyebrow mono">Listen</p>
+      <h2>Hear the energy.</h2>
+      <p class="section-lead">One set from each artist. Press play and you know what your floor is getting.</p>
+    </div>
+    <div class="listen-grid">
+      <div class="listen-item">
+        <p class="listen-label mono">BURNEY · Worlds of Space (original)</p>
+        <iframe loading="lazy" scrolling="no" frameborder="no" allow="autoplay" title="BURNEY, Worlds of Space"
+          src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fburneyofficiall%2Fworldsofspace&color=%23e01b24&auto_play=false&hide_related=true&show_comments=false&show_teaser=false&visual=true"></iframe>
+      </div>
+      <div class="listen-item">
+        <p class="listen-label mono">GIBBS · Solo set, Hoognodig</p>
+        <iframe loading="lazy" scrolling="no" frameborder="no" allow="autoplay" title="GIBBS at Hoognodig, 18-02-2025"
+          src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fgibbs_energy%2Fgibbs-hoognodig-18-02-2025&color=%23e01b24&auto_play=false&hide_related=true&show_comments=false&show_teaser=false&visual=true"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY BOONS + HOW BOOKING WORKS -->
   <section class="about" id="about">
     <div class="about-inner">
-      <p class="eyebrow mono">How we work</p>
-      <h2><s class="strike-out">Middlemen</s> Direct bookings.</h2>
-      <div class="about-grid">
+      <p class="eyebrow mono">Why BOONS</p>
+      <h2>Why book through BOONS.</h2>
+      <div class="about-grid about-grid-4">
         <div class="about-item">
           <span class="about-num mono">01</span>
-          <h3>Personal</h3>
-          <p>One point of contact, no queue of managers. You send a message, you get Finn.</p>
+          <h3>Energy in every slot</h3>
+          <p>Opening, peak time or closing. Our artists build a room as well as they peak it.</p>
         </div>
         <div class="about-item">
           <span class="about-num mono">02</span>
-          <h3>Selective</h3>
-          <p>We only sign artists we can go all in for. That keeps every booking a priority instead of a slot.</p>
+          <h3>Solo or b2b</h3>
+          <p>Book GIBBS or BURNEY on their own, or together as one back-to-back act.</p>
         </div>
         <div class="about-item">
           <span class="about-num mono">03</span>
-          <h3>Anywhere</h3>
-          <p>Clubs, festivals, or your own event. If the energy fits, we travel.</p>
+          <h3>Everything ready</h3>
+          <p>Press kit, photos and rider are online. Download what you need, no emails back and forth.</p>
+        </div>
+        <div class="about-item">
+          <span class="about-num mono">04</span>
+          <h3>One contact</h3>
+          <p>Finn handles your booking from first message to the night itself. Reply within two working days.</p>
         </div>
       </div>
+
       <a href="/about" class="btn btn-outline about-more">More about BOONS →</a>
     </div>
   </section>
@@ -211,6 +233,10 @@
       </div>
     </div>
   </section>
+
+  <!-- JOIN: small line for artists, the booking block above stays the main action -->
+  <p class="join-line">Are you a DJ who brings the energy? <a href="mailto:Bookings@boons-agency.nl?subject=Artist%20application&amp;body=Hi%20Finn%2C%0A%0AArtist%20name%3A%20%0AGenre(s)%3A%20%0ABased%20in%3A%20%0ASoundCloud%20%2F%20mix%20link%3A%20%0AInstagram%3A%20%0A%0AA%20bit%20about%20me%3A%20%0A">Send us your music →</a></p>
+
 
 </main>
 

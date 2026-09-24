@@ -998,3 +998,132 @@ html[lang="nl"] .lang-en, html:not([lang="nl"]) .lang-nl{ display: none !importa
 /* Booking page: the form is the page */
 .book-page{ padding-top: 4rem; }
 .book-title{ font-size: clamp(2.4rem, 6vw, 4rem); text-transform: uppercase; margin-bottom: 1rem; }
+
+/* ============================================
+   Homepage: artist feature cards (tile + details)
+   ============================================ */
+.feature-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.feature-card{
+  display: grid; grid-template-columns: 220px 1fr; gap: 1.6rem; align-items: center;
+  background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; padding: 1.2rem;
+}
+.feature-photo{ display: block; }
+.feature-no{ font-size: 0.74rem; color: var(--magenta); margin-bottom: 0.4rem; }
+.feature-tagline{ font-size: 0.74rem; color: var(--yellow); margin-bottom: 1rem; }
+.feature-body .tag-row{ margin-bottom: 1rem; }
+.feature-facts{ list-style: none; margin: 0 0 1.4rem; padding: 0; }
+.feature-facts li{ color: var(--fg); font-size: 0.95rem; padding: 0.35rem 0; border-top: 1px dashed var(--line); }
+.feature-facts li:last-child{ border-bottom: 1px dashed var(--line); }
+.feature-facts li::before{ content: '✦'; color: var(--magenta); font-size: 0.7em; margin-right: 0.6rem; }
+.feature-actions{ display: flex; gap: 0.6rem; flex-wrap: wrap; }
+@media (max-width: 1000px){ .feature-grid{ grid-template-columns: 1fr; } }
+@media (max-width: 560px){
+  .feature-card{ grid-template-columns: 1fr; }
+  .feature-photo{ max-width: 260px; }
+}
+
+/* Homepage: Listen, 4 reasons, join strip */
+.home-listen{ padding-top: 5rem; }
+.about-grid-4{ grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+@media (max-width: 1000px){ .about-grid-4{ grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px){ .about-grid-4{ grid-template-columns: 1fr; } }
+.join-strip{
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap;
+  padding-top: 5rem; padding-bottom: 5rem; border-bottom: 1px solid var(--line);
+}
+.join-title{ font-size: clamp(1.8rem, 3.6vw, 2.4rem); text-transform: uppercase; margin-bottom: 0.8rem; }
+
+/* Homepage: artists' call to action as one quiet line under the booking block */
+.join-line{
+  max-width: var(--container); margin: 0 auto; padding: 0 2rem 4rem;
+  color: var(--muted); font-size: 0.92rem;
+}
+.join-line a{ color: var(--fg); border-bottom: 1px solid var(--magenta); margin-left: 0.3rem; }
+.join-line a:hover{ color: var(--magenta); }
+.home-book{ padding-bottom: 2.5rem; }
+@media (max-width: 480px){ .join-line{ padding: 0 1.2rem 3rem; } }
+
+/* Homepage: booking steps as a timeline (one line, four points), so it reads
+   differently from the four reasons above it */
+.timeline-label{ margin-top: 5rem; margin-bottom: 1.8rem; }
+.timeline{
+  list-style: none; margin: 0; padding: 0; position: relative;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+}
+.timeline::before{          /* the line through the points */
+  content: ''; position: absolute; left: 18px; right: 18px; top: 18px; height: 2px;
+  background: linear-gradient(90deg, #FFC93C, #FF4D1C 60%, #E01B24);
+}
+.timeline li{ position: relative; }
+.timeline-dot{
+  position: relative; z-index: 1; display: flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 50%; margin-bottom: 1.2rem;
+  background: var(--bg-alt); border: 2px solid var(--magenta); color: var(--fg); font-size: 0.85rem;
+}
+.timeline h3{ font-size: 1.05rem; text-transform: uppercase; margin-bottom: 0.4rem; }
+.timeline p{ color: var(--muted); font-size: 0.92rem; max-width: 26ch; }
+.timeline a{ color: var(--fg); border-bottom: 1px solid var(--line); }
+.timeline a:hover{ color: var(--magenta); border-color: var(--magenta); }
+@media (max-width: 860px){
+  .timeline{ grid-template-columns: 1fr; gap: 1.6rem; }
+  .timeline::before{ left: 18px; right: auto; top: 18px; bottom: 18px; width: 2px; height: auto;
+    background: linear-gradient(180deg, #FFC93C, #FF4D1C 60%, #E01B24); }
+  .timeline li{ padding-left: 58px; }
+  .timeline-dot{ position: absolute; left: 0; top: 0; margin: 0; }
+  .timeline p{ max-width: none; }
+}
+/* timeline line: drawn from each point to the next, so it stops exactly at step 4 */
+.timeline::before{ content: none; }
+.timeline li:not(:last-child)::after{
+  content: ''; position: absolute; z-index: 0; top: 18px; left: 19px;
+  width: calc(100% + 2rem); height: 2px;
+  background: linear-gradient(90deg, #FFC93C, #FF4D1C);
+}
+.timeline li:nth-child(2)::after{ background: linear-gradient(90deg, #FF9E2C, #FF4D1C); }
+.timeline li:nth-child(3)::after{ background: linear-gradient(90deg, #FF4D1C, #E01B24); }
+@media (max-width: 860px){
+  .timeline li:not(:last-child)::after{ top: 19px; left: 18px; width: 2px; height: calc(100% + 1.6rem);
+    background: linear-gradient(180deg, #FF9E2C, #E01B24); }
+}
+/* timeline on desktop: every step centred in its column, the line runs from centre
+   to centre, so the whole thing sits symmetrically in the page */
+@media (min-width: 861px){
+  .timeline li{ text-align: center; }
+  .timeline-dot{ margin-left: auto; margin-right: auto; }
+  .timeline p{ margin: 0 auto; }
+  .timeline li:not(:last-child)::after{ left: calc(50% + 19px); width: calc(100% + 2rem - 38px); }
+  .timeline-label{ text-align: center; }
+}
+
+/* Feature cards: same grid in both cards, whatever the text length.
+   Top-aligned, tagline always reserves two lines, genres always on one row,
+   buttons pinned to the bottom. */
+.feature-card{ align-items: stretch; }
+.feature-body{ display: flex; flex-direction: column; padding: 0.4rem 0; }
+.feature-tagline{ min-height: calc(2 * 1.6em); line-height: 1.6; margin-bottom: 0.8rem; }
+.feature-body .tag-row{ flex-wrap: nowrap; gap: 0.35rem; margin-bottom: 1.2rem; }
+.feature-body .tag{ font-size: 0.62rem; padding: 0.3rem 0.55rem; white-space: nowrap; }
+.feature-actions{ margin-top: auto; }
+/* feature cards: switch to one card per row before they get too narrow for photo + text */
+@media (max-width: 1180px){ .feature-grid{ grid-template-columns: 1fr; max-width: 640px; } }
+.feature-body .tag-row{ margin-bottom: 1.6rem; }
+.feature-lead{ color: var(--fg); font-size: 1rem; line-height: 1.55; margin-bottom: 1.4rem; max-width: 34ch; }
+@media (max-width: 1180px){ .feature-grid{ margin: 0 auto; } }
+
+/* Homepage roster: two large tiles, genres inside the tile */
+.roster-grid-large{ grid-template-columns: repeat(2, minmax(0, 380px)); gap: 1.8rem; }
+.roster-tile-large .roster-tile-overlay{ padding: 1.4rem 1.5rem; gap: 0.6rem; }
+.roster-tile-large .roster-tile-name{ font-size: clamp(1.6rem, 3vw, 2.2rem); }
+.roster-tile-tags{ margin: 0; gap: 0.35rem; flex-wrap: wrap; }
+.roster-tile-tags .tag{ font-size: 0.62rem; padding: 0.28rem 0.55rem; background: rgba(11,10,15,0.55); border-color: rgba(255,255,255,0.18); }
+.roster-tile-large .roster-tile-overlay{ background: linear-gradient(to top, rgba(11,10,15,0.95), rgba(11,10,15,0) 65%); }
+@media (max-width: 860px){ .roster-grid-large{ grid-template-columns: repeat(2, 1fr); gap: 1rem; } }
+@media (max-width: 480px){
+  .roster-grid-large{ grid-template-columns: 1fr; }
+  .roster-tile-large{ max-width: 380px; }
+}
+/* phones: one large tile per row, so the name and genres don't cover the face */
+@media (max-width: 600px){
+  .roster-grid-large{ grid-template-columns: 1fr; }
+  .roster-tile-large{ max-width: 400px; }
+}
