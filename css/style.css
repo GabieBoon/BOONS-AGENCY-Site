@@ -1203,3 +1203,7 @@ section{ padding-top: 5rem; padding-bottom: 5rem; }
 /* g. "Show earlier years" under the shows */
 .shows-more{ margin-top: 1.5rem; }
 .year-block[hidden]{ display: none; }
+
+/* "Also on the roster" now comes after the closing booking block: quieter, a last option */
+.book-cta + .more-artists{ padding-top: 4rem; }
+.more-artists .section-head h2{ font-size: clamp(1.6rem, 3vw, 2.2rem); }
