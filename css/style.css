@@ -967,3 +967,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 html[lang="nl"] .lang-en, html:not([lang="nl"]) .lang-nl{ display: none !important; }
 /* the venue strip also stops while you're on it with the keyboard */
 .played-at:focus-within .marquee-track{ animation-play-state: paused; }
+
+/* links inside running text on the About page */
+.about-text a{ color: var(--fg); border-bottom: 1px solid var(--magenta); }
+.about-text a:hover{ color: var(--magenta); }
+
+/* About page title: the longer genre line stays readable in two or three lines */
+.about-title{ font-size: clamp(2.2rem, 5vw, 3.8rem); max-width: 16ch; }
