@@ -275,30 +275,3 @@ if (NL && document.body.classList.contains('page-404')) {
     if (!href.startsWith('/nl/') && !/^\/(assets|css|js)\//.test(href)) a.setAttribute('href', '/nl' + href);
   });
 }
-
-
-// Pause button for everything that moves (hero video + venue strip).
-// Starts paused for people who ask their system for reduced motion; the choice is
-// remembered on this device. Without JavaScript the button stays hidden.
-const motionToggle = document.getElementById('motionToggle');
-if (motionToggle) {
-  const video = document.querySelector('.hero-video');
-  const label = motionToggle.querySelector('.motion-label');
-  let saved = null;
-  try { saved = localStorage.getItem('boons-motion'); } catch (_) { /* storage blocked */ }
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const setPaused = (paused, remember) => {
-    document.documentElement.classList.toggle('motion-paused', paused);
-    if (video) { if (paused) video.pause(); else video.play().catch(() => {}); }
-    motionToggle.setAttribute('aria-pressed', String(paused));
-    label.textContent = paused ? t('Play', 'Afspelen') : t('Pause', 'Pauzeren');
-    motionToggle.setAttribute('aria-label', paused ? t('Play video and animation', 'Video en animatie afspelen')
-                                                   : t('Pause video and animation', 'Video en animatie pauzeren'));
-    if (remember) { try { localStorage.setItem('boons-motion', paused ? 'paused' : 'playing'); } catch (_) {} }
-  };
-  setPaused(saved ? saved === 'paused' : reduce, false);
-  motionToggle.hidden = false;
-  motionToggle.addEventListener('click', () => {
-    setPaused(!document.documentElement.classList.contains('motion-paused'), true);
-  });
-}
