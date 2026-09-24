@@ -1127,3 +1127,20 @@ html[lang="nl"] .lang-en, html:not([lang="nl"]) .lang-nl{ display: none !importa
   .roster-grid-large{ grid-template-columns: 1fr; }
   .roster-tile-large{ max-width: 400px; }
 }
+
+/* Homepage: "On the floor" clips (vertical, muted, looping when in view) */
+.clip-grid{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+.clip-card{ margin: 0; }
+.clip-card video{
+  display: block; width: 100%; aspect-ratio: 9/16; object-fit: cover; background: var(--bg-card);
+  border-radius: 10px; border: 2px solid transparent;
+  background-image: linear-gradient(var(--bg-card), var(--bg-card)),
+                    linear-gradient(165deg, #FFC93C 0%, #FF9E2C 30%, #FF4D1C 65%, #E01B24 100%);
+  background-origin: border-box; background-clip: padding-box, border-box;
+}
+.clip-card figcaption{ display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.6rem; padding: 0.8rem 0.2rem 0; }
+.clip-artist{ font-size: 0.74rem; color: var(--magenta); }
+.clip-venue{ font-size: 0.9rem; color: var(--fg); }
+.clip-link{ font-size: 0.7rem; color: var(--muted); margin-left: auto; }
+.clip-link:hover{ color: var(--yellow); }
+@media (max-width: 860px){ .clip-grid{ grid-template-columns: repeat(2, 1fr); } }

@@ -275,3 +275,22 @@ if (NL && document.body.classList.contains('page-404')) {
     if (!href.startsWith('/nl/') && !/^\/(assets|css|js)\//.test(href)) a.setAttribute('href', '/nl' + href);
   });
 }
+
+
+// "On the floor" clips: only play while on screen (saves data and battery).
+// People who ask for reduced motion get the still image; a tap plays the clip.
+const clips = document.querySelectorAll('.clip-card video');
+if (clips.length) {
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (still || !('IntersectionObserver' in window)) {
+    clips.forEach(v => { v.controls = true; });
+  } else {
+    const watcher = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.play().catch(() => {}); }
+        else { e.target.pause(); }
+      });
+    }, { threshold: 0.4 });
+    clips.forEach(v => watcher.observe(v));
+  }
+}

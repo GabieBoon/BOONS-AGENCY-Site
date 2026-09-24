@@ -120,13 +120,6 @@ PAGES = {
          'Stuur de datum en een paar details. Finn reageert binnen twee werkdagen.'),
         ('Go to the booking form →', 'Naar het boekingsformulier →'),
         # artist feature cards
-        # Listen
-        ('<p class="eyebrow mono">Listen</p>', '<p class="eyebrow mono">Luisteren</p>'),
-        ('<h2>Hear the energy.</h2>', '<h2>Hoor de energie.</h2>'),
-        ('One set from each artist. Press play and you know what your floor is getting.',
-         'Eén set van elke artiest. Druk op play en je weet wat je vloer krijgt.'),
-        ('BURNEY · Worlds of Space (original)', 'BURNEY · Worlds of Space (origineel)'),
-        ('GIBBS · Solo set, Hoognodig', 'GIBBS · Soloset, Hoognodig'),
         # Why book through BOONS
         ('<p class="eyebrow mono">Why BOONS</p>', '<p class="eyebrow mono">Waarom BOONS</p>'),
         ('<h2>Why book through BOONS.</h2>', '<h2>Waarom boeken via BOONS.</h2>'),
@@ -145,6 +138,12 @@ PAGES = {
         # small line for artists
         ('Are you a DJ who brings the energy? <a', 'Ben jij een DJ die de energie brengt? <a'),
         ('Send us your music →', 'Stuur ons je muziek →'),
+        # On the floor (clips)
+        ('<p class="eyebrow mono">On the floor</p>', '<p class="eyebrow mono">Op de vloer</p>'),
+        ('<h2>See the energy.</h2>', '<h2>Zie de energie.</h2>'),
+        ('Straight from the dancefloor. This is what a night with our artists looks like.',
+         'Rechtstreeks van de dansvloer. Zo ziet een avond met onze artiesten eruit.'),
+        ('Placeholder clip', 'Placeholder-clip'),
     ],
 
     'book.html': [
