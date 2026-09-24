@@ -176,7 +176,7 @@ main{ width:100%; }
 .section-lead{ color: var(--muted); font-size: 1.05rem; }
 
 /* ============================================
-   Roster — compact tiles + modal detail
+   Roster — compact tiles linking to the artist pages
    ============================================ */
 .roster{ padding-top: 4rem; }
 .roster-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 260px)); gap: 1.5rem; }
@@ -211,19 +211,6 @@ main{ width:100%; }
 .coming-title{ font-family: var(--font-display); font-size: 1.5rem; text-transform: uppercase; margin-bottom: 0.8rem; color: var(--fg); }
 .coming-text{ color: var(--muted); font-size: 0.9rem; margin-bottom: 1.2rem; }
 
-.modal-overlay{
-  display:none; position: fixed; inset:0; z-index: 400;
-  background: rgba(11,10,15,0.82); backdrop-filter: blur(6px);
-  align-items:center; justify-content:center; padding: 2rem;
-}
-.modal-overlay.open{ display:flex; }
-.modal-close{
-  position: absolute; top: 1rem; right: 1rem;
-  background: var(--bg); border: 1px solid var(--line); color: var(--fg);
-  width: 34px; height:34px; border-radius:50%; cursor:pointer; z-index:2;
-  display:flex; align-items:center; justify-content:center; font-size:0.9rem;
-}
-.modal-close:hover{ border-color: var(--magenta); color: var(--magenta); }
 
 .pass-card{
   position: relative;
@@ -240,7 +227,6 @@ main{ width:100%; }
   border-radius: 10px;
   overflow:hidden;
 }
-.modal-pass{ position:relative; max-width: 900px; max-height: 88vh; overflow-y:auto; width:100%; cursor:default; }
 .pass-reverse .pass-card{ grid-template-columns: 1fr 280px; grid-template-areas:
     "top top"
     "body photo"
@@ -598,12 +584,232 @@ main{ width:100%; }
 /* the "Join us" tile keeps its own dashed outline */
 .roster-tile-coming::after{ display: none; }
 
-/* Artist modal on phones: keep the buttons above the fold.
-   The card lost its player, so the only things still pushing it down are the
-   overlay padding and the photo. */
-@media (max-width: 560px){
-  .modal-overlay{ padding: 1rem; }
-  .pass-photo{ min-height: 170px; }
-  .pass-body{ padding: 1.3rem; }
-  .pass-bottom{ padding: 1rem 1.3rem; }
+
+/* ============================================
+   Press kit (artist pages)
+   ============================================ */
+.presskit-bar{ display:flex; align-items:center; gap: 1.2rem; flex-wrap:wrap; margin-bottom: 2.5rem; }
+.presskit-meta{ font-size: 0.7rem; color: var(--muted); }
+
+.photo-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; }
+.photo-card{
+  margin:0; background: var(--bg-card); border: 1px solid var(--line);
+  border-radius: 10px; overflow:hidden;
 }
+.photo-thumb{ display:block; aspect-ratio: 4/5; overflow:hidden; background: var(--bg-alt); }
+.photo-thumb img{ width:100%; height:100%; object-fit:cover; transition: transform .3s ease; }
+.photo-thumb:hover img{ transform: scale(1.04); }
+.photo-card figcaption{
+  display:flex; justify-content:space-between; align-items:center; gap: 0.8rem;
+  padding: 0.9rem 1rem; border-top: 1px dashed var(--line);
+}
+.photo-meta{ font-size: 0.64rem; color: var(--muted); }
+.photo-dl{ font-size: 0.68rem; color: var(--yellow); white-space:nowrap; }
+.photo-dl:hover{ color: var(--fg); }
+
+.presskit-files{ margin-top: 1.5rem; display:flex; flex-direction:column; gap: 0.6rem; max-width: 620px; }
+.presskit-file{
+  display:grid; grid-template-columns: auto 1fr auto; align-items:center; gap: 1rem;
+  padding: 0.9rem 1.1rem; background: var(--bg-card);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  color: var(--fg); font-size: 0.92rem; transition: border-color .2s ease;
+}
+.presskit-file:hover{ border-color: var(--magenta); }
+.presskit-file-type{ font-size: 0.64rem; color: var(--magenta); border: 1px solid var(--violet); border-radius: 999px; padding: 0.2rem 0.55rem; }
+.presskit-file-dl{ color: var(--yellow); }
+
+.presskit-usage{ margin-top: 2rem; color: var(--muted); font-size: 0.88rem; max-width: 62ch; }
+.presskit-usage a, .press-col .rider-note a{ color: var(--fg); border-bottom: 1px solid var(--line); }
+.presskit-usage a:hover{ color: var(--magenta); border-color: var(--magenta); }
+
+/* copy button next to the short bios */
+.copy-btn{
+  margin-left: 0.6rem; padding: 0.15rem 0.55rem;
+  background: none; border: 1px solid var(--line); border-radius: 999px;
+  color: var(--muted); font-size: 0.6rem; cursor:pointer;
+}
+.copy-btn:hover{ color: var(--fg); border-color: var(--magenta); }
+.copy-btn.copied{ color: var(--yellow); border-color: var(--yellow); }
+
+/* ============================================
+   Terms & conditions (terms.html)
+   ============================================ */
+.legal{ padding-top: 3.5rem; }
+.legal-layout{ display:grid; grid-template-columns: 240px 1fr; gap: 4rem; align-items:start; }
+.legal-toc{
+  position: sticky; top: 100px;
+  display:flex; flex-direction:column; gap: 0.5rem;
+  font-size: 0.68rem; border-left: 1px solid var(--line); padding-left: 1.2rem;
+}
+.legal-toc a{ color: var(--muted); }
+.legal-toc a:hover{ color: var(--magenta); }
+.legal-title{ font-size: clamp(2.2rem, 6vw, 3.6rem); text-transform: uppercase; margin-bottom: 1rem; }
+.legal-meta{ font-size: 0.7rem; color: var(--muted); margin-bottom: 2rem; }
+.legal-summary{
+  background: var(--bg-card); border: 1px solid var(--line); border-left: 3px solid var(--magenta);
+  border-radius: var(--radius); padding: 1.4rem 1.6rem; margin-bottom: 3rem;
+}
+.legal-summary ul{ margin: 0.6rem 0 0; padding-left: 1.1rem; color: var(--muted); font-size: 0.94rem; }
+.legal-summary li{ margin-bottom: 0.35rem; }
+.legal-body article{ padding: 2rem 0; border-top: 1px solid var(--line); scroll-margin-top: 90px; }
+.legal-body h2{ font-size: 1.15rem; text-transform: uppercase; margin-bottom: 1.1rem; }
+.legal-body h2 .mono{ color: var(--magenta); font-size: 0.8rem; margin-right: 0.6rem; }
+.legal-body ol{ margin: 0; padding-left: 1.4rem; color: var(--muted); }
+.legal-body li{ margin-bottom: 0.7rem; max-width: 70ch; }
+.legal-body li ul{ margin-top: 0.5rem; padding-left: 1.1rem; }
+.legal-body strong{ color: var(--fg); font-weight: 600; }
+.legal-body a{ color: var(--fg); border-bottom: 1px solid var(--line); }
+.legal-body a:hover{ color: var(--magenta); border-color: var(--magenta); }
+.legal-table{ width:100%; max-width: 520px; border-collapse: collapse; margin: 0.8rem 0 0.4rem; font-size: 0.9rem; }
+.legal-table th, .legal-table td{ text-align:left; padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--line); }
+.legal-table th{ font-family: var(--font-mono); font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 400; }
+.legal-table td:last-child{ color: var(--fg); }
+.legal-contact{ color: var(--muted); font-style: normal; line-height: 1.8; }
+.todo{ background: rgba(255,122,69,0.15); color: var(--yellow); padding: 0 0.3rem; border-radius: 2px; }
+
+/* footer-bottom: room for the terms link */
+.footer-bottom a{ color: var(--muted); }
+.footer-bottom a:hover{ color: var(--fg); }
+
+@media (max-width: 860px){
+  .legal-layout{ grid-template-columns: 1fr; gap: 2rem; }
+  .legal-toc{ position: static; }
+  .footer-bottom{ flex-wrap: wrap; gap: 0.6rem 1.5rem; }
+}
+
+/* booking form: legal line under the submit button */
+.form-legal{ grid-column: 1 / -1; color: var(--muted); font-size: 0.8rem; max-width: 70ch; }
+
+/* booking section: the person behind the inbox */
+.contact-person{
+  display:flex; gap: 1.2rem; align-items:flex-start;
+  margin-top: 2rem; max-width: 620px;
+  padding: 1.3rem 1.5rem; background: var(--bg-card);
+  border: 1px solid var(--line); border-radius: 10px;
+}
+.contact-avatar{
+  flex: none; width: 52px; height: 52px; border-radius: 50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; color: var(--bg);
+  background: linear-gradient(165deg, #FFC93C 0%, #FF9E2C 30%, #FF4D1C 65%, #E01B24 100%);
+}
+.contact-name{ font-family: var(--font-display); font-size: 1.2rem; text-transform: uppercase; }
+.contact-role{ font-size: 0.66rem; color: var(--yellow); margin: 0.2rem 0 0.6rem; }
+.contact-note{ color: var(--muted); font-size: 0.92rem; }
+/* Finn's photo: gradient ring around a round crop */
+.contact-avatar{ width: 76px; height: 76px; padding: 2px; }
+.contact-avatar img{ width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+
+/* homepage h1: the logo is the visible heading, the rest is for search engines and screen readers */
+.hero-h1{ position: relative; z-index: 5; margin: 0; width: 100%; max-width: 480px; font-size: inherit; }
+.sr-only{
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* booking form: extra fields */
+.form-optional{ text-transform: none; letter-spacing: 0.02em; opacity: 0.7; }
+.booking-form input[type="date"]{ color-scheme: dark; min-height: 3.1rem; }
+.booking-form select:has(option[value=""]:checked){ color: var(--muted); }
+
+/* rider: make the must-haves stand out */
+.rider-list strong{ color: var(--fg); }
+
+/* rider sits right under the press kit: one block, not two sections apart */
+.presskit + .rider{ padding-top: 0; }
+
+/* artist hero: socials right under the name and genres */
+.artist-socials{ display:flex; flex-wrap:wrap; gap: 0.6rem; margin: -0.3rem 0 1.6rem; }
+.artist-social{
+  display:inline-flex; align-items:center; gap: 0.55rem;
+  padding: 0.5rem 0.9rem; border: 1px solid var(--line); border-radius: 999px;
+  font-size: 0.88rem; color: var(--fg); transition: border-color .2s ease;
+}
+.artist-social .mono{ font-size: 0.62rem; color: var(--yellow); }
+.artist-social:hover{ border-color: var(--magenta); }
+
+/* artist pages: closing booking action */
+.book-cta{ background: var(--bg-alt); max-width: 100%; text-align: center; }
+.book-cta-inner{ max-width: 720px; margin: 0 auto; display:flex; flex-direction:column; align-items:center; }
+.book-cta-title{ font-size: clamp(2.6rem, 8vw, 5rem); text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 1.2rem; }
+.book-cta-lead{ color: var(--muted); font-size: 1.08rem; max-width: 52ch; margin-bottom: 2.2rem; }
+.book-cta-actions{ display:flex; gap: 0.8rem; flex-wrap:wrap; justify-content:center; margin-bottom: 2.6rem; }
+.book-cta-contact{
+  display:flex; align-items:center; gap: 0.9rem; text-align:left;
+  padding-top: 1.8rem; border-top: 1px dashed var(--line);
+  color: var(--muted); font-size: 0.88rem; max-width: 560px;
+}
+.book-cta-contact img{ width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex: none; }
+.book-cta-contact strong{ color: var(--fg); font-weight: 600; }
+.book-cta-contact a{ color: var(--fg); border-bottom: 1px solid var(--line); }
+.book-cta-contact a:hover{ color: var(--magenta); border-color: var(--magenta); }
+@media (max-width: 480px){
+  .book-cta-actions .btn{ width: 100%; justify-content: center; }
+}
+/* "Book BURNEY." on one line: never wrap, scale with the screen instead */
+.book-cta-inner{ max-width: 1000px; }
+.book-cta-title{ white-space: nowrap; font-size: clamp(1.7rem, 7.2vw, 5rem); }
+
+/* press kit: previews in the photos' own 2:3 shape */
+.photo-thumb{ aspect-ratio: 2/3; }
+
+/* press kit lightbox */
+.lightbox{
+  display:none; position: fixed; inset: 0; z-index: 600;
+  background: rgba(11,10,15,0.94); backdrop-filter: blur(6px);
+  grid-template-columns: 64px 1fr 64px; grid-template-rows: 1fr auto;
+  align-items: center; padding: 1.5rem 1rem 1rem;
+}
+.lightbox.open{ display: grid; }
+.lightbox-stage{
+  grid-column: 2; grid-row: 1; margin: 0; height: 100%; min-height: 0;
+  display:flex; align-items:center; justify-content:center; position: relative;
+}
+.lightbox-stage img{ max-width: 100%; max-height: calc(100vh - 7rem); object-fit: contain; border-radius: 6px; }
+.lightbox-loading{
+  position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%);
+  font-size: 0.62rem; color: var(--muted); background: var(--bg); padding: 0.3rem 0.7rem; border-radius: 999px;
+  opacity: 0; transition: opacity .2s ease;
+}
+.lightbox.is-loading .lightbox-loading{ opacity: 1; }
+.lightbox-btn{
+  background: var(--bg-card); border: 1px solid var(--line); color: var(--fg);
+  width: 44px; height: 44px; border-radius: 50%; cursor: pointer; font-size: 1.1rem;
+  display:flex; align-items:center; justify-content:center; justify-self: center;
+}
+.lightbox-btn:hover{ border-color: var(--magenta); color: var(--magenta); }
+.lightbox-prev{ grid-column: 1; grid-row: 1; }
+.lightbox-next{ grid-column: 3; grid-row: 1; }
+.lightbox-close{ position: absolute; top: 1rem; right: 1rem; font-size: 0.9rem; z-index: 2; }
+.lightbox-bar{
+  grid-column: 1 / -1; grid-row: 2;
+  display:flex; align-items:center; justify-content:center; gap: 1.2rem; padding-top: 1rem;
+}
+.lightbox-count{ font-size: 0.7rem; color: var(--muted); }
+@media (max-width: 560px){
+  .lightbox{ grid-template-columns: 0 1fr 0; padding: 3.5rem 0.5rem 1rem; }
+  .lightbox-prev, .lightbox-next{ display: none; }   /* swipe instead */
+}
+
+/* press kit: one row visible, the rest behind "Show all" */
+.photo-grid{ grid-template-columns: repeat(4, 1fr); }
+.photo-grid.is-collapsed .photo-card:nth-child(n+5){ display: none; }
+.photo-more{ margin-top: 1.5rem; }
+@media (max-width: 860px){ .photo-grid{ grid-template-columns: repeat(2, 1fr); gap: 1rem; } }
+/* <button> elements get a white browser background by default */
+.btn-outline, .btn-ghost{ background: transparent; }
+
+/* rider: PDF download sits between the intro and the lists */
+.rider-details .rider-intro{ margin-bottom: 1.2rem; }
+.rider-pdf{ margin-bottom: 2rem; }
+
+/* Finn in the closing booking block: same gradient ring as on the homepage */
+.book-cta-avatar{ width: 48px; height: 48px; padding: 2px; }
+.book-cta-contact .book-cta-avatar img{ width: 100%; height: 100%; }
+
+/* press kit: photographer credit */
+.presskit-credit{ margin-top: 2rem; font-size: 0.7rem; color: var(--muted); }
+.presskit-credit a{ color: var(--yellow); border-bottom: 1px solid transparent; }
+.presskit-credit a:hover{ border-color: var(--yellow); }
+.presskit-credit + .presskit-usage{ margin-top: 0.8rem; }
+.presskit-usage strong{ color: var(--fg); font-weight: 600; }

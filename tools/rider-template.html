@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- Print template for the rider PDF. tools/build-presskits.ps1 fills in the
+     {{placeholders}} from the rider on the artist page and prints it with Edge. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{ARTIST}} rider | BOONS AGENCY</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; }
+  body { font-family: 'Space Grotesk', sans-serif; color: #1a1720; font-size: 10.5pt; line-height: 1.5; }
+  .mono { font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  header {
+    background: #0B0A0F; color: #F5F1E8; padding: 16mm 16mm 12mm;
+    border-bottom: 3mm solid #E01B24;
+  }
+  .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10mm; }
+  .top img { height: 9mm; }
+  .top span { font-size: 7.5pt; color: #FF7A45; }
+  h1 { font-family: 'Unbounded', sans-serif; font-weight: 800; font-size: 34pt; line-height: 1; margin: 0 0 3mm; text-transform: uppercase; }
+  .subtitle { font-size: 8.5pt; color: #E01B24; margin: 0 0 5mm; }
+  .intro { color: #b9b4c6; max-width: 150mm; margin: 0; }
+
+  main { padding: 10mm 16mm 0; }
+  .rider-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; }
+  .rider-title { font-family: 'Unbounded', sans-serif; font-weight: 800; font-size: 14pt; text-transform: uppercase; margin: 0 0 4mm; padding-bottom: 2mm; border-bottom: 0.4mm solid #1a1720; }
+  .rider-label { font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; font-size: 7.5pt; color: #E01B24; margin: 5mm 0 1.5mm; }
+  .rider-title + .rider-label { margin-top: 0; }
+  .rider-list { margin: 0; padding-left: 4.5mm; }
+  .rider-list li { margin-bottom: 0.8mm; }
+  .rider-list strong { font-weight: 600; }
+  .rider-note { margin: 1mm 0 0; color: #4a4556; }
+  .rider-note a { color: inherit; text-decoration: none; }
+
+  footer {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    padding: 6mm 16mm 10mm; border-top: 0.3mm solid #ddd9e3;
+    display: flex; justify-content: space-between; font-size: 7.5pt; color: #6b6577;
+  }
+  footer strong { color: #1a1720; font-weight: 600; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="top">
+      <img src="{{LOGO}}" alt="BOONS AGENCY">
+      <span class="mono">Version {{DATE}}</span>
+    </div>
+    <h1>{{ARTIST}}</h1>
+    <p class="subtitle mono">Technical &amp; hospitality rider</p>
+    <p class="intro">{{INTRO}}</p>
+  </header>
+  <main>
+{{GRID}}
+  </main>
+  <footer>
+    <span><strong>Bookings &amp; production:</strong> Finn Bes &middot; Bookings@boons-agency.nl</span>
+    <span class="mono">boons-agency.nl/{{SLUG}}.html#rider</span>
+  </footer>
+</body>
+</html>

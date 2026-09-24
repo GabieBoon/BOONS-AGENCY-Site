@@ -19,38 +19,6 @@ if (navToggle) {
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// Pre-fill "artist" select when a specific "Book X" button is clicked
-document.querySelectorAll('[data-artist]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const artistSelect = document.getElementById('artist');
-    if (artistSelect) artistSelect.value = btn.dataset.artist;
-  });
-});
-
-// Roster tiles: click a compact tile to open the full artist modal
-document.querySelectorAll('.roster-tile').forEach(tile => {
-  tile.addEventListener('click', () => {
-    const modal = document.getElementById(tile.dataset.open);
-    if (modal) openModal(modal);
-  });
-});
-function openModal(modal) {
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal(modal) {
-  modal.classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.querySelectorAll('.modal-overlay').forEach(modal => {
-  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(modal); });
-  const closeBtn = modal.querySelector('[data-close]');
-  if (closeBtn) closeBtn.addEventListener('click', () => closeModal(modal));
-});
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(closeModal);
-});
-
 // Booking form.
 // Formspree's own redirect (_next) is a paid feature, so we submit via fetch and
 // send people to our own thank-you page ourselves. If JavaScript doesn't run, the
@@ -135,3 +103,158 @@ if (presskitLink || forArtist) {
     presskitLink.hidden = false;
   }
 }
+
+
+// Press kit: "Copy" buttons next to the short bios
+document.querySelectorAll('.copy-btn[data-copy]').forEach(btn => {
+  btn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const source = document.getElementById(btn.dataset.copy);
+    if (!source) return;
+    // keep paragraph breaks for multi-paragraph bios, tidy the whitespace inside them
+    const clean = el => el.textContent.replace(/\s+/g, ' ').trim();
+    const paras = source.querySelectorAll('p');
+    const text = paras.length ? [...paras].map(clean).join('\n\n') : clean(source);
+    try {
+      await navigator.clipboard.writeText(text);
+      btn.textContent = 'Copied';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
+    } catch (_) {
+      // clipboard blocked (old browser / insecure context): select the text instead
+      const range = document.createRange();
+      range.selectNodeContents(source);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+  });
+});
+
+
+// Booking form: no event dates in the past
+const dateInput = document.getElementById('date');
+if (dateInput) {
+  const now = new Date();
+  now.setMinutes(now.getMinutes() - now.getTimezoneOffset());   // local date, not UTC
+  dateInput.min = now.toISOString().slice(0, 10);
+}
+
+
+// Rider: open the collapsed block when someone follows a link to it (#rider)
+function openRiderFromHash() {
+  if (window.location.hash !== '#rider') return;
+  const details = document.querySelector('#rider details');
+  if (details) details.open = true;
+}
+window.addEventListener('hashchange', openRiderFromHash);
+openRiderFromHash();
+
+
+// Homepage form: pre-select the artist when arriving from an artist page (?artist=GIBBS)
+const artistSelect = document.getElementById('artist');
+if (artistSelect) {
+  const wanted = (new URLSearchParams(window.location.search).get('artist') || '').trim().toUpperCase();
+  const match = [...artistSelect.options].find(o => o.value.toUpperCase() === wanted);
+  if (match) artistSelect.value = match.value;
+}
+
+
+// Press kit lightbox: click a preview to see the original photo full size.
+// Without JavaScript the preview is a plain link to the original, so nothing breaks.
+const lightboxLinks = [...document.querySelectorAll('a[data-lightbox]')];
+if (lightboxLinks.length) {
+  const box = document.createElement('div');
+  box.className = 'lightbox';
+  box.setAttribute('role', 'dialog');
+  box.setAttribute('aria-modal', 'true');
+  box.setAttribute('aria-label', 'Photo viewer');
+  box.innerHTML =
+    '<button class="lightbox-btn lightbox-close mono" aria-label="Close">✕</button>' +
+    '<button class="lightbox-btn lightbox-prev" aria-label="Previous photo">←</button>' +
+    '<figure class="lightbox-stage"><span class="lightbox-loading mono">Loading full size…</span><img alt=""></figure>' +
+    '<button class="lightbox-btn lightbox-next" aria-label="Next photo">→</button>' +
+    '<div class="lightbox-bar"><span class="lightbox-count mono"></span>' +
+    '<a class="btn btn-primary btn-small lightbox-dl" download>Download original ↓</a></div>';
+  document.body.appendChild(box);
+
+  const img = box.querySelector('img');
+  const count = box.querySelector('.lightbox-count');
+  const dl = box.querySelector('.lightbox-dl');
+  let current = 0, opener = null;
+
+  function show(i) {
+    current = (i + lightboxLinks.length) % lightboxLinks.length;
+    const link = lightboxLinks[current];
+    const preview = link.querySelector('img');
+    box.classList.add('is-loading');             // label stays until the original is in
+    img.src = preview ? preview.src : '';        // sharp-enough preview straight away...
+    const full = new Image();                    // ...swapped for the original once it's in
+    full.onload = () => { if (lightboxLinks[current] === link) { img.src = full.src; box.classList.remove('is-loading'); } };
+    full.src = link.href;
+    img.alt = preview ? preview.alt : '';
+    dl.href = link.href;
+    dl.setAttribute('download', '');
+    count.textContent = (current + 1) + ' / ' + lightboxLinks.length;
+  }
+  function openBox(i) {
+    opener = document.activeElement;
+    box.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    show(i);
+    box.querySelector('.lightbox-close').focus();
+  }
+  function closeBox() {
+    box.classList.remove('open');
+    document.body.style.overflow = '';
+    img.removeAttribute('src');
+    if (opener) opener.focus();
+  }
+
+  lightboxLinks.forEach((link, i) => link.addEventListener('click', (e) => { e.preventDefault(); openBox(i); }));
+  box.querySelector('.lightbox-close').addEventListener('click', closeBox);
+  box.querySelector('.lightbox-prev').addEventListener('click', () => show(current - 1));
+  box.querySelector('.lightbox-next').addEventListener('click', () => show(current + 1));
+  box.addEventListener('click', (e) => { if (e.target === box || e.target.classList.contains('lightbox-stage')) closeBox(); });
+  document.addEventListener('keydown', (e) => {
+    if (!box.classList.contains('open')) return;
+    if (e.key === 'Escape') closeBox();
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+  // swipe on phones
+  let touchX = null;
+  box.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+  box.addEventListener('touchend', (e) => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1));
+    touchX = null;
+  });
+}
+
+
+// Press kit: show one row of photos, the rest behind a "Show all" button,
+// so the grid doesn't swallow the page. Without JavaScript every photo shows.
+document.querySelectorAll('.photo-grid').forEach(grid => {
+  const VISIBLE = 4;
+  const cards = grid.querySelectorAll('.photo-card');
+  if (cards.length <= VISIBLE) return;
+  grid.classList.add('is-collapsed');
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'btn btn-outline photo-more';
+  btn.setAttribute('aria-expanded', 'false');
+  const label = () => grid.classList.contains('is-collapsed')
+    ? 'Show all ' + cards.length + ' photos ↓'
+    : 'Show fewer ↑';
+  btn.textContent = label();
+  btn.addEventListener('click', () => {
+    const collapsing = !grid.classList.contains('is-collapsed');
+    grid.classList.toggle('is-collapsed');
+    btn.textContent = label();
+    btn.setAttribute('aria-expanded', String(!collapsing));
+    if (collapsing) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  grid.after(btn);
+});

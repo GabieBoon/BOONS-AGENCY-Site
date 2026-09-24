@@ -8,15 +8,34 @@
 
 <meta property="og:title" content="BURNEY | Raised by euphoria, driven by bass">
 <meta property="og:description" content="Euphoric trance melodies with the raw energy of hardhouse. From Haarlem. Press kit and booking.">
-<meta property="og:image" content="assets/images/burney.jpg">
+<meta property="og:image" content="https://boons-agency.nl/assets/images/burney.jpg">
+<link rel="canonical" href="https://boons-agency.nl/burney.html">
+<meta property="og:url" content="https://boons-agency.nl/burney.html">
 <meta property="og:type" content="profile">
+<meta name="twitter:card" content="summary_large_image">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="icon" href="assets/images/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 <meta name="theme-color" content="#0B0A0F">
 <link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "BURNEY",
+  "jobTitle": "DJ",
+  "url": "https://boons-agency.nl/burney.html",
+  "image": "https://boons-agency.nl/assets/images/burney.jpg",
+  "genre": ["Trance", "Hardhouse", "Hardgroove"],
+  "homeLocation": { "@type": "Place", "name": "Haarlem, Netherlands" },
+  "sameAs": ["https://www.instagram.com/burneyofficiall/", "https://soundcloud.com/burneyofficiall"],
+  "memberOf": { "@type": "Organization", "name": "BOONS AGENCY", "url": "https://boons-agency.nl/" }
+}
+</script>
 </head>
 <body>
 
@@ -30,7 +49,7 @@
     <a href="index.html#about">About</a>
     <a href="index.html#contact">Booking</a>
   </nav>
-  <a href="index.html#contact" class="btn btn-ghost nav-cta" data-artist="BURNEY">Book BURNEY</a>
+  <a href="index.html?artist=BURNEY#contact" class="btn btn-ghost nav-cta">Book BURNEY</a>
   <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -55,7 +74,7 @@
       </div>
 
       <div class="artist-intro">
-        <p class="eyebrow mono">№ 02 · All access</p>
+        <p class="eyebrow mono">№ 02</p>
         <h1 class="artist-name">BURNEY</h1>
         <p class="artist-tagline mono">Raised by euphoria, driven by bass</p>
 
@@ -64,13 +83,18 @@
           <span class="tag">Hardhouse</span>
           <span class="tag">Hardgroove</span>
         </div>
+        <div class="artist-socials">
+          <a href="https://www.instagram.com/burneyofficiall/" class="artist-social" target="_blank" rel="noopener"><span class="mono">Instagram</span>@burneyofficiall</a>
+          <a href="https://soundcloud.com/burneyofficiall" class="artist-social" target="_blank" rel="noopener"><span class="mono">SoundCloud</span>burneyofficiall</a>
+        </div>
 
         <p class="artist-lead">Euphoric trance melodies carried by the raw energy of hardhouse and
         heavy basslines. Twenty years old, from Haarlem, and already on festival mainstages.</p>
 
         <div class="artist-actions">
-          <a href="index.html#contact" class="btn btn-primary" data-artist="BURNEY">Book BURNEY →</a>
+          <a href="index.html?artist=BURNEY#contact" class="btn btn-primary">Book BURNEY →</a>
           <a href="#listen" class="btn btn-outline">Listen ↓</a>
+          <a href="#presskit" class="btn btn-outline">Press kit ↓</a>
         </div>
       </div>
     </div>
@@ -154,7 +178,8 @@
   <!-- BIO -->
   <section class="bio" id="bio">
     <div class="bio-inner">
-      <p class="eyebrow mono">Biography</p>
+      <p class="eyebrow mono">Biography <button type="button" class="copy-btn mono" data-copy="bio-full">Copy</button></p>
+      <div id="bio-full">
       <p class="bio-text">At just twenty years old, BURNEY is carving out his own space within the
       electronic music scene. Based in Haarlem, his sound combines euphoric trance melodies with the
       raw energy of hardhouse, heavy basslines and hardgroove influences.</p>
@@ -163,50 +188,308 @@
       <p class="bio-text">Alongside a run of festival and club shows, many of them back-to-back with
       GIBBS and including the Nooduitgang mainstage, he continues to develop his own productions.
       His release <em>Worlds of Space</em> is out now as a free download.</p>
+      </div>
 
       <details class="bio-short">
         <summary class="mono">Short versions for line-ups and event pages</summary>
         <div class="bio-short-body">
-          <p class="mono bio-short-label">50 words</p>
-          <p class="bio-text">Twenty years old and based in Haarlem, BURNEY combines euphoric trance
+          <p class="mono bio-short-label">50 words <button type="button" class="copy-btn mono" data-copy="bio-50">Copy</button></p>
+          <p class="bio-text" id="bio-50">Twenty years old and based in Haarlem, BURNEY combines euphoric trance
           melodies with the raw energy of hardhouse, heavy basslines and hardgroove. Known for
           high-energy sets and powerful club moments. Played the Nooduitgang mainstage, Zomerpop and
           Veerplas. His release <em>Worlds of Space</em> is out now.</p>
-          <p class="mono bio-short-label">One line</p>
-          <p class="bio-text">Euphoric trance meets hardhouse and heavy bass, from Haarlem,
+          <p class="mono bio-short-label">One line <button type="button" class="copy-btn mono" data-copy="bio-1">Copy</button></p>
+          <p class="bio-text" id="bio-1">Euphoric trance meets hardhouse and heavy bass, from Haarlem,
           with a mainstage at Nooduitgang.</p>
         </div>
       </details>
     </div>
   </section>
 
-  <!-- PRESS -->
-  <section class="press" id="press">
+  <!-- PRESS KIT
+       To add a photo: put it in assets/presskit/burney/photos/, copy one <figure>
+       below, then run tools/build-presskits.ps1 to refresh the ZIP. -->
+  <section class="presskit" id="presskit">
     <div class="section-head">
-      <p class="eyebrow mono">Press &amp; links</p>
-      <h2>Everything else.</h2>
+      <p class="eyebrow mono">Press kit</p>
+      <h2>Take what you need.</h2>
+      <p class="section-lead">Photos, bios and the rider, for line-ups, posters, event pages and your
+      production team. Download straight from here, no need to email us for them.</p>
     </div>
 
-    <div class="press-grid">
-      <div class="press-col">
-        <p class="rider-label mono">Follow</p>
-        <ul class="link-list">
-          <li><a href="https://www.instagram.com/burneyofficiall/" target="_blank" rel="noopener">Instagram, @burneyofficiall</a></li>
-          <li><a href="https://soundcloud.com/burneyofficiall" target="_blank" rel="noopener">SoundCloud, burneyofficiall</a></li>
+    <div class="presskit-bar">
+      <a href="assets/presskit/burney/BURNEY-presskit.zip" download data-goatcounter-click="presskit-zip-burney" data-goatcounter-title="BURNEY press kit ZIP" class="btn btn-primary">Download everything (ZIP, 11.6 MB) ↓</a>
+      <span class="presskit-meta mono">Photos, bios + rider · updated Sep 2026</span>
+    </div>
+
+    <div class="photo-grid">
+      <!-- PHOTOS:START (generated by tools/build-presskits.ps1, edits here are overwritten) -->
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-01.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 01 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-01.jpg" alt="BURNEY, press photo 01" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5760 × 8640 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-01.jpg" download data-goatcounter-click="presskit-photo-BURNEY-01" data-goatcounter-title="BURNEY photo 01" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-02.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 02 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-02.jpg" alt="BURNEY, press photo 02" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5760 × 8640 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-02.jpg" download data-goatcounter-click="presskit-photo-BURNEY-02" data-goatcounter-title="BURNEY photo 02" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-03.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 03 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-03.jpg" alt="BURNEY, press photo 03" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5235 × 7852 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-03.jpg" download data-goatcounter-click="presskit-photo-BURNEY-03" data-goatcounter-title="BURNEY photo 03" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-04.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 04 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-04.jpg" alt="BURNEY, press photo 04" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5760 × 8640 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-04.jpg" download data-goatcounter-click="presskit-photo-BURNEY-04" data-goatcounter-title="BURNEY photo 04" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-05.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 05 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-05.jpg" alt="BURNEY, press photo 05" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5528 × 8292 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-05.jpg" download data-goatcounter-click="presskit-photo-BURNEY-05" data-goatcounter-title="BURNEY photo 05" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-06.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 06 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-06.jpg" alt="BURNEY, press photo 06" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5627 × 8441 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-06.jpg" download data-goatcounter-click="presskit-photo-BURNEY-06" data-goatcounter-title="BURNEY photo 06" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-07.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 07 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-07.jpg" alt="BURNEY, press photo 07" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5760 × 8640 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-07.jpg" download data-goatcounter-click="presskit-photo-BURNEY-07" data-goatcounter-title="BURNEY photo 07" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-08.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 08 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-08.jpg" alt="BURNEY, press photo 08" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5760 × 8640 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-08.jpg" download data-goatcounter-click="presskit-photo-BURNEY-08" data-goatcounter-title="BURNEY photo 08" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-09.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 09 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-09.jpg" alt="BURNEY, press photo 09" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5760 × 8640 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-09.jpg" download data-goatcounter-click="presskit-photo-BURNEY-09" data-goatcounter-title="BURNEY photo 09" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-10.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 10 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-10.jpg" alt="BURNEY, press photo 10" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5760 × 8640 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-10.jpg" download data-goatcounter-click="presskit-photo-BURNEY-10" data-goatcounter-title="BURNEY photo 10" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-11.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 11 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-11.jpg" alt="BURNEY, press photo 11" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5760 × 8640 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-11.jpg" download data-goatcounter-click="presskit-photo-BURNEY-11" data-goatcounter-title="BURNEY photo 11" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-12.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 12 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-12.jpg" alt="BURNEY, press photo 12" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5041 × 7562 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-12.jpg" download data-goatcounter-click="presskit-photo-BURNEY-12" data-goatcounter-title="BURNEY photo 12" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-13.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 13 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-13.jpg" alt="BURNEY, press photo 13" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5760 × 8640 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-13.jpg" download data-goatcounter-click="presskit-photo-BURNEY-13" data-goatcounter-title="BURNEY photo 13" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-14.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 14 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-14.jpg" alt="BURNEY, press photo 14" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5760 × 8640 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-14.jpg" download data-goatcounter-click="presskit-photo-BURNEY-14" data-goatcounter-title="BURNEY photo 14" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-15.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 15 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-15.jpg" alt="BURNEY, press photo 15" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5327 × 7990 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-15.jpg" download data-goatcounter-click="presskit-photo-BURNEY-15" data-goatcounter-title="BURNEY photo 15" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-16.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 16 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-16.jpg" alt="BURNEY, press photo 16" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5760 × 8640 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-16.jpg" download data-goatcounter-click="presskit-photo-BURNEY-16" data-goatcounter-title="BURNEY photo 16" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-17.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 17 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-17.jpg" alt="BURNEY, press photo 17" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5431 × 8146 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-17.jpg" download data-goatcounter-click="presskit-photo-BURNEY-17" data-goatcounter-title="BURNEY photo 17" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-18.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 18 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-18.jpg" alt="BURNEY, press photo 18" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5760 × 8640 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-18.jpg" download data-goatcounter-click="presskit-photo-BURNEY-18" data-goatcounter-title="BURNEY photo 18" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <figure class="photo-card">
+        <a href="assets/presskit/burney/photos/BURNEY-19.jpg" class="photo-thumb" data-lightbox aria-label="View BURNEY photo 19 full size">
+          <img src="assets/presskit/burney/thumbs/BURNEY-19.jpg" alt="BURNEY, press photo 19" width="600" height="900" loading="lazy">
+        </a>
+        <figcaption>
+          <span class="photo-meta mono">5760 × 8640 px</span>
+          <a href="assets/presskit/burney/photos/BURNEY-19.jpg" download data-goatcounter-click="presskit-photo-BURNEY-19" data-goatcounter-title="BURNEY photo 19" class="photo-dl mono">Download ↓</a>
+        </figcaption>
+      </figure>
+      <!-- PHOTOS:END -->
+    </div>
+
+    <p class="presskit-credit mono">Photos by <a href="https://www.instagram.com/tijnzwirs/" target="_blank" rel="noopener">Tijn Zwirs (@tijnzwirs)</a></p>
+    <p class="presskit-usage">Free to use to promote a confirmed show with BURNEY. Crop as you need, but please
+    don't add filters, put text over his face or place other logos on the photo.
+    Full conditions in our
+    <a href="terms.html#promotion">terms</a>.</p>
+  </section>
+
+  <!-- RIDER (tucked away: an ask, not a sell) -->
+  <section class="rider" id="rider">
+    <details class="rider-details">
+      <summary class="mono">Technical &amp; hospitality rider</summary>
+      <p class="rider-intro">Kept short. The mixer is the one hard requirement: anything not on the list
+      below needs our written OK in advance. For the rest, if your booth runs something else, just say so.</p>
+      <a href="assets/presskit/burney/BURNEY-rider.pdf" download data-goatcounter-click="presskit-rider-burney" data-goatcounter-title="BURNEY rider PDF" class="btn btn-outline btn-small rider-pdf">Download rider (PDF) ↓</a>
+
+    <div class="rider-grid">
+      <div class="rider-col">
+        <h3 class="rider-title">Technical</h3>
+
+        <p class="rider-label mono">Players (one of the following, 3 or more decks preferred)</p>
+        <ul class="rider-list">
+          <li>Pioneer CDJ-3000X</li>
+          <li>Pioneer CDJ-3000</li>
+          <li>Pioneer CDJ-2000NXS2</li>
+          <li>Pioneer CDJ-2000NXS</li>
+          <li>Pioneer XDJ-RX3</li>
+          <li>Pioneer XDJ-XZ</li>
+          <li>Pioneer XDJ-AZ</li>
+        </ul>
+
+        <p class="rider-label mono">Mixers, in order of preference (mandatory)</p>
+        <ol class="rider-list">
+          <li>Pioneer DJM-V10 (preferred)</li>
+          <li>Pioneer DJM-V5</li>
+          <li>Pioneer DJM-A9</li>
+          <li>Allen &amp; Heath Xone:96</li>
+        </ol>
+        <p class="rider-note">Other mixers are not accepted, unless agreed in writing in advance.</p>
+
+        <p class="rider-label mono">On stage</p>
+        <ul class="rider-list">
+          <li><strong>A digital stage clock</strong>, visible from the booth</li>
+          <li>Clean towels, for the heat on stage</li>
+          <li>A fan backstage or on stage above 25&nbsp;°C</li>
         </ul>
       </div>
-      <div class="press-col">
-        <p class="rider-label mono">Press photos &amp; rider</p>
-        <p class="rider-note">High-resolution photos, video and the technical rider are available on
-        request. Email us and we'll send them the same day.</p>
+
+      <div class="rider-col">
+        <h3 class="rider-title">Hospitality</h3>
+
+        <p class="rider-label mono">Drinks</p>
+        <ul class="rider-list">
+          <li>6 × still water, chilled where possible</li>
+          <li>3 × White Monster (33cl)</li>
+          <li>1 × bottle of vodka</li>
+          <li>6 × fruity beers</li>
+        </ul>
+
+        <p class="rider-label mono">Crew &amp; guests</p>
+        <ul class="rider-list">
+          <li>At least 4 guest list places for crew and personal guests</li>
+          <li>Access level agreed in advance, appropriate to the event</li>
+        </ul>
+
+        <p class="rider-label mono">Travel</p>
+        <p class="rider-note">Based in Haarlem, travelling nationwide. Travel arrangements to be agreed per booking.</p>
       </div>
-      <div class="press-col">
-        <p class="rider-label mono">Bookings</p>
-        <p class="rider-note"><a href="mailto:Bookings@boons-agency.nl">Bookings@boons-agency.nl</a></p>
-        <a href="index.html#contact" class="btn btn-primary btn-small" data-artist="BURNEY">Book BURNEY →</a>
+    </div>
+      </details>
+  </section>
+
+  <!-- BOOK: the page ends on one action -->
+  <section class="book-cta" id="book">
+    <div class="book-cta-inner">
+      <p class="eyebrow mono">Booking</p>
+      <h2 class="book-cta-title">Book BURNEY.</h2>
+      <p class="book-cta-lead">Club night, festival or something of your own? Send the date and a few
+      details, and we'll come back to you with availability and a price.</p>
+
+      <div class="book-cta-actions">
+        <a href="index.html?artist=BURNEY#contact" class="btn btn-primary btn-large">Book BURNEY →</a>
+        <a href="mailto:Bookings@boons-agency.nl?subject=Booking%20request%3A%20BURNEY" class="btn btn-outline btn-large">Email us</a>
+      </div>
+
+      <div class="book-cta-contact">
+        <span class="contact-avatar book-cta-avatar"><img src="assets/images/finn.jpg" alt="Finn Bes" width="44" height="44" loading="lazy"></span>
+        <p>Your contact is <strong>Finn Bes</strong>, bookings &amp; artist management.
+        Reply within two working days. All bookings follow our <a href="terms.html">terms &amp; conditions</a>.</p>
       </div>
     </div>
   </section>
+
 
 </main>
 
@@ -231,10 +514,12 @@
   </div>
   <div class="footer-bottom mono">
     <span>© <span id="year"></span> BOONS AGENCY</span>
+    <a href="terms.html">Terms &amp; conditions</a>
     <span>Haarlem, Netherlands</span>
   </div>
 </footer>
 
 <script src="js/script.js"></script>
+<script data-goatcounter="https://boons-agency.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

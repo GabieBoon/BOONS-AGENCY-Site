@@ -6,6 +6,8 @@
 <title>BOONS AGENCY | Hardhouse, Trance &amp; UKG Booking</title>
 <meta name="description" content="BOONS AGENCY books high-energy hardhouse, trance and UKG artists worldwide. Artists: GIBBS &amp; BURNEY.">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
 <link rel="icon" href="assets/images/favicon.ico" sizes="any">
@@ -13,15 +15,35 @@
 <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 <meta name="theme-color" content="#0B0A0F">
 
+<link rel="canonical" href="https://boons-agency.nl/">
+<meta property="og:url" content="https://boons-agency.nl/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="BOONS AGENCY | Hardhouse, Trance &amp; UKG Booking">
 <meta property="og:description" content="Direct bookings, no middlemen. A short roster, on purpose: GIBBS and BURNEY.">
-<meta property="og:image" content="assets/images/social-card.jpg">
+<meta property="og:image" content="https://boons-agency.nl/assets/images/social-card.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "BOONS AGENCY",
+  "url": "https://boons-agency.nl/",
+  "logo": "https://boons-agency.nl/assets/images/icon-512.png",
+  "description": "Booking and artist management for Hardhouse, Trance and UKG DJs, based in Haarlem.",
+  "address": { "@type": "PostalAddress", "addressLocality": "Haarlem", "addressCountry": "NL" },
+  "email": "Bookings@boons-agency.nl",
+  "sameAs": ["https://www.instagram.com/boons.agency/"],
+  "employee": { "@type": "Person", "name": "Finn Bes", "jobTitle": "Bookings & artist management" },
+  "member": [
+    { "@type": "Person", "name": "GIBBS", "url": "https://boons-agency.nl/gibbs.html", "jobTitle": "DJ" },
+    { "@type": "Person", "name": "BURNEY", "url": "https://boons-agency.nl/burney.html", "jobTitle": "DJ" }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -57,7 +79,10 @@
       <source src="assets/video/highlights.mp4" type="video/mp4">
     </video>
     <div class="hero-logo-mark">
-      <img src="assets/images/logo.png" alt="BOONS AGENCY" class="hero-logo-img">
+      <h1 class="hero-h1">
+        <img src="assets/images/logo.png" alt="BOONS AGENCY" class="hero-logo-img">
+        <span class="sr-only">, Hardhouse, Trance &amp; UKG booking from Haarlem</span>
+      </h1>
       <p class="hero-tagline mono">Booking &amp; artist management</p>
     </div>
     <div class="hero-actions">
@@ -75,112 +100,29 @@
     </div>
 
     <div class="roster-grid">
-      <button class="roster-tile" data-open="modal-burney" aria-haspopup="dialog" data-om-label="BUTTON BURNEY" style="background: linear-gradient(180deg, #FDC711, #FF0000, #FF7A00)">
+      <a href="burney.html" class="roster-tile" data-om-label="BUTTON BURNEY" style="background: linear-gradient(180deg, #FDC711, #FF0000, #FF7A00)">
         <img src="assets/images/burney.jpg" alt="BURNEY" onerror="this.parentElement.classList.add('no-photo')">
         <span class="roster-tile-overlay">
           <span class="roster-tile-name">BURNEY</span>
           <span class="roster-tile-cta mono">View profile →</span>
         </span>
-      </button>
-      <button class="roster-tile" data-open="modal-gibbs" aria-haspopup="dialog" data-om-label="BUTTON GIBBS" style="background: linear-gradient(180deg, #FDC711, #FF0000, #FF7A00)">
+      </a>
+      <a href="gibbs.html" class="roster-tile" data-om-label="BUTTON GIBBS" style="background: linear-gradient(180deg, #FDC711, #FF0000, #FF7A00)">
         <img src="assets/images/gibbs.jpg" alt="GIBBS" onerror="this.parentElement.classList.add('no-photo')" style="object-fit: cover">
         <span class="roster-tile-overlay">
           <span class="roster-tile-name">GIBBS</span>
           <span class="roster-tile-cta mono">View profile →</span>
         </span>
-      </button>
-      <button class="roster-tile roster-tile-coming" aria-disabled="true" data-om-label="BUTTON JOIN US">
+      </a>
+      <div class="roster-tile roster-tile-coming" data-om-label="BUTTON JOIN US">
         <div class="roster-tile-coming-content">
           <h3 class="coming-title">Join us</h3>
           <p class="coming-text">Are you an artist pushing Hardhouse, Trance, or UKG forward? Let's talk.</p>
           <a href="mailto:Bookings@boons-agency.nl" class="btn btn-primary btn-small">Get in touch →</a>
         </div>
-      </button>
+      </div>
     </div>
   </section>
-
-  <!-- ARTIST MODAL: GIBBS -->
-  <div class="modal-overlay" id="modal-gibbs" data-modal role="dialog" aria-modal="true" aria-label="GIBBS profile">
-    <div class="pass-card modal-pass" data-soundcloud="https://soundcloud.com/gibbs_energy/gibbs-hoognodig-18-02-2025">
-      <button class="modal-close mono" data-close aria-label="Close">✕</button>
-      <div class="pass-top">
-        <span class="pass-label mono">№ 01</span>
-      </div>
-      <div class="pass-photo">
-        <img src="assets/images/gibbs.jpg" alt="GIBBS" onerror="this.parentElement.classList.add('no-photo')">
-        <span class="pass-photo-fallback mono">FOTO VOLGT</span>
-      </div>
-      <div class="pass-body">
-        <h3 class="pass-name">GIBBS</h3>
-        <p class="pass-tagline mono">Bringing that GIBBS energy</p>
-                <div class="tag-row">
-          <span class="tag">Hardhouse</span>
-          <span class="tag">Trance</span>
-          <span class="tag">UKG</span>
-        </div>
-        <p class="pass-bio">Haarlem-born, Utrecht-based. Promoters keep asking him back: four times at Club3, three at Hoognodig, and a mainstage at Nooduitgang.</p>
-        <div class="pass-venues">
-          <span class="mono venues-label">Played at</span>
-          <div class="venue-chips">
-            <span>Nooduitgang mainstage</span><span>Zomerpop</span><span>Veerplas</span><span>Club3</span>
-          </div>
-        </div>
-      </div>
-      <div class="pass-bottom">
-        <div class="socials">
-          <a href="https://www.instagram.com/gibbs.energy_/" class="social-link" target="_blank" rel="noopener" aria-label="GIBBS on Instagram">Instagram</a>
-          <a href="https://soundcloud.com/gibbs_energy" class="social-link" target="_blank" rel="noopener" aria-label="GIBBS on SoundCloud">SoundCloud</a>
-          <a href="https://www.tiktok.com/@gibbs.energy" class="social-link" target="_blank" rel="noopener" aria-label="GIBBS on TikTok">TikTok</a>
-        </div>
-        <div class="pass-cta-row">
-          <a href="gibbs.html" class="btn btn-primary btn-small">Full profile →</a>
-          <a href="#contact" class="btn btn-outline btn-small" data-artist="GIBBS">Book GIBBS</a>
-        </div>
-      </div>
-      <div class="pass-barcode" aria-hidden="true"></div>
-    </div>
-  </div>
-
-  <!-- ARTIST MODAL: BURNEY -->
-  <div class="modal-overlay" id="modal-burney" data-modal role="dialog" aria-modal="true" aria-label="BURNEY profile">
-    <div class="pass-card modal-pass" data-soundcloud="https://soundcloud.com/burneyofficiall/worldsofspace">
-      <button class="modal-close mono" data-close aria-label="Close">✕</button>
-      <div class="pass-top">
-        <span class="pass-label mono">№ 02</span>
-      </div>
-      <div class="pass-photo">
-        <img src="assets/images/burney.jpg" alt="BURNEY" onerror="this.parentElement.classList.add('no-photo')">
-        <span class="pass-photo-fallback mono">FOTO VOLGT</span>
-      </div>
-      <div class="pass-body">
-        <h3 class="pass-name">BURNEY</h3>
-        <p class="pass-tagline mono">Raised by euphoria, driven by bass</p>
-                <div class="tag-row">
-          <span class="tag">Trance</span>
-          <span class="tag">Hardhouse</span>
-          <span class="tag">Hardgroove</span>
-        </div>
-        <p class="pass-bio">Twenty years old, from Haarlem. Euphoric trance over the raw energy of hardhouse and heavy bass. His release <em>Worlds of Space</em> is out now.</p>
-        <div class="pass-venues">
-          <span class="mono venues-label">Played at</span>
-          <div class="venue-chips">
-            <span>Nooduitgang mainstage</span><span>Zomerpop</span><span>Veerplas</span><span>Club3</span>
-          </div>
-        </div>
-      </div>
-      <div class="pass-bottom">
-        <div class="socials">
-          <a href="https://www.instagram.com/burneyofficiall/" class="social-link" target="_blank" rel="noopener" aria-label="BURNEY on Instagram">Instagram</a>
-          <a href="https://soundcloud.com/burneyofficiall" class="social-link" target="_blank" rel="noopener" aria-label="BURNEY on SoundCloud">SoundCloud</a>
-        </div>
-        <div class="pass-cta-row">
-          <a href="burney.html" class="btn btn-primary btn-small">Full profile →</a>
-          <a href="#contact" class="btn btn-outline btn-small" data-artist="BURNEY">Book BURNEY</a>
-        </div>
-      </div>
-      <div class="pass-barcode" aria-hidden="true"></div>
-    </div>
-  </div>
 
   <!-- ABOUT -->
   <section class="about" id="about">
@@ -191,7 +133,7 @@
         <div class="about-item">
           <span class="about-num mono">01</span>
           <h3>Personal</h3>
-          <p>One point of contact, no queue of managers. You send a message, you get a person.</p>
+          <p>One point of contact, no queue of managers. You send a message, you get Finn.</p>
         </div>
         <div class="about-item">
           <span class="about-num mono">02</span>
@@ -214,6 +156,15 @@
       <h2>Book an artist.</h2>
       <p class="section-lead">Fill out the form below or email <a href="mailto:Bookings@boons-agency.nl">Bookings@boons-agency.nl</a> directly.</p>
 
+      <div class="contact-person">
+        <span class="contact-avatar"><img src="assets/images/finn.jpg" alt="Finn Bes" width="72" height="72" loading="lazy"></span>
+        <div>
+          <p class="contact-name">Finn Bes</p>
+          <p class="contact-role mono">Bookings &amp; artist management</p>
+          <p class="contact-note">Every request lands with Finn. He handles your booking from first message to
+          the night itself, and you'll hear back within two working days.</p>        </div>
+      </div>
+
       <form class="booking-form" id="bookingForm" action="https://formspree.io/f/moevdyqg" method="POST">
         <div class="form-row">
           <label class="mono" for="name">Name</label>
@@ -233,21 +184,64 @@
           </select>
         </div>
         <div class="form-row">
+          <label class="mono" for="event_type">Type of event</label>
+          <select id="event_type" name="event_type">
+            <option value="" selected>Make a selection…</option>
+            <option value="Club night">Club night</option>
+            <option value="Festival">Festival</option>
+            <option value="Student / association event">Student / association event</option>
+            <option value="Private event">Private event</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-row">
           <label class="mono" for="event">Event / Venue</label>
           <input type="text" id="event" name="event" placeholder="Club, festival, or event name">
         </div>
         <div class="form-row">
+          <label class="mono" for="city">City &amp; country</label>
+          <input type="text" id="city" name="city" placeholder="e.g. Haarlem, NL" autocomplete="address-level2">
+        </div>
+        <div class="form-row">
           <label class="mono" for="date">Date</label>
-          <input type="text" id="date" name="date" placeholder="dd-mm-yyyy">
+          <input type="date" id="date" name="date">
+        </div>
+        <div class="form-row">
+          <label class="mono" for="set_time">Set time &amp; length</label>
+          <input type="text" id="set_time" name="set_time" placeholder="e.g. 01:00–02:30, or not sure yet">
+        </div>
+        <div class="form-row">
+          <label class="mono" for="capacity">Capacity</label>
+          <select id="capacity" name="capacity">
+            <option value="" selected>Make a selection…</option>
+            <option value="Up to 300">Up to 300</option>
+            <option value="300 – 1,000">300 – 1,000</option>
+            <option value="1,000 – 3,000">1,000 – 3,000</option>
+            <option value="3,000+">3,000+</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="mono" for="budget">Budget indication <span class="form-optional">(optional)</span></label>
+          <select id="budget" name="budget">
+            <option value="" selected>Rather discuss it</option>
+            <option value="Up to €100">Up to €100</option>
+            <option value="€100 – €200">€100 – €200</option>
+            <option value="€200 – €300">€200 – €300</option>
+            <option value="€300 – €500">€300 – €500</option>
+            <option value="€500+">€500+</option>
+          </select>
         </div>
         <div class="form-row form-row-full">
           <label class="mono" for="message">Message</label>
           <textarea id="message" name="message" rows="4" placeholder="Tell us about your event..."></textarea>
         </div>
         <input type="hidden" name="_subject" value="Booking request via boons-agency.nl">
-        <input type="hidden" name="_next" value="https://gabieboon.github.io/BOONS-AGENCY-Site/thanks.html">
+        <input type="hidden" name="_next" value="https://boons-agency.nl/thanks.html">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
         <button type="submit" class="btn btn-primary btn-large">Send request →</button>
+        <p class="form-legal">A request is not yet a booking. Confirmed bookings follow our
+        <a href="terms.html">terms &amp; conditions</a>, and we only use your details to handle your request
+        (<a href="terms.html#privacy">privacy</a>).</p>
         <p class="form-note mono" id="formNote"></p>
       </form>
     </div>
@@ -276,10 +270,12 @@
   </div>
   <div class="footer-bottom mono">
     <span>© <span id="year"></span> BOONS AGENCY</span>
+    <a href="terms.html">Terms &amp; conditions</a>
     <span>Haarlem, Netherlands</span>
   </div>
 </footer>
 
 <script src="js/script.js"></script>
+<script data-goatcounter="https://boons-agency.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
