@@ -1153,3 +1153,53 @@ html[lang="nl"] .lang-en, html:not([lang="nl"]) .lang-nl{ display: none !importa
 .roster-tile-large .roster-tile-name{ font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
 @media (max-width: 860px){ .roster-grid-large{ grid-template-columns: repeat(2, minmax(0, 320px)); } }
 @media (max-width: 600px){ .roster-grid-large{ grid-template-columns: 1fr; } .roster-tile-large{ max-width: 340px; } }
+
+/* ============================================
+   Readability: small red text uses a slightly lighter red that meets WCAG AA
+   (4.5:1) on every background. Buttons, lines and large type keep the brand red.
+   ============================================ */
+:root{ --red-text: #FF3B45; }
+.eyebrow, .pass-tagline, .artist-tagline, .year, .rider-label, .thanks-step-num, .form-note-error,
+.presskit-file-type, .legal-body h2 .mono, .feature-no, .clip-artist, .coming-label,
+.contact-inner a:not(.btn), .legal-toc a:hover, .about-text a:hover, .join-line a:hover,
+.footer-links a:hover, .back-link:hover{ color: var(--red-text); }
+.contact-inner a:not(.btn){ border-bottom-color: var(--red-text); }
+/* the 01-04 numbers were dark burgundy (1.5:1): now readable */
+.about-num{ color: var(--red-text); }
+
+/* b. Homepage roster: text left, tiles right, so the row is balanced on desktop */
+@media (min-width: 1001px){
+  .roster{ display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 4rem; align-items: center; }
+  .roster .section-head{ margin-bottom: 0; }
+}
+
+/* c. Hero: one sentence about what BOONS does */
+.hero-claim{
+  position: relative; z-index: 5; margin: 0.9rem auto 0; max-width: 36ch; text-align: center;
+  font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--fg); text-shadow: 0 2px 14px rgba(0,0,0,0.8);
+}
+.hero-logo-mark{ margin-bottom: 1.4rem; }
+
+/* d. Tighter vertical rhythm: less empty space between sections */
+section{ padding-top: 5rem; padding-bottom: 5rem; }
+@media (max-width: 860px){ section{ padding-top: 4rem; padding-bottom: 4rem; } }
+.roster{ padding-top: 4rem; }
+
+/* h. Footer: the logo instead of plain text */
+.footer-logo{ height: 30px; width: auto; }
+
+/* f. Sticky booking bar on artist pages, phones only */
+.sticky-book{ display: none; }
+@media (max-width: 860px){
+  .sticky-book{
+    display: flex; justify-content: center; position: fixed; left: 1rem; right: 1rem; bottom: 1rem; z-index: 300;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+    transform: translateY(calc(100% + 2rem)); transition: transform .25s ease;
+  }
+  .sticky-book.is-visible{ transform: translateY(0); }
+}
+@media (max-width: 860px) and (prefers-reduced-motion: reduce){ .sticky-book{ transition: none; } }
+
+/* g. "Show earlier years" under the shows */
+.shows-more{ margin-top: 1.5rem; }
+.year-block[hidden]{ display: none; }

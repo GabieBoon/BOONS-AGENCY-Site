@@ -294,3 +294,43 @@ if (clips.length) {
     clips.forEach(v => watcher.observe(v));
   }
 }
+
+
+// Artist pages on phones: a "Book <artist>" bar at the bottom of the screen, shown
+// once the booking buttons in the hero are out of view, hidden again near the
+// closing booking block (so there's never two booking buttons on screen).
+const stickyBook = document.getElementById('stickyBook');
+if (stickyBook) {
+  const heroButtons = document.querySelector('.artist-actions');
+  const closing = document.querySelector('.book-cta');
+  const update = () => {
+    const passedHero = heroButtons.getBoundingClientRect().bottom < 0;          // scrolled past, not just below the fold
+    const nearEnd = closing && closing.getBoundingClientRect().top < window.innerHeight;
+    stickyBook.classList.toggle('is-visible', passedHero && !nearEnd);
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  stickyBook.hidden = false;
+  update();
+}
+
+
+// Artist pages: show the two most recent years of shows, earlier years behind a button.
+document.querySelectorAll('.shows').forEach(section => {
+  const years = section.querySelectorAll('.year-block');
+  if (years.length <= 2) return;
+  const earlier = [...years].slice(2);
+  earlier.forEach(y => { y.hidden = true; });
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'btn btn-outline btn-small shows-more';
+  btn.setAttribute('aria-expanded', 'false');
+  btn.textContent = t('Show earlier years ↓', 'Toon eerdere jaren ↓');
+  btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') !== 'true';
+    earlier.forEach(y => { y.hidden = !open; });
+    btn.setAttribute('aria-expanded', String(open));
+    btn.textContent = open ? t('Show fewer ↑', 'Toon minder ↑') : t('Show earlier years ↓', 'Toon eerdere jaren ↓');
+  });
+  years[years.length - 1].after(btn);
+});
