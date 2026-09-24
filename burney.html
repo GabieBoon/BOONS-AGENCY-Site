@@ -54,11 +54,11 @@
   <nav class="site-nav">
     <a href="/#roster">Artists</a>
     <a href="/about">About</a>
-    <a href="/#contact">Booking</a>
+    <a href="/book">Booking</a>
   </nav>
   <div class="header-actions">
     <nav class="lang-switch" aria-label="Language"><a href="/burney" lang="en" aria-current="true">EN</a><a href="/nl/burney" lang="nl" hreflang="nl">NL</a></nav>
-    <a href="/?artist=BURNEY#contact" class="btn btn-ghost nav-cta">Book BURNEY</a>
+    <a href="/book?artist=BURNEY" class="btn btn-ghost nav-cta">Book BURNEY</a>
   </div>
   <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -68,7 +68,7 @@
 <div class="mobile-nav" id="mobileNav">
   <a href="/#roster">Artists</a>
   <a href="/about">About</a>
-  <a href="/#contact">Booking</a>
+  <a href="/book">Booking</a>
 </div>
 
 <main id="main">
@@ -102,7 +102,7 @@
         heavy basslines. Twenty years old, from Haarlem, and already on festival mainstages.</p>
 
         <div class="artist-actions">
-          <a href="/?artist=BURNEY#contact" class="btn btn-primary">Book BURNEY →</a>
+          <a href="/book?artist=BURNEY" class="btn btn-primary">Book BURNEY →</a>
           <a href="#listen" class="btn btn-outline">Listen ↓</a>
           <a href="#presskit" class="btn btn-outline">Press kit ↓</a>
         </div>
@@ -479,6 +479,31 @@
       </details>
   </section>
 
+  <!-- ALSO ON THE ROSTER: the other artist + the b2b -->
+  <section class="more-artists" id="more">
+    <div class="section-head">
+      <p class="eyebrow mono">Also on the roster</p>
+      <h2>Double the energy.</h2>
+      <p class="section-lead">BURNEY and GIBBS also play back-to-back, as they did on the Nooduitgang
+      mainstage, at De Kelder and at Club3. One booking, two DJs, one set.</p>
+    </div>
+    <div class="more-grid">
+      <a href="/gibbs" class="roster-tile">
+        <picture><source type="image/webp" srcset="assets/images/gibbs-480.webp 480w, assets/images/gibbs-720.webp 720w" sizes="(max-width: 860px) 50vw, 260px"><img src="assets/images/gibbs.jpg" alt="GIBBS" width="924" height="1620" loading="lazy" onerror="this.closest('.roster-tile').classList.add('no-photo')"></picture>
+        <span class="roster-tile-overlay">
+          <span class="roster-tile-name">GIBBS</span>
+          <span class="roster-tile-cta mono">View profile →</span>
+        </span>
+      </a>
+      <div class="b2b-card">
+        <p class="b2b-label mono">Back-to-back</p>
+        <p class="b2b-name">GIBBS <span>b2b</span> BURNEY</p>
+        <p class="b2b-text">Booked as one act with one fee. Ask Finn about availability for your date.</p>
+        <a href="/book?artist=GIBBS%20b2b%20BURNEY" class="btn btn-primary">Book the b2b →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- BOOK: the page ends on one action -->
   <section class="book-cta" id="book">
     <div class="book-cta-inner">
@@ -488,7 +513,7 @@
       details, and we'll come back to you with availability and a price.</p>
 
       <div class="book-cta-actions">
-        <a href="/?artist=BURNEY#contact" class="btn btn-primary btn-large">Book BURNEY →</a>
+        <a href="/book?artist=BURNEY" class="btn btn-primary btn-large">Book BURNEY →</a>
         <a href="mailto:Bookings@boons-agency.nl?subject=Booking%20request%3A%20BURNEY" class="btn btn-outline btn-large">Email us</a>
       </div>
 
@@ -507,7 +532,7 @@
   <div class="footer-top">
     <div class="footer-brand">
       <span class="wordmark-text">BOONS<span class="dot">•</span>AGENCY</span>
-      <p>Hardhouse, Trance &amp; UKG booking from Haarlem.</p>
+      <p>High-energy DJ booking from Haarlem.</p>
     </div>
     <div class="footer-links">
       <div>

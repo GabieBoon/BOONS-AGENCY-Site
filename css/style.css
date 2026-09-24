@@ -300,7 +300,7 @@ main{ width:100%; }
 /* ============================================
    Contact
    ============================================ */
-.contact-inner a{ color: var(--magenta); border-bottom: 1px solid var(--magenta); }
+.contact-inner a:not(.btn){ color: var(--magenta); border-bottom: 1px solid var(--magenta); }
 .booking-form{
   margin-top: 2.5rem;
   display:grid; grid-template-columns: 1fr 1fr; gap: 1.3rem 1.5rem;
@@ -974,3 +974,27 @@ html[lang="nl"] .lang-en, html:not([lang="nl"]) .lang-nl{ display: none !importa
 
 /* About page title: the longer genre line stays readable in two or three lines */
 .about-title{ font-size: clamp(2.2rem, 5vw, 3.8rem); max-width: 16ch; }
+
+/* Artist pages: the other artist + the back-to-back */
+.more-grid{ display: grid; grid-template-columns: 260px 1fr; gap: 1.5rem; align-items: stretch; }
+.more-grid .roster-tile{ display: block; }
+.b2b-card{
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+  background: var(--bg-card); border: 1px solid var(--line); border-radius: 10px; padding: 2.4rem;
+}
+.b2b-label{ font-size: 0.74rem; color: var(--yellow); margin-bottom: 0.8rem; }
+.b2b-name{ font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 4vw, 3rem); text-transform: uppercase; line-height: 1; margin-bottom: 1rem; }
+.b2b-name span{ color: var(--magenta); font-size: 0.55em; vertical-align: middle; margin: 0 0.2em; }
+.b2b-text{ color: var(--muted); max-width: 44ch; margin-bottom: 1.6rem; }
+@media (max-width: 860px){ .more-grid{ grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px){ .more-grid{ grid-template-columns: 1fr; } .more-grid .roster-tile{ max-width: 260px; } }
+
+/* Homepage: short booking block, the form itself lives on /book */
+.home-book-inner{ display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap; }
+.home-book-inner h2{ font-size: clamp(2rem, 4vw, 2.8rem); text-transform: uppercase; margin-bottom: 1rem; }
+.home-book-actions{ display: flex; flex-direction: column; align-items: flex-start; gap: 0.9rem; }
+.home-book-mail{ font-size: 0.74rem; color: var(--muted); border-bottom: 1px solid var(--line); }
+.home-book-mail:hover{ color: var(--fg); border-color: var(--magenta); }
+/* Booking page: the form is the page */
+.book-page{ padding-top: 4rem; }
+.book-title{ font-size: clamp(2.4rem, 6vw, 4rem); text-transform: uppercase; margin-bottom: 1rem; }

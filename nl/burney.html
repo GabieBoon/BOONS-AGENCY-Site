@@ -55,11 +55,11 @@
   <nav class="site-nav">
     <a href="/nl/#roster">Artiesten</a>
     <a href="/nl/about">Over ons</a>
-    <a href="/nl/#contact">Boeken</a>
+    <a href="/nl/book">Boeken</a>
   </nav>
   <div class="header-actions">
     <nav class="lang-switch" aria-label="Taal"><a href="/burney" lang="en" hreflang="en">EN</a><a href="/nl/burney" lang="nl" aria-current="true">NL</a></nav>
-    <a href="/nl/?artist=BURNEY#contact" class="btn btn-ghost nav-cta">Boek BURNEY</a>
+    <a href="/nl/book?artist=BURNEY" class="btn btn-ghost nav-cta">Boek BURNEY</a>
   </div>
   <button class="nav-toggle" id="navToggle" aria-label="Menu openen" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -69,7 +69,7 @@
 <div class="mobile-nav" id="mobileNav">
   <a href="/nl/#roster">Artiesten</a>
   <a href="/nl/about">Over ons</a>
-  <a href="/nl/#contact">Boeken</a>
+  <a href="/nl/book">Boeken</a>
 </div>
 
 <main id="main">
@@ -102,7 +102,7 @@
         <p class="artist-lead">Euforische trancemelodieën, gedragen door de rauwe energie van hardhouse en zware baslijnen. Twintig jaar, uit Haarlem, en nu al op festivalmainstages.</p>
 
         <div class="artist-actions">
-          <a href="/nl/?artist=BURNEY#contact" class="btn btn-primary">Boek BURNEY →</a>
+          <a href="/nl/book?artist=BURNEY" class="btn btn-primary">Boek BURNEY →</a>
           <a href="#listen" class="btn btn-outline">Luister ↓</a>
           <a href="#presskit" class="btn btn-outline">Press kit ↓</a>
         </div>
@@ -465,6 +465,30 @@
       </details>
   </section>
 
+  <!-- ALSO ON THE ROSTER: the other artist + the b2b -->
+  <section class="more-artists" id="more">
+    <div class="section-head">
+      <p class="eyebrow mono">Ook bij BOONS</p>
+      <h2>Dubbele energie.</h2>
+      <p class="section-lead">BURNEY en GIBBS draaien ook back-to-back, zoals op de mainstage van Nooduitgang, in De Kelder en bij Club3. Eén boeking, twee DJ's, één set.</p>
+    </div>
+    <div class="more-grid">
+      <a href="/nl/gibbs" class="roster-tile">
+        <picture><source type="image/webp" srcset="../assets/images/gibbs-480.webp 480w, ../assets/images/gibbs-720.webp 720w" sizes="(max-width: 860px) 50vw, 260px"><img src="../assets/images/gibbs.jpg" alt="GIBBS" width="924" height="1620" loading="lazy" onerror="this.closest('.roster-tile').classList.add('no-photo')"></picture>
+        <span class="roster-tile-overlay">
+          <span class="roster-tile-name">GIBBS</span>
+          <span class="roster-tile-cta mono">Bekijk profiel →</span>
+        </span>
+      </a>
+      <div class="b2b-card">
+        <p class="b2b-label mono">Back-to-back</p>
+        <p class="b2b-name">GIBBS <span>b2b</span> BURNEY</p>
+        <p class="b2b-text">Geboekt als één act met één gage. Vraag Finn naar de beschikbaarheid op jouw datum.</p>
+        <a href="/nl/book?artist=GIBBS%20b2b%20BURNEY" class="btn btn-primary">Boek de b2b →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- BOOK: the page ends on one action -->
   <section class="book-cta" id="book">
     <div class="book-cta-inner">
@@ -473,7 +497,7 @@
       <p class="book-cta-lead">Clubavond, festival of iets eigens? Stuur de datum en een paar details, dan laten we je weten of het kan en wat het kost.</p>
 
       <div class="book-cta-actions">
-        <a href="/nl/?artist=BURNEY#contact" class="btn btn-primary btn-large">Boek BURNEY →</a>
+        <a href="/nl/book?artist=BURNEY" class="btn btn-primary btn-large">Boek BURNEY →</a>
         <a href="mailto:Bookings@boons-agency.nl?subject=Booking%20request%3A%20BURNEY" class="btn btn-outline btn-large">Mail ons</a>
       </div>
 
@@ -491,7 +515,7 @@
   <div class="footer-top">
     <div class="footer-brand">
       <span class="wordmark-text">BOONS<span class="dot">•</span>AGENCY</span>
-      <p>Hardhouse, Trance &amp; UKG-bookings uit Haarlem.</p>
+      <p>High-energy DJ-bookings uit Haarlem.</p>
     </div>
     <div class="footer-links">
       <div>

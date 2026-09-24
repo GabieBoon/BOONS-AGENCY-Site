@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boek een artiest | BOONS AGENCY</title>
+<meta name="description" content="Boek GIBBS of BURNEY via BOONS AGENCY. Stuur de datum en een paar details, en je hoort binnen twee werkdagen van ons.">
+
+<link rel="preload" href="../assets/fonts/unbounded-latin-06f2e4.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/space-grotesk-latin-ecea81.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/fonts.css">
+
+<link rel="icon" href="../assets/images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0A0F">
+<link rel="alternate" hreflang="en" href="https://boons-agency.nl/book">
+<link rel="alternate" hreflang="nl" href="https://boons-agency.nl/nl/book">
+<link rel="alternate" hreflang="x-default" href="https://boons-agency.nl/book">
+
+<link rel="canonical" href="https://boons-agency.nl/nl/book">
+<meta property="og:url" content="https://boons-agency.nl/nl/book">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:title" content="Boek een artiest | BOONS AGENCY">
+<meta property="og:description" content="Boek GIBBS of BURNEY. Stuur de datum en een paar details, en je hoort binnen twee werkdagen van ons.">
+<meta property="og:image" content="https://boons-agency.nl/assets/images/social-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Naar de inhoud</a>
+
+
+<header class="site-header" id="top">
+  <a class="wordmark" href="/nl/">
+    <img src="../assets/images/logo.png" alt="BOONS AGENCY" class="wordmark-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+    <span class="wordmark-text" style="display:none;">BOONS<span class="dot">•</span>AGENCY</span>
+  </a>
+  <nav class="site-nav">
+    <a href="/nl/#roster">Artiesten</a>
+    <a href="/nl/about">Over ons</a>
+    <a href="/nl/book" aria-current="page">Boeken</a>
+  </nav>
+  <div class="header-actions">
+    <nav class="lang-switch" aria-label="Taal"><a href="/book" lang="en" hreflang="en">EN</a><a href="/nl/book" lang="nl" aria-current="true">NL</a></nav>
+    <a href="/nl/book" class="btn btn-ghost nav-cta">Boek een artiest</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu openen" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="/nl/#roster">Artiesten</a>
+  <a href="/nl/about">Over ons</a>
+  <a href="/nl/book" aria-current="page">Boeken</a>
+</div>
+
+<main id="main">
+
+  <!-- CONTACT -->
+  <section class="contact book-page" id="contact">
+    <div class="contact-inner">
+      <p class="eyebrow mono">Boeken</p>
+      <h1 class="book-title">Boek een artiest.</h1>
+      <p class="section-lead">Vul het formulier hieronder in of mail direct naar <a href="mailto:Bookings@boons-agency.nl">Bookings@boons-agency.nl</a>.</p>
+
+      <div class="contact-person">
+        <span class="contact-avatar"><img src="../assets/images/finn.jpg" alt="Finn Bes" width="72" height="72" loading="lazy"></span>
+        <div>
+          <p class="contact-name">Finn Bes</p>
+          <p class="contact-role mono">Bookings &amp; artist management</p>
+          <p class="contact-note">Elke aanvraag komt bij Finn terecht. Hij regelt je boeking van het eerste bericht tot de avond zelf, en je hoort binnen twee werkdagen van hem.</p>        </div>
+      </div>
+
+      <form class="booking-form" id="bookingForm" action="https://formspree.io/f/moevdyqg" method="POST">
+        <div class="form-row">
+          <label class="mono" for="name">Naam</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-row">
+          <label class="mono" for="email">E-mail</label>
+          <input type="email" id="email" name="email" required autocomplete="email"
+            pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}" title="Vul een volledig e-mailadres in, zoals naam@voorbeeld.nl">
+        </div>
+        <div class="form-row">
+          <label class="mono" for="phone">Telefoon / WhatsApp <span class="form-optional">(optioneel)</span></label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="bijv. +31 6 12345678">
+        </div>
+        <div class="form-row">
+          <label class="mono" for="artist">Welke artiest?</label>
+          <select id="artist" name="artist" required>
+            <option value="" disabled selected>Maak een keuze…</option>
+            <option value="GIBBS">GIBBS</option>
+            <option value="BURNEY">BURNEY</option>
+            <option value="GIBBS b2b BURNEY">GIBBS b2b BURNEY</option>
+            <option value="Not sure yet">Weet ik nog niet</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="mono" for="event_type">Soort event</label>
+          <select id="event_type" name="event_type" required>
+            <option value="" selected>Maak een keuze…</option>
+            <option value="Club night">Clubavond</option>
+            <option value="Festival">Festival</option>
+            <option value="Student / association event">Studenten- / verenigingsfeest</option>
+            <option value="Private event">Privéfeest</option>
+            <option value="Other">Anders</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="mono" for="event">Event / locatie</label>
+          <input type="text" id="event" name="event" placeholder="Naam van de club, het festival of event" required>
+        </div>
+        <div class="form-row">
+          <label class="mono" for="city">Stad &amp; land</label>
+          <input type="text" id="city" name="city" placeholder="bijv. Haarlem, NL" autocomplete="address-level2" required>
+        </div>
+        <div class="form-row">
+          <label class="mono" for="date">Datum</label>
+          <input type="date" id="date" name="date" required>
+        </div>
+        <div class="form-row">
+          <label class="mono" for="set_time">Settijd &amp; lengte <span class="form-optional">(optioneel)</span></label>
+          <input type="text" id="set_time" name="set_time" placeholder="Opening, peak time of afsluiter? bijv. 22:00–23:30">
+        </div>
+        <div class="form-row">
+          <label class="mono" for="lineup">Line-up / andere artiesten <span class="form-optional">(optioneel)</span></label>
+          <input type="text" id="lineup" name="lineup" placeholder="Wie spelen er nog meer?">
+        </div>
+        <div class="form-row">
+          <label class="mono" for="capacity">Capaciteit</label>
+          <select id="capacity" name="capacity" required>
+            <option value="" selected>Maak een keuze…</option>
+            <option value="Up to 300">Tot 300</option>
+            <option value="300 – 1,000">300 – 1.000</option>
+            <option value="1,000 – 3,000">1.000 – 3.000</option>
+            <option value="3,000+">3.000+</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="mono" for="budget">Budgetindicatie <span class="form-optional">(optioneel)</span></label>
+          <select id="budget" name="budget">
+            <option value="" selected>Liever in overleg</option>
+            <option value="Up to €100">Tot €100</option>
+            <option value="€100 – €200">€100 – €200</option>
+            <option value="€200 – €300">€200 – €300</option>
+            <option value="€300 – €500">€300 – €500</option>
+            <option value="€500+">€500+</option>
+          </select>
+        </div>
+        <div class="form-row form-row-full">
+          <label class="mono" for="message">Bericht <span class="form-optional">(optioneel)</span></label>
+          <textarea id="message" name="message" rows="4" placeholder="Vertel iets over je event..."></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="Boekingsaanvraag via boons-agency.nl (NL)">
+        <input type="hidden" name="language" value="NL">
+        <input type="hidden" name="_next" value="https://boons-agency.nl/nl/thanks">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+        <button type="submit" class="btn btn-primary btn-large">Aanvraag versturen →</button>
+        <p class="form-legal">Een aanvraag is nog geen boeking. Voor bevestigde boekingen gelden onze <a href="/nl/terms">algemene voorwaarden</a>, en we gebruiken je gegevens alleen om je aanvraag af te handelen (<a href="/nl/terms#privacy">privacy</a>).</p>
+        <p class="form-note mono" id="formNote"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="wordmark-text">BOONS<span class="dot">•</span>AGENCY</span>
+      <p>High-energy DJ-bookings uit Haarlem.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <span class="mono footer-label">Artiesten</span>
+        <a href="/nl/gibbs">GIBBS</a>
+        <a href="/nl/burney">BURNEY</a>
+      </div>
+      <div>
+        <span class="mono footer-label">Contact</span>
+        <a href="mailto:Bookings@boons-agency.nl">Bookings@boons-agency.nl</a>
+        <a href="https://www.instagram.com/boons.agency/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom mono">
+    <span>© <span id="year"></span> BOONS AGENCY</span>
+    <span class="footer-bottom-links"><a href="/nl/about">Over ons</a> · <a href="/nl/terms">Algemene voorwaarden</a></span>
+    <span>Haarlem, Nederland</span>
+  </div>
+</footer>
+
+<script src="../js/script.js"></script>
+<script data-goatcounter="https://boons-agency.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

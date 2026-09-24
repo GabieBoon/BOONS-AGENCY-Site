@@ -55,11 +55,11 @@
   <nav class="site-nav">
     <a href="/nl/#roster">Artiesten</a>
     <a href="/nl/about">Over ons</a>
-    <a href="/nl/#contact">Boeken</a>
+    <a href="/nl/book">Boeken</a>
   </nav>
   <div class="header-actions">
     <nav class="lang-switch" aria-label="Taal"><a href="/gibbs" lang="en" hreflang="en">EN</a><a href="/nl/gibbs" lang="nl" aria-current="true">NL</a></nav>
-    <a href="/nl/?artist=GIBBS#contact" class="btn btn-ghost nav-cta">Boek GIBBS</a>
+    <a href="/nl/book?artist=GIBBS" class="btn btn-ghost nav-cta">Boek GIBBS</a>
   </div>
   <button class="nav-toggle" id="navToggle" aria-label="Menu openen" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -69,7 +69,7 @@
 <div class="mobile-nav" id="mobileNav">
   <a href="/nl/#roster">Artiesten</a>
   <a href="/nl/about">Over ons</a>
-  <a href="/nl/#contact">Boeken</a>
+  <a href="/nl/book">Boeken</a>
 </div>
 
 <main id="main">
@@ -103,7 +103,7 @@
         <p class="artist-lead">Geboren in Haarlem, woont in Utrecht. Hardhouse, Trance en UKG die blijft opbouwen, met de reputatie dat je hem de afsluiter van de avond kunt toevertrouwen.</p>
 
         <div class="artist-actions">
-          <a href="/nl/?artist=GIBBS#contact" class="btn btn-primary">Boek GIBBS →</a>
+          <a href="/nl/book?artist=GIBBS" class="btn btn-primary">Boek GIBBS →</a>
           <a href="#listen" class="btn btn-outline">Luister ↓</a>
           <a href="#presskit" class="btn btn-outline">Press kit ↓</a>
         </div>
@@ -413,6 +413,30 @@
       </details>
   </section>
 
+  <!-- ALSO ON THE ROSTER: the other artist + the b2b -->
+  <section class="more-artists" id="more">
+    <div class="section-head">
+      <p class="eyebrow mono">Ook bij BOONS</p>
+      <h2>Dubbele energie.</h2>
+      <p class="section-lead">GIBBS en BURNEY draaien ook back-to-back, zoals op de mainstage van Nooduitgang, in De Kelder en bij Club3. Eén boeking, twee DJ's, één set.</p>
+    </div>
+    <div class="more-grid">
+      <a href="/nl/burney" class="roster-tile">
+        <picture><source type="image/webp" srcset="../assets/images/burney-480.webp 480w, ../assets/images/burney-720.webp 720w" sizes="(max-width: 860px) 50vw, 260px"><img src="../assets/images/burney.jpg" alt="BURNEY" width="924" height="1620" loading="lazy" onerror="this.closest('.roster-tile').classList.add('no-photo')"></picture>
+        <span class="roster-tile-overlay">
+          <span class="roster-tile-name">BURNEY</span>
+          <span class="roster-tile-cta mono">Bekijk profiel →</span>
+        </span>
+      </a>
+      <div class="b2b-card">
+        <p class="b2b-label mono">Back-to-back</p>
+        <p class="b2b-name">GIBBS <span>b2b</span> BURNEY</p>
+        <p class="b2b-text">Geboekt als één act met één gage. Vraag Finn naar de beschikbaarheid op jouw datum.</p>
+        <a href="/nl/book?artist=GIBBS%20b2b%20BURNEY" class="btn btn-primary">Boek de b2b →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- BOOK: the page ends on one action -->
   <section class="book-cta" id="book">
     <div class="book-cta-inner">
@@ -421,7 +445,7 @@
       <p class="book-cta-lead">Clubavond, festival of iets eigens? Stuur de datum en een paar details, dan laten we je weten of het kan en wat het kost.</p>
 
       <div class="book-cta-actions">
-        <a href="/nl/?artist=GIBBS#contact" class="btn btn-primary btn-large">Boek GIBBS →</a>
+        <a href="/nl/book?artist=GIBBS" class="btn btn-primary btn-large">Boek GIBBS →</a>
         <a href="mailto:Bookings@boons-agency.nl?subject=Booking%20request%3A%20GIBBS" class="btn btn-outline btn-large">Mail ons</a>
       </div>
 
@@ -439,7 +463,7 @@
   <div class="footer-top">
     <div class="footer-brand">
       <span class="wordmark-text">BOONS<span class="dot">•</span>AGENCY</span>
-      <p>Hardhouse, Trance &amp; UKG-bookings uit Haarlem.</p>
+      <p>High-energy DJ-bookings uit Haarlem.</p>
     </div>
     <div class="footer-links">
       <div>
