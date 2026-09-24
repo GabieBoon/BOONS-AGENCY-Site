@@ -1,2 +1,5 @@
 # editor settings, not part of the website
 .vscode/
+
+# Python cache
+__pycache__/

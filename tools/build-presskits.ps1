@@ -163,3 +163,11 @@ Get-ChildItem $root -Directory | ForEach-Object {
 
     Write-Host "$name - $($files.Count) photos, ZIP $zipMb MB"
 }
+
+# The Dutch pages in nl/ are built from the English ones: refresh them too,
+# so new photos and grid changes show up there as well.
+if (Get-Command python -ErrorAction SilentlyContinue) {
+    & python (Join-Path $PSScriptRoot 'build-nl.py')
+} else {
+    Write-Host 'Python not found: run tools/build-nl.py yourself to update the Dutch pages.'
+}

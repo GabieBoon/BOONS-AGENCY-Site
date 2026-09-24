@@ -935,3 +935,22 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700;
 }
 .skip-link:focus{ top: 1rem; }
+
+/* Finn's card lines up with the left column of the booking form (Name, Phone, ...) */
+.contact-person{ max-width: calc((100% - 1.5rem) / 2); }
+@media (max-width: 860px){ .contact-person{ max-width: none; } }
+
+/* ============================================
+   Language switch (EN / NL) in the header
+   ============================================ */
+.header-actions{ display: flex; align-items: center; gap: 1rem; }
+.lang-switch{ display: flex; gap: 0.15rem; padding: 0.2rem; border: 1px solid var(--line); border-radius: 999px; }
+.lang-switch a{
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em;
+  padding: 0.3rem 0.6rem; border-radius: 999px; color: var(--muted); transition: color .2s ease, background .2s ease;
+}
+.lang-switch a:hover{ color: var(--fg); }
+.lang-switch a[aria-current="true"]{ background: var(--bg-card); color: var(--fg); }
+@media (max-width: 860px){
+  .header-actions{ margin-left: auto; margin-right: 0.8rem; }
+}

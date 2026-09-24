@@ -1,4 +1,10 @@
 
+// Language: the Dutch pages (/nl/...) have <html lang="nl">. t() picks the right text,
+// BASE is the prefix for links to other pages in the same language.
+const NL = document.documentElement.lang === 'nl';
+const t = (en, nl) => (NL ? nl : en);
+const BASE = NL ? '/nl' : '';
+
 // Mobile nav toggle
 const navToggle = document.getElementById('navToggle');
 const mobileNav = document.getElementById('mobileNav');
@@ -33,7 +39,7 @@ if (bookingForm) {
 
     const submitBtn = bookingForm.querySelector('button[type="submit"]');
     const originalLabel = submitBtn ? submitBtn.textContent : null;
-    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = t('Sending...', 'Versturen...'); }
     if (formNote) { formNote.textContent = ''; formNote.classList.remove('form-note-error'); }
 
     try {
@@ -45,7 +51,7 @@ if (bookingForm) {
 
       if (res.ok) {
         // carry the chosen artist over, so the thank-you page shows the right press kit
-        const target = new URL('/thanks', window.location.href);
+        const target = new URL(BASE + '/thanks', window.location.href);
         const chosen = bookingForm.querySelector('#artist');
         if (chosen && chosen.value) target.searchParams.set('artist', chosen.value);
         window.location.href = target.href;
@@ -60,13 +66,15 @@ if (bookingForm) {
 
       if (formNote) {
         formNote.textContent = detail
-          ? ('Something went wrong: ' + detail)
-          : 'Something went wrong. Please mail Bookings@boons-agency.nl instead.';
+          ? (t('Something went wrong: ', 'Er ging iets mis: ') + detail)
+          : t('Something went wrong. Please mail Bookings@boons-agency.nl instead.',
+              'Er ging iets mis. Mail ons in plaats daarvan op Bookings@boons-agency.nl.');
         formNote.classList.add('form-note-error');
       }
     } catch (_) {
       if (formNote) {
-        formNote.textContent = 'No connection. Please check your internet, or mail Bookings@boons-agency.nl.';
+        formNote.textContent = t('No connection. Please check your internet, or mail Bookings@boons-agency.nl.',
+                              'Geen verbinding. Check je internet, of mail naar Bookings@boons-agency.nl.');
         formNote.classList.add('form-note-error');
       }
     } finally {
@@ -82,7 +90,7 @@ if (bookingForm) {
 const nextField = document.querySelector('#bookingForm input[name="_next"]');
 if (nextField) {
   try {
-    nextField.value = new URL('/thanks', window.location.href).href;
+    nextField.value = new URL(BASE + '/thanks', window.location.href).href;
   } catch (e) { /* keep the hardcoded fallback */ }
 }
 
@@ -93,13 +101,13 @@ if (nextField) {
 const presskitLink = document.getElementById('presskitLink');
 const forArtist = document.getElementById('forArtist');
 if (presskitLink || forArtist) {
-  const PAGES = { GIBBS: '/gibbs', BURNEY: '/burney' };
+  const PAGES = { GIBBS: BASE + '/gibbs', BURNEY: BASE + '/burney' };
   const raw = new URLSearchParams(window.location.search).get('artist') || '';
   const key = raw.trim().toUpperCase();
-  if (forArtist && PAGES[key]) forArtist.textContent = ' for ' + key;
+  if (forArtist && PAGES[key]) forArtist.textContent = t(' for ', ' voor ') + key;
   if (presskitLink && PAGES[key]) {
     presskitLink.setAttribute('href', PAGES[key]);
-    presskitLink.textContent = key + ' press kit';
+    presskitLink.textContent = t(key + ' press kit', 'Press kit van ' + key);
     presskitLink.hidden = false;
   }
 }
@@ -117,9 +125,9 @@ document.querySelectorAll('.copy-btn[data-copy]').forEach(btn => {
     const text = paras.length ? [...paras].map(clean).join('\n\n') : clean(source);
     try {
       await navigator.clipboard.writeText(text);
-      btn.textContent = 'Copied';
+      btn.textContent = t('Copied', 'Gekopieerd');
       btn.classList.add('copied');
-      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
+      setTimeout(() => { btn.textContent = t('Copy', 'Kopieer'); btn.classList.remove('copied'); }, 1800);
     } catch (_) {
       // clipboard blocked (old browser / insecure context): select the text instead
       const range = document.createRange();
@@ -168,14 +176,14 @@ if (lightboxLinks.length) {
   box.className = 'lightbox';
   box.setAttribute('role', 'dialog');
   box.setAttribute('aria-modal', 'true');
-  box.setAttribute('aria-label', 'Photo viewer');
+  box.setAttribute('aria-label', t('Photo viewer', 'Fotoviewer'));
   box.innerHTML =
-    '<button class="lightbox-btn lightbox-close mono" aria-label="Close">✕</button>' +
-    '<button class="lightbox-btn lightbox-prev" aria-label="Previous photo">←</button>' +
-    '<figure class="lightbox-stage"><span class="lightbox-loading mono">Loading full size…</span><img alt=""></figure>' +
-    '<button class="lightbox-btn lightbox-next" aria-label="Next photo">→</button>' +
+    '<button class="lightbox-btn lightbox-close mono" aria-label="' + t('Close', 'Sluiten') + '">✕</button>' +
+    '<button class="lightbox-btn lightbox-prev" aria-label="' + t('Previous photo', 'Vorige foto') + '">←</button>' +
+    '<figure class="lightbox-stage"><span class="lightbox-loading mono">' + t('Loading full size…', 'Volledige foto laden…') + '</span><img alt=""></figure>' +
+    '<button class="lightbox-btn lightbox-next" aria-label="' + t('Next photo', 'Volgende foto') + '">→</button>' +
     '<div class="lightbox-bar"><span class="lightbox-count mono"></span>' +
-    '<a class="btn btn-primary btn-small lightbox-dl" download>Download original ↓</a></div>';
+    '<a class="btn btn-primary btn-small lightbox-dl" download>' + t('Download original ↓', 'Download origineel ↓') + '</a></div>';
   document.body.appendChild(box);
 
   const img = box.querySelector('img');
@@ -246,8 +254,8 @@ document.querySelectorAll('.photo-grid').forEach(grid => {
   btn.className = 'btn btn-outline photo-more';
   btn.setAttribute('aria-expanded', 'false');
   const label = () => grid.classList.contains('is-collapsed')
-    ? 'Show all ' + cards.length + ' photos ↓'
-    : 'Show fewer ↑';
+    ? t('Show all ' + cards.length + ' photos ↓', 'Toon alle ' + cards.length + " foto's ↓")
+    : t('Show fewer ↑', 'Toon minder ↑');
   btn.textContent = label();
   btn.addEventListener('click', () => {
     const collapsing = !grid.classList.contains('is-collapsed');
