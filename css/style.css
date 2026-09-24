@@ -1148,3 +1148,8 @@ html[lang="nl"] .lang-en, html:not([lang="nl"]) .lang-nl{ display: none !importa
 .clip-grid{ grid-template-columns: repeat(2, 1fr); gap: 1.6rem; }
 .clip-card video{ aspect-ratio: 16/9; }
 @media (max-width: 700px){ .clip-grid{ grid-template-columns: 1fr; } }
+/* homepage artist tiles: a bit smaller */
+.roster-grid-large{ grid-template-columns: repeat(2, minmax(0, 320px)); gap: 1.5rem; }
+.roster-tile-large .roster-tile-name{ font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
+@media (max-width: 860px){ .roster-grid-large{ grid-template-columns: repeat(2, minmax(0, 320px)); } }
+@media (max-width: 600px){ .roster-grid-large{ grid-template-columns: 1fr; } .roster-tile-large{ max-width: 340px; } }
