@@ -39,8 +39,8 @@
   "sameAs": ["https://www.instagram.com/boons.agency/"],
   "employee": { "@type": "Person", "name": "Finn Bes", "jobTitle": "Bookings & artist management" },
   "member": [
-    { "@type": "Person", "name": "GIBBS", "url": "https://boons-agency.nl/gibbs.html", "jobTitle": "DJ" },
-    { "@type": "Person", "name": "BURNEY", "url": "https://boons-agency.nl/burney.html", "jobTitle": "DJ" }
+    { "@type": "Person", "name": "GIBBS", "url": "https://boons-agency.nl/gibbs", "jobTitle": "DJ" },
+    { "@type": "Person", "name": "BURNEY", "url": "https://boons-agency.nl/burney", "jobTitle": "DJ" }
   ]
 }
 </script>
@@ -55,7 +55,7 @@
   </a>
   <nav class="site-nav">
     <a href="#roster">Artists</a>
-    <a href="#about">About</a>
+    <a href="/about">About</a>
     <a href="#contact">Booking</a>
   </nav>
   <a href="#contact" class="btn btn-ghost nav-cta">Book an artist</a>
@@ -66,7 +66,7 @@
 
 <div class="mobile-nav" id="mobileNav">
   <a href="#roster">Artists</a>
-  <a href="#about">About</a>
+  <a href="/about">About</a>
   <a href="#contact">Booking</a>
 </div>
 
@@ -101,14 +101,14 @@
     </div>
 
     <div class="roster-grid">
-      <a href="burney.html" class="roster-tile" data-om-label="BUTTON BURNEY" style="background: linear-gradient(180deg, #FDC711, #FF0000, #FF7A00)">
+      <a href="/burney" class="roster-tile" data-om-label="BUTTON BURNEY" style="background: linear-gradient(180deg, #FDC711, #FF0000, #FF7A00)">
         <img src="assets/images/burney.jpg" alt="BURNEY" onerror="this.parentElement.classList.add('no-photo')">
         <span class="roster-tile-overlay">
           <span class="roster-tile-name">BURNEY</span>
           <span class="roster-tile-cta mono">View profile →</span>
         </span>
       </a>
-      <a href="gibbs.html" class="roster-tile" data-om-label="BUTTON GIBBS" style="background: linear-gradient(180deg, #FDC711, #FF0000, #FF7A00)">
+      <a href="/gibbs" class="roster-tile" data-om-label="BUTTON GIBBS" style="background: linear-gradient(180deg, #FDC711, #FF0000, #FF7A00)">
         <img src="assets/images/gibbs.jpg" alt="GIBBS" onerror="this.parentElement.classList.add('no-photo')" style="object-fit: cover">
         <span class="roster-tile-overlay">
           <span class="roster-tile-name">GIBBS</span>
@@ -186,6 +186,7 @@
           <p>Clubs, festivals, or your own event. If the energy fits, we travel.</p>
         </div>
       </div>
+      <a href="/about" class="btn btn-outline about-more">More about BOONS →</a>
     </div>
   </section>
 
@@ -281,12 +282,12 @@
           <textarea id="message" name="message" rows="4" placeholder="Tell us about your event..."></textarea>
         </div>
         <input type="hidden" name="_subject" value="Booking request via boons-agency.nl">
-        <input type="hidden" name="_next" value="https://boons-agency.nl/thanks.html">
+        <input type="hidden" name="_next" value="https://boons-agency.nl/thanks">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
         <button type="submit" class="btn btn-primary btn-large">Send request →</button>
         <p class="form-legal">A request is not yet a booking. Confirmed bookings follow our
-        <a href="terms.html">terms &amp; conditions</a>, and we only use your details to handle your request
-        (<a href="terms.html#privacy">privacy</a>).</p>
+        <a href="/terms">terms &amp; conditions</a>, and we only use your details to handle your request
+        (<a href="/terms#privacy">privacy</a>).</p>
         <p class="form-note mono" id="formNote"></p>
       </form>
     </div>
@@ -303,8 +304,8 @@
     <div class="footer-links">
       <div>
         <span class="mono footer-label">Artists</span>
-        <a href="gibbs.html">GIBBS</a>
-        <a href="burney.html">BURNEY</a>
+        <a href="/gibbs">GIBBS</a>
+        <a href="/burney">BURNEY</a>
       </div>
       <div>
         <span class="mono footer-label">Contact</span>
@@ -315,7 +316,7 @@
   </div>
   <div class="footer-bottom mono">
     <span>© <span id="year"></span> BOONS AGENCY</span>
-    <a href="terms.html">Terms &amp; conditions</a>
+    <span class="footer-bottom-links"><a href="/about">About</a> · <a href="/terms">Terms &amp; conditions</a></span>
     <span>Haarlem, Netherlands</span>
   </div>
 </footer>

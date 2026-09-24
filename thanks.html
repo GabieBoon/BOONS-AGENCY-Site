@@ -20,25 +20,25 @@
 <body>
 
 <header class="site-header" id="top">
-  <a class="wordmark" href="index.html">
+  <a class="wordmark" href="/">
     <img src="assets/images/logo.png" alt="BOONS AGENCY" class="wordmark-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
     <span class="wordmark-text" style="display:none;">BOONS<span class="dot">•</span>AGENCY</span>
   </a>
   <nav class="site-nav">
-    <a href="index.html#roster">Artists</a>
-    <a href="index.html#about">About</a>
-    <a href="index.html#contact">Booking</a>
+    <a href="/#roster">Artists</a>
+    <a href="/about">About</a>
+    <a href="/#contact">Booking</a>
   </nav>
-  <a href="index.html" class="btn btn-ghost nav-cta">Back to site</a>
+  <a href="/" class="btn btn-ghost nav-cta">Back to site</a>
   <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </header>
 
 <div class="mobile-nav" id="mobileNav">
-  <a href="index.html#roster">Artists</a>
-  <a href="index.html#about">About</a>
-  <a href="index.html#contact">Booking</a>
+  <a href="/#roster">Artists</a>
+  <a href="/about">About</a>
+  <a href="/#contact">Booking</a>
 </div>
 
 <main>
@@ -75,7 +75,7 @@
       <div class="pass-barcode" aria-hidden="true"></div>
 
       <div class="thanks-bottom">
-        <a href="index.html#roster" class="btn btn-primary">Back to the artists →</a>
+        <a href="/#roster" class="btn btn-primary">Back to the artists →</a>
         <a href="#" class="btn btn-outline" id="presskitLink" hidden>Press kit</a>
       </div>
 
@@ -95,8 +95,8 @@
     <div class="footer-links">
       <div>
         <span class="mono footer-label">Artists</span>
-        <a href="gibbs.html">GIBBS</a>
-        <a href="index.html#roster">BURNEY</a>
+        <a href="/gibbs">GIBBS</a>
+        <a href="/#roster">BURNEY</a>
       </div>
       <div>
         <span class="mono footer-label">Contact</span>
@@ -107,7 +107,7 @@
   </div>
   <div class="footer-bottom mono">
     <span>© <span id="year"></span> BOONS AGENCY</span>
-    <a href="terms.html">Terms &amp; conditions</a>
+    <span class="footer-bottom-links"><a href="/about">About</a> · <a href="/terms">Terms &amp; conditions</a></span>
     <span>Haarlem, Netherlands</span>
   </div>
 </footer>
@@ -116,7 +116,7 @@
 <script data-goatcounter="https://boons-agency.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script>
 (function () {
-  var PAGES = { GIBBS: 'gibbs.html', BURNEY: 'burney.html' };
+  var PAGES = { GIBBS: '/gibbs', BURNEY: '/burney' };
   var params = new URLSearchParams(window.location.search);
   var key = (params.get('artist') || '').trim().toUpperCase();
   var page = Object.prototype.hasOwnProperty.call(PAGES, key) ? PAGES[key] : null;

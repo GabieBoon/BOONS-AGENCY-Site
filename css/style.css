@@ -851,3 +851,66 @@ main{ width:100%; }
 .stat-label, .photo-meta, .photo-dl, .rider-label, .contact-role, .roster-tile-cta,
 .record-count, .bio-short-label, .footer-label, .legal-toc, .legal-table th,
 .artist-social .mono{ font-size: 0.74rem; }
+
+/* ============================================
+   About page (about.html)
+   ============================================ */
+.site-nav a[aria-current="page"], .mobile-nav a[aria-current="page"]{ color: var(--fg); }
+
+.about-intro{ padding-top: 5rem; padding-bottom: 4rem; }
+.about-title{ font-size: clamp(2.6rem, 7vw, 5.2rem); text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 1.6rem; }
+.about-lead{ font-size: clamp(1.1rem, 2vw, 1.35rem); max-width: 40ch; color: var(--fg); }
+
+.about-story{ padding-top: 2rem; }
+.about-story-grid{ display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem; align-items: center; }
+.about-story-photo{ margin: 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 4/3; }
+.about-story-photo img{ width: 100%; height: 100%; object-fit: cover; }
+.about-h2{ font-size: clamp(1.8rem, 3.6vw, 2.6rem); text-transform: uppercase; margin-bottom: 1.4rem; }
+.about-text{ color: var(--muted); font-size: 1.02rem; margin-bottom: 1.1rem; max-width: 60ch; }
+
+.team-card{
+  display: grid; grid-template-columns: 320px 1fr; gap: 3rem; align-items: center;
+  background: var(--bg-card); border: 1px solid var(--line); border-radius: 10px; padding: 2rem;
+}
+.team-photo{
+  border-radius: 10px; overflow: hidden; padding: 3px; aspect-ratio: 4/5;
+  background: linear-gradient(165deg, #FFC93C 0%, #FF9E2C 30%, #FF4D1C 65%, #E01B24 100%);
+}
+.team-photo img{ width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+.team-name{ font-size: clamp(2rem, 4vw, 3rem); text-transform: uppercase; }
+.team-role{ color: var(--yellow); font-size: 0.78rem; margin: 0.5rem 0 1.4rem; }
+.team-body .btn{ margin-top: 0.8rem; }
+
+.about-work{ background: var(--bg-alt); max-width: 100%; }
+.about-work-inner{ max-width: calc(var(--container) - 4rem); margin: 0 auto; }
+.about-steps-label{ margin-top: 5rem; }
+.about-steps{
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem;
+}
+.about-steps li{
+  background: var(--bg-card); border: 1px solid var(--line); border-top: 3px solid var(--magenta);
+  border-radius: 10px; padding: 1.5rem;
+}
+.about-steps .mono{ font-size: 0.74rem; color: var(--yellow); }
+.about-steps h3{ font-size: 1.1rem; text-transform: uppercase; margin: 0.6rem 0 0.6rem; }
+.about-steps p{ color: var(--muted); font-size: 0.92rem; }
+.about-steps a{ color: var(--fg); border-bottom: 1px solid var(--line); }
+.about-steps a:hover{ color: var(--magenta); border-color: var(--magenta); }
+
+.about-cta-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.about-cta-card{ background: var(--bg-card); border: 1px solid var(--line); border-radius: 10px; padding: 2.4rem; }
+.about-cta-card h3{ font-size: clamp(1.6rem, 3vw, 2.2rem); text-transform: uppercase; margin-bottom: 0.8rem; }
+.about-cta-card p:not(.eyebrow){ color: var(--muted); margin-bottom: 1.6rem; }
+
+/* homepage: link from the short "How we work" block to the full About page */
+.about-more{ margin-top: 2.5rem; }
+
+@media (max-width: 860px){
+  .about-story-grid{ grid-template-columns: 1fr; gap: 2rem; }
+  .team-card{ grid-template-columns: 1fr; gap: 1.8rem; padding: 1.4rem; }
+  .team-photo{ max-width: 320px; }
+  .about-steps{ grid-template-columns: 1fr 1fr; }
+  .about-cta-grid{ grid-template-columns: 1fr; }
+}
+@media (max-width: 480px){ .about-steps{ grid-template-columns: 1fr; } }

@@ -45,7 +45,7 @@ if (bookingForm) {
 
       if (res.ok) {
         // carry the chosen artist over, so the thank-you page shows the right press kit
-        const target = new URL('thanks.html', window.location.href);
+        const target = new URL('/thanks', window.location.href);
         const chosen = bookingForm.querySelector('#artist');
         if (chosen && chosen.value) target.searchParams.set('artist', chosen.value);
         window.location.href = target.href;
@@ -82,7 +82,7 @@ if (bookingForm) {
 const nextField = document.querySelector('#bookingForm input[name="_next"]');
 if (nextField) {
   try {
-    nextField.value = new URL('thanks.html', window.location.href).href;
+    nextField.value = new URL('/thanks', window.location.href).href;
   } catch (e) { /* keep the hardcoded fallback */ }
 }
 
@@ -93,7 +93,7 @@ if (nextField) {
 const presskitLink = document.getElementById('presskitLink');
 const forArtist = document.getElementById('forArtist');
 if (presskitLink || forArtist) {
-  const PAGES = { GIBBS: 'gibbs.html', BURNEY: 'burney.html' };
+  const PAGES = { GIBBS: '/gibbs', BURNEY: '/burney' };
   const raw = new URLSearchParams(window.location.search).get('artist') || '';
   const key = raw.trim().toUpperCase();
   if (forArtist && PAGES[key]) forArtist.textContent = ' for ' + key;
