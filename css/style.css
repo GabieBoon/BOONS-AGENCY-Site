@@ -1359,3 +1359,8 @@ body.has-overlay-nav .hero::after{
 /* Links to a section (#roster, #listen, #presskit...) land below the header instead of under it */
 html{ scroll-padding-top: 96px; }
 @media (max-width: 860px){ html{ scroll-padding-top: 80px; } }
+
+/* SoundCloud players: compact (166px is SoundCloud's standard compact height) */
+.listen-item iframe, .listen-item-wide iframe{ height: 166px; }
+.listen-item-wide{ margin-bottom: 1.6rem; }
+.listen-grid{ gap: 1.6rem; }
