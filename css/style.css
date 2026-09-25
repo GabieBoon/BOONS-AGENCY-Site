@@ -1272,3 +1272,21 @@ section{ padding: 7rem 2rem; max-width: var(--container); margin: 0 auto; paddin
 .artist-hero-inner .artist-actions .btn{ justify-content: center; }
 
 .artist-hero-inner .artist-actions .btn-primary{ flex: 1 1 100%; grid-column: 1 / -1; }
+
+/* Socials line: every item carries its own "·"; the first one on each line is
+   clipped away, so a wrapped line never starts with a loose dot. */
+.artist-hero-inner .artist-socials{ margin-left: -1.2rem; clip-path: inset(0 0 0 1.2rem); }
+.artist-hero-inner .artist-social + .artist-social::before,
+.artist-hero-inner .artist-social::before{
+  content: '·'; display: inline-block; width: 1.2rem; margin: 0; text-align: center;
+  font-size: 0.8rem; color: var(--muted);
+}
+
+/* Mobile menu: artists one tap away, and a real booking button */
+.mobile-nav a.mobile-nav-sub{ padding: 0.55rem 0 0.55rem 1.2rem; font-size: 0.8rem; color: var(--muted); border-bottom: 1px solid var(--line); }
+.mobile-nav a.mobile-nav-sub::before{ content: '→ '; color: var(--red-text); }
+.mobile-nav a[aria-current="page"]{ color: var(--fg); }
+.mobile-nav a.mobile-nav-cta{ margin: 1rem 0 0.4rem; padding: 0.9rem 1rem; justify-content: center; border-bottom: 0; color: #0B0A0F; }
+
+/* press kit bar: ZIP + Share side by side */
+.presskit-bar .share-btn{ gap: 0.4rem; }

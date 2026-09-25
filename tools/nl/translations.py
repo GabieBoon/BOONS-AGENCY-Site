@@ -17,6 +17,7 @@ COMMON = [
     ('>About</a>', '>Over ons</a>'),
     ('>Booking</a>', '>Boeken</a>'),
     ('>Book an artist</a>', '>Boek een artiest</a>'),
+    ('>Book an artist →</a>', '>Boek een artiest →</a>'),
     ('<p>High-energy DJ booking from Haarlem.</p>', '<p>High-energy DJ-bookings uit Haarlem.</p>'),
     ('<span class="mono footer-label">Artists</span>', '<span class="mono footer-label">Artiesten</span>'),
     ('>Terms &amp; conditions</a>', '>Algemene voorwaarden</a>'),
@@ -69,6 +70,7 @@ ARTIST = [
     ('Photos, bios and the rider, for line-ups, posters, event pages and your production team. Download straight from here, no need to email us for them.',
      "Foto's, bio's en de rider, voor line-ups, posters, eventpagina's en je productieteam. Download ze hier direct, je hoeft er niet om te mailen."),
     ('Download everything (ZIP', 'Download alles (ZIP'),
+    ('>Share ↗</button>', '>Delen ↗</button>'),
     ('re:Photos, bios \\+ rider · updated ([\\d.]+)', r"Foto's, bio's + rider · bijgewerkt \1"),
     ('re:aria-label="View (GIBBS|BURNEY) photo (\\d+) full size"', r'aria-label="Bekijk foto \2 van \1 op volle grootte"'),
     ('re:alt="(GIBBS|BURNEY), press photo (\\d+)"', r'alt="\1, persfoto \2"'),
@@ -202,7 +204,7 @@ PAGES = {
     ],
 
     'gibbs.html': [
-        ('<title>GIBBS Press Kit | BOONS AGENCY</title>', '<title>GIBBS press kit | BOONS AGENCY</title>'),
+        ('<title>GIBBS · DJ · Hardhouse, Trance &amp; UKG | BOONS AGENCY</title>', '<title>GIBBS · DJ · Hardhouse, Trance &amp; UKG | BOONS AGENCY</title>'),
         ('content="GIBBS | Hardhouse, Trance &amp; UKG"', 'content="GIBBS | Hardhouse, Trance &amp; UKG"'),
         ('GIBBS plays Hardhouse, Trance and UKG, from Haarlem. Press kit, track record, rider and booking. Represented by BOONS AGENCY.',
          'GIBBS draait Hardhouse, Trance en UKG, uit Haarlem. Press kit, track record, rider en boeken. Vertegenwoordigd door BOONS AGENCY.'),
@@ -259,7 +261,7 @@ PAGES = {
     ],
 
     'burney.html': [
-        ('<title>BURNEY Press Kit | BOONS AGENCY</title>', '<title>BURNEY press kit | BOONS AGENCY</title>'),
+        ('<title>BURNEY · DJ · Trance, Hardhouse &amp; Hardgroove | BOONS AGENCY</title>', '<title>BURNEY · DJ · Trance, Hardhouse &amp; Hardgroove | BOONS AGENCY</title>'),
         ('BURNEY plays euphoric trance, hardhouse, heavy basslines and hardgroove. From Haarlem. Press kit, music and booking.',
          'BURNEY draait euforische trance, hardhouse, zware baslijnen en hardgroove. Uit Haarlem. Press kit, muziek en boeken.'),
         ('Euphoric trance melodies with the raw energy of hardhouse. From Haarlem. Press kit and booking.',

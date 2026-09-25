@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- Link-preview image (og:image, 1200x630) for the homepage, About and booking page.
+     Rebuild with: python tools/make-home-card.py
+     The middle square (x 285-915) is what WhatsApp shows when it crops to a square. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@800;900&family=Space+Grotesk:wght@500&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative; font-family: 'JetBrains Mono', monospace; color: #F5F1E8;
+    background: radial-gradient(ellipse 70% 90% at 50% 110%, rgba(224,27,36,0.35), transparent 70%), #0B0A0F;
+  }
+  .tiles { position: absolute; top: 60px; left: 330px; width: 540px; display: flex; gap: 24px; }
+  .tile {
+    position: relative; width: 258px; height: 400px; border-radius: 14px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(224,27,36,0.35);
+  }
+  .tile img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; display: block; }
+  .tile::after {
+    content: ''; position: absolute; inset: 0; border-radius: 14px; padding: 3px;
+    background: linear-gradient(165deg, #FFC93C 0%, #FF9E2C 30%, #FF4D1C 65%, #E01B24 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  }
+  .tile span {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 60px 18px 16px;
+    background: linear-gradient(0deg, rgba(11,10,15,0.95), rgba(11,10,15,0));
+    font-family: 'Unbounded', sans-serif; font-weight: 800; font-size: 30px; text-transform: uppercase;
+  }
+  .logo { position: absolute; top: 58px; left: 56px; width: 200px; }
+  .claim {
+    position: absolute; left: 0; right: 0; bottom: 58px; text-align: center; margin: 0;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 28px;
+  }
+  .url { position: absolute; top: 74px; right: 56px; text-align: right; font-size: 17px; letter-spacing: 3px; color: #FF7A45; text-transform: uppercase; font-weight: 700; }
+  .label { position: absolute; top: 380px; left: 56px; width: 200px; font-size: 15px; letter-spacing: 2px; line-height: 1.7; color: #948FA3; text-transform: uppercase; }
+  .label.right { left: auto; right: 56px; text-align: right; }
+</style>
+</head>
+<body>
+  <img class="logo" src="{{LOGO}}" alt="">
+  <p class="label">Booking<br>&amp; artist<br>management</p>
+  <p class="label right">Haarlem<br>Netherlands</p>
+  <div class="tiles">
+    <div class="tile"><img src="{{BURNEY}}" alt=""><span>BURNEY</span></div>
+    <div class="tile"><img src="{{GIBBS}}" alt=""><span>GIBBS</span></div>
+  </div>
+  <p class="claim">We represent high-energy DJs, from the opening set till the closing.</p>
+  <p class="url">boons-agency.nl</p>
+</body>
+</html>

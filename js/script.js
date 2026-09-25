@@ -370,3 +370,24 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'Intersect
     seen.observe(el);
   });
 }
+
+
+// Artist pages: "Share" opens the phone's share sheet (WhatsApp, mail, ...);
+// where that doesn't exist (most desktops) it copies the link instead.
+document.querySelectorAll('.share-btn').forEach(btn => {
+  const label = btn.textContent;
+  btn.addEventListener('click', async () => {
+    const url = window.location.origin + window.location.pathname;
+    if (navigator.share) {
+      try { await navigator.share({ title: btn.dataset.shareTitle || document.title, url }); } catch (_) { /* closed */ }
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      btn.textContent = t('Link copied ✓', 'Link gekopieerd ✓');
+    } catch (_) {
+      btn.textContent = url;
+    }
+    setTimeout(() => { btn.textContent = label; }, 2000);
+  });
+});
