@@ -152,7 +152,7 @@ PAGES = {
         ('>Watch on Instagram →</a>', '>Bekijk op Instagram →</a>'),
         ('aria-label="BURNEY B2B GIBBS at Zomerpop Festival"', 'aria-label="BURNEY B2B GIBBS op Zomerpop Festival"'),
         ('aria-label="Clip from De Kelder"', 'aria-label="Clip uit De Kelder"'),
-        ('aria-label="BURNEY B2B GIBBS at Nooduitgang Summer Closing"', 'aria-label="BURNEY B2B GIBBS op Nooduitgang Summer Closing"'),
+        ('aria-label="BURNEY B2B GIBBS at Nooduitgang 2025"', 'aria-label="BURNEY B2B GIBBS op Nooduitgang 2025"'),
         ('<span class="clip-sound-label">Sound on</span>', '<span class="clip-sound-label">Geluid aan</span>'),
         ('Filmed by <a href="https://www.instagram.com/thomkolden/"', 'Gefilmd door <a href="https://www.instagram.com/thomkolden/"'),
     ],
