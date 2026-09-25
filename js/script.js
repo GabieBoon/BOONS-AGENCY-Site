@@ -380,7 +380,7 @@ if (clipPlayer) {
       x.setAttribute('aria-pressed', String(k === current));
     });
     if (insta && v.dataset.insta) insta.href = v.dataset.insta;
-    // who filmed it: Thomas unless the clip says otherwise (data-credit / data-credit-url)
+    // who filmed it: Thomas Koldenhof unless the clip says otherwise (data-credit / data-credit-url)
     if (credit) {
       credit.href = v.dataset.creditUrl || creditDefault.href;
       credit.textContent = v.dataset.credit || creditDefault.text;
