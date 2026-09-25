@@ -1365,9 +1365,7 @@ html{ scroll-padding-top: 96px; }
 .listen-item-wide{ margin-bottom: 1.6rem; }
 .listen-grid{ gap: 1.6rem; }
 
-/* featured clip above the grid: full width, starts muted, sound button in the corner */
-.clip-showcase{ margin-bottom: 1.6rem; }
-
+/* clip with sound (starts muted): sound button in the corner */
 .clip-frame{ position: relative; }
 
 .clip-sound{ position: absolute; right: 0.9rem; bottom: 0.9rem; display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.5rem 0.85rem; font-size: 0.72rem; color: #fff; background: rgba(11, 10, 15, 0.72); border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 999px; cursor: pointer; backdrop-filter: blur(6px); transition: background .2s ease, border-color .2s ease; }
