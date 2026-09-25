@@ -29,7 +29,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="stylesheet" href="../css/style.css?v=c7151f53">
+<link rel="stylesheet" href="../css/style.css?v=f72f260a">
 </head>
 <body>
 <a class="skip-link" href="#main">Naar de inhoud</a>
@@ -80,90 +80,99 @@
       </div>
 
       <form class="booking-form" id="bookingForm" action="https://formspree.io/f/moevdyqg" method="POST">
-        <div class="form-row">
-          <label class="mono" for="name">Naam</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        <div class="form-row">
-          <label class="mono" for="email">E-mail</label>
-          <input type="email" id="email" name="email" required autocomplete="email"
-            pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}" title="Vul een volledig e-mailadres in, zoals naam@voorbeeld.nl">
-        </div>
-        <div class="form-row">
-          <label class="mono" for="phone">Telefoon / WhatsApp <span class="form-optional">(optioneel)</span></label>
-          <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="bijv. +31 6 12345678">
-        </div>
-        <div class="form-row">
-          <label class="mono" for="artist">Welke artiest?</label>
-          <select id="artist" name="artist" required>
-            <option value="" disabled selected>Maak een keuze…</option>
-            <option value="GIBBS">GIBBS</option>
-            <option value="BURNEY">BURNEY</option>
-            <option value="BURNEY b2b GIBBS">BURNEY b2b GIBBS</option>
-            <option value="Not sure yet">Weet ik nog niet</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label class="mono" for="event_type">Soort event</label>
-          <select id="event_type" name="event_type" required>
-            <option value="" selected>Maak een keuze…</option>
-            <option value="Club night">Clubavond</option>
-            <option value="Festival">Festival</option>
-            <option value="Student / association event">Studenten- / verenigingsfeest</option>
-            <option value="Private event">Privéfeest</option>
-            <option value="Other">Anders</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label class="mono" for="event">Event / locatie</label>
-          <input type="text" id="event" name="event" placeholder="Naam van de club, het festival of event" required>
-        </div>
-        <div class="form-row">
-          <label class="mono" for="city">Stad &amp; land</label>
-          <input type="text" id="city" name="city" placeholder="bijv. Haarlem, NL" autocomplete="address-level2" required>
-        </div>
-        <div class="form-row">
-          <label class="mono" for="date">Datum</label>
-          <input type="date" id="date" name="date" required>
-        </div>
-        <div class="form-row">
-          <label class="mono" for="set_time">Settijd &amp; lengte <span class="form-optional">(optioneel)</span></label>
-          <input type="text" id="set_time" name="set_time" placeholder="Opening, peak time of afsluiter? bijv. 22:00–23:30">
-        </div>
-        <div class="form-row">
-          <label class="mono" for="lineup">Line-up / andere artiesten <span class="form-optional">(optioneel)</span></label>
-          <input type="text" id="lineup" name="lineup" placeholder="Wie spelen er nog meer?">
-        </div>
-        <div class="form-row">
-          <label class="mono" for="capacity">Capaciteit</label>
-          <select id="capacity" name="capacity" required>
-            <option value="" selected>Maak een keuze…</option>
-            <option value="Up to 300">Tot 300</option>
-            <option value="300 – 1,000">300 – 1.000</option>
-            <option value="1,000 – 3,000">1.000 – 3.000</option>
-            <option value="3,000+">3.000+</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label class="mono" for="budget">Budgetindicatie <span class="form-optional">(optioneel)</span></label>
-          <select id="budget" name="budget">
-            <option value="" selected>Liever in overleg</option>
-            <option value="Up to €100">Tot €100</option>
-            <option value="€100 – €200">€100 – €200</option>
-            <option value="€200 – €300">€200 – €300</option>
-            <option value="€300 – €500">€300 – €500</option>
-            <option value="€500+">€500+</option>
-          </select>
-        </div>
-        <div class="form-row form-row-full">
-          <label class="mono" for="message">Bericht <span class="form-optional">(optioneel)</span></label>
-          <textarea id="message" name="message" rows="4" placeholder="Vertel iets over je event..."></textarea>
-        </div>
+        <p class="form-progress mono" id="formProgress" hidden><span class="form-progress-bar"><span></span></span><span class="form-progress-label"></span></p>
+        <fieldset class="form-step" data-step="1">
+          <legend class="sr-only">Jij en de datum</legend>
+          <div class="form-row">
+            <label class="mono" for="name">Naam</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-row">
+            <label class="mono" for="email">E-mail</label>
+            <input type="email" id="email" name="email" required autocomplete="email"
+              pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}" title="Vul een volledig e-mailadres in, zoals naam@voorbeeld.nl">
+          </div>
+          <div class="form-row">
+            <label class="mono" for="phone">Telefoon / WhatsApp <span class="form-optional">(optioneel)</span></label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="bijv. +31 6 12345678">
+          </div>
+          <div class="form-row">
+            <label class="mono" for="artist">Welke artiest?</label>
+            <select id="artist" name="artist" required>
+              <option value="" disabled selected>Maak een keuze…</option>
+              <option value="GIBBS">GIBBS</option>
+              <option value="BURNEY">BURNEY</option>
+              <option value="BURNEY b2b GIBBS">BURNEY b2b GIBBS</option>
+              <option value="Not sure yet">Weet ik nog niet</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label class="mono" for="date">Datum</label>
+            <input type="date" id="date" name="date" required>
+          </div>
+          <div class="form-row">
+            <label class="mono" for="city">Stad &amp; land</label>
+            <input type="text" id="city" name="city" placeholder="bijv. Haarlem, NL" autocomplete="address-level2" required>
+          </div>
+          <button type="button" class="btn btn-primary btn-large form-next" hidden>Volgende: details van het event →</button>
+        </fieldset>
+        <fieldset class="form-step" data-step="2">
+          <legend class="sr-only">Details van het event</legend>
+          <div class="form-row">
+            <label class="mono" for="event_type">Soort event</label>
+            <select id="event_type" name="event_type" required>
+              <option value="" selected>Maak een keuze…</option>
+              <option value="Club night">Clubavond</option>
+              <option value="Festival">Festival</option>
+              <option value="Student / association event">Studenten- / verenigingsfeest</option>
+              <option value="Private event">Privéfeest</option>
+              <option value="Other">Anders</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label class="mono" for="event">Event / locatie</label>
+            <input type="text" id="event" name="event" placeholder="Naam van de club, het festival of event" required>
+          </div>
+          <div class="form-row">
+            <label class="mono" for="set_time">Settijd &amp; lengte <span class="form-optional">(optioneel)</span></label>
+            <input type="text" id="set_time" name="set_time" placeholder="Opening, peak time of afsluiter? bijv. 22:00–23:30">
+          </div>
+          <div class="form-row">
+            <label class="mono" for="lineup">Line-up / andere artiesten <span class="form-optional">(optioneel)</span></label>
+            <input type="text" id="lineup" name="lineup" placeholder="Wie spelen er nog meer?">
+          </div>
+          <div class="form-row">
+            <label class="mono" for="capacity">Capaciteit</label>
+            <select id="capacity" name="capacity" required>
+              <option value="" selected>Maak een keuze…</option>
+              <option value="Up to 300">Tot 300</option>
+              <option value="300 – 1,000">300 – 1.000</option>
+              <option value="1,000 – 3,000">1.000 – 3.000</option>
+              <option value="3,000+">3.000+</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label class="mono" for="budget">Budgetindicatie <span class="form-optional">(optioneel)</span></label>
+            <select id="budget" name="budget">
+              <option value="" selected>Liever in overleg</option>
+              <option value="Up to €100">Tot €100</option>
+              <option value="€100 – €200">€100 – €200</option>
+              <option value="€200 – €300">€200 – €300</option>
+              <option value="€300 – €500">€300 – €500</option>
+              <option value="€500+">€500+</option>
+            </select>
+          </div>
+          <div class="form-row form-row-full">
+            <label class="mono" for="message">Bericht <span class="form-optional">(optioneel)</span></label>
+            <textarea id="message" name="message" rows="4" placeholder="Vertel iets over je event..."></textarea>
+          </div>
+        </fieldset>
         <input type="hidden" name="_subject" value="Boekingsaanvraag via boons-agency.nl (NL)">
         <input type="hidden" name="language" value="NL">
         <input type="hidden" name="_next" value="https://boons-agency.nl/nl/thanks">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-        <button type="submit" class="btn btn-primary btn-large">Aanvraag versturen →</button>
+        <div class="form-actions"><button type="button" class="btn btn-outline form-back" hidden>← Terug</button>
+        <button type="submit" class="btn btn-primary btn-large">Aanvraag versturen →</button></div>
         <p class="form-legal">Een aanvraag is nog geen boeking. Voor bevestigde boekingen gelden onze <a href="/nl/terms">algemene voorwaarden</a>, en we gebruiken je gegevens alleen om je aanvraag af te handelen (<a href="/nl/terms#privacy">privacy</a>).</p>
         <p class="form-note mono" id="formNote"></p>
       </form>
@@ -198,7 +207,7 @@
   </div>
 </footer>
 
-<script src="../js/script.js?v=190bbd20"></script>
+<script src="../js/script.js?v=11abdaf8"></script>
 <script data-goatcounter="https://boons-agency.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

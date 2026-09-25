@@ -1290,3 +1290,16 @@ section{ padding: 7rem 2rem; max-width: var(--container); margin: 0 auto; paddin
 
 /* press kit bar: ZIP + Share side by side */
 .presskit-bar .share-btn{ gap: 0.4rem; }
+
+/* Booking form in two steps */
+.form-step{ grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem 1.5rem; border: 0; margin: 0; padding: 0; min-width: 0; }
+.form-step[hidden]{ display: none; }
+.form-step .form-next{ grid-column: 1 / -1; justify-self: start; margin-top: 0.5rem; }
+.form-actions{ grid-column: 1 / -1; display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center; margin-top: 0.5rem; }
+.form-actions[hidden], .form-legal[hidden]{ display: none; }
+.booking-form .form-actions button{ margin-top: 0; }
+.form-progress{ grid-column: 1 / -1; display: flex; flex-direction: column; gap: 0.6rem; margin: 0 0 0.4rem; font-size: 0.74rem; color: var(--muted); }
+.form-progress[hidden]{ display: none; }
+.form-progress-bar{ display: block; height: 3px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.form-progress-bar span{ display: block; height: 100%; width: var(--progress, 50%); background: linear-gradient(90deg, #FFC93C, #FF4D1C, #E01B24); transition: width .35s ease; }
+@media (max-width: 860px){ .form-step{ grid-template-columns: 1fr; } }

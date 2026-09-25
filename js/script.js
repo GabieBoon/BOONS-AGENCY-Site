@@ -391,3 +391,47 @@ document.querySelectorAll('.share-btn').forEach(btn => {
     setTimeout(() => { btn.textContent = label; }, 2000);
   });
 });
+
+
+// Booking form in two steps: 1) you + artist + date + city, 2) event details.
+// Same fields and same submit as before; without JavaScript it is one long form.
+if (bookingForm && bookingForm.querySelector('.form-step')) {
+  const steps = [...bookingForm.querySelectorAll('.form-step')];
+  const nextBtn = bookingForm.querySelector('.form-next');
+  const backBtn = bookingForm.querySelector('.form-back');
+  const submitRow = bookingForm.querySelector('.form-actions');
+  const legal = bookingForm.querySelector('.form-legal');
+  const progress = document.getElementById('formProgress');
+  const labels = [t('Step 1 of 2 · You & the date', 'Stap 1 van 2 · Jij & de datum'),
+                  t('Step 2 of 2 · Event details', 'Stap 2 van 2 · Details van het event')];
+  let current = 0;
+  const show = (i, focus) => {
+    current = i;
+    steps.forEach((s, k) => { s.hidden = k !== i; });
+    nextBtn.hidden = i !== 0;
+    backBtn.hidden = i === 0;
+    submitRow.hidden = i === 0;
+    if (legal) legal.hidden = i === 0;
+    progress.hidden = false;
+    progress.querySelector('.form-progress-label').textContent = labels[i];
+    progress.style.setProperty('--progress', ((i + 1) / steps.length * 100) + '%');
+    if (focus) {
+      const first = steps[i].querySelector('input, select, textarea');
+      if (first) first.focus({ preventScroll: true });
+      progress.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+  const stepValid = (i) => {
+    const bad = [...steps[i].querySelectorAll('input, select, textarea')].find(f => !f.checkValidity());
+    if (bad) { bad.reportValidity(); return false; }
+    return true;
+  };
+  bookingForm.classList.add('is-stepped');
+  nextBtn.addEventListener('click', () => { if (stepValid(0)) show(1, true); });
+  backBtn.addEventListener('click', () => show(0, true));
+  // Enter in step 1 goes to step 2 instead of sending half a form
+  bookingForm.addEventListener('submit', (e) => {
+    if (current === 0) { e.preventDefault(); e.stopImmediatePropagation(); if (stepValid(0)) show(1, true); }
+  }, true);
+  show(0, false);
+}
