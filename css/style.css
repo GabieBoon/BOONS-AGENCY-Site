@@ -1078,6 +1078,16 @@ html[lang="nl"] .lang-en, html:not([lang="nl"]) .lang-nl{ display: none !importa
 
 .clip-link:hover{ color: var(--yellow); }
 
+/* desktop: the list of clips sits to the right of the video, one under the other */
+@media (min-width: 900px){
+  .clip-player{ max-width: none; display: grid; grid-template-columns: minmax(0, 664px) 240px; column-gap: 2.2rem; align-items: start; }
+  .clip-screen{ grid-column: 1; grid-row: 1; }
+  .clip-tabs{ grid-column: 2; grid-row: 1; grid-auto-flow: row; grid-auto-columns: auto; gap: 1.1rem; margin-top: 0; }
+  .clip-meta{ grid-column: 1; grid-row: 2; }
+  .clip-tab{ flex-direction: column; gap: 0.25rem; padding-top: 0.8rem; }
+  .clip-tab-venue{ font-size: 1.05rem; }
+}
+
 /* touch screens have no hover: keep the arrows visible, a bit smaller */
 @media (hover: none){
   .clip-nav{ opacity: 1; width: 38px; height: 38px; font-size: 1rem; }
