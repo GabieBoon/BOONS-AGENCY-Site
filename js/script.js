@@ -353,6 +353,8 @@ if (clipPlayer) {
   const tabs = [...clipPlayer.querySelectorAll('.clip-tab')];
   const soundBtn = clipPlayer.querySelector('.clip-sound');
   const insta = document.getElementById('clipInsta');
+  const credit = document.getElementById('clipCredit');
+  const creditDefault = credit ? { href: credit.href, text: credit.textContent } : null;
   const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let current = 0;
   let soundOn = false;
@@ -378,6 +380,11 @@ if (clipPlayer) {
       x.setAttribute('aria-pressed', String(k === current));
     });
     if (insta && v.dataset.insta) insta.href = v.dataset.insta;
+    // who filmed it: Thomas unless the clip says otherwise (data-credit / data-credit-url)
+    if (credit) {
+      credit.href = v.dataset.creditUrl || creditDefault.href;
+      credit.textContent = v.dataset.credit || creditDefault.text;
+    }
     // on phones the tabs are a swipeable row: bring the playing one into view (sideways only)
     const row = tabs[current].parentElement;
     if (row.scrollWidth > row.clientWidth) {
