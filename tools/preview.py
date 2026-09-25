@@ -41,7 +41,8 @@ class PagesHandler(http.server.SimpleHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    socketserver.TCPServer.allow_reuse_address = True
-    with socketserver.TCPServer(('127.0.0.1', PORT), PagesHandler) as httpd:
+    socketserver.ThreadingTCPServer.allow_reuse_address = True
+    socketserver.ThreadingTCPServer.daemon_threads = True
+    with socketserver.ThreadingTCPServer(('127.0.0.1', PORT), PagesHandler) as httpd:
         print(f'Preview running at http://localhost:{PORT}  (Ctrl+C to stop)')
         httpd.serve_forever()

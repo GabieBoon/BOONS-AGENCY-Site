@@ -1,7 +1,7 @@
 """Builds the Dutch pages in nl/ from the English pages.
 
-Run from the website folder after changing an English page (it also refreshes
-sitemap.xml):
+Run from the website folder after changing an English page, the CSS or the
+script (it also refreshes sitemap.xml and the ?v= version on CSS/JS links):
     python tools/build-nl.py
 
 The English pages are the source. This script copies each one, swaps in the Dutch
@@ -106,8 +106,30 @@ def write_sitemap():
         f.write(chr(10).join(lines) + chr(10))
 
 
+def stamp_assets():
+    """Add ?v=<hash of the file> to the stylesheet and script links on every
+    English page (the Dutch pages copy it). When a file changes, its URL changes,
+    so browsers fetch the new version straight away instead of a cached old one."""
+    import hashlib
+    stamps = {}
+    for rel in ('css/style.css', 'css/fonts.css', 'js/script.js'):
+        with open(os.path.join(ROOT, rel), 'rb') as f:
+            stamps[rel] = hashlib.md5(f.read()).hexdigest()[:8]
+    for page in list(PAGES) + ['404.html']:
+        path = os.path.join(ROOT, page)
+        with open(path, encoding='utf-8') as f:
+            html = f.read()
+        new = html
+        for rel, v in stamps.items():
+            new = re.sub(r'((?:href|src)="/?' + re.escape(rel) + r')(\?v=[0-9a-f]+)?"', lambda m, v=v: m.group(1) + '?v=' + v + '"', new)
+        if new != html:
+            with open(path, 'w', encoding='utf-8', newline='') as f:
+                f.write(new)
+
+
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
+    stamp_assets()
     os.makedirs(os.path.join(ROOT, 'nl'), exist_ok=True)
     missing, leftovers = [], {}
     for page in PAGES:
