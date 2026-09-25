@@ -437,22 +437,36 @@ if (bookingForm && bookingForm.querySelector('.form-step')) {
 }
 
 
-// Homepage: header floats over the hero video, becomes a solid bar once you scroll into it.
+// Homepage: the navigation floats over the hero video without its own logo
+// (the big BOONS logo in the video is the brand there). Scrolling down, the hero
+// content drifts up slower than the page and fades out; the moment it's gone the
+// bar turns solid and the small logo fades in: the logo "moves" into the bar.
 if (document.body.classList.contains('has-overlay-nav')) {
   const header = document.querySelector('.site-header');
   const hero = document.querySelector('.hero');
+  const mark = document.querySelector('.hero-logo-mark');
   const menu = document.getElementById('mobileNav');
-  // turn solid as soon as the hero content (the big BOONS logo) reaches the bar,
-  // so white text never slides under white navigation
-  const logo = document.querySelector('.hero-logo-mark');
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const SLOW = 0.75;                // hero content moves at 25% of the scroll speed
+  let collision = 80;               // scroll position where the logo would reach the bar
+  const measure = () => {
+    hero.style.setProperty('--hero-shift', '0px');
+    const top = mark.getBoundingClientRect().top + window.scrollY;
+    collision = Math.max(40, (top - header.offsetHeight - 8) / (still ? 1 : 1 - SLOW));
+    update();
+  };
   const update = () => {
-    const past = logo
-      ? logo.getBoundingClientRect().top < header.offsetHeight + 12
-      : window.scrollY > (hero ? hero.offsetHeight - header.offsetHeight - 10 : 80);
-    header.classList.toggle('is-solid', past || (menu && menu.classList.contains('open')));
+    const y = window.scrollY;
+    if (!still) {
+      const p = Math.min(1, Math.max(0, y / collision));
+      hero.style.setProperty('--hero-shift', (Math.min(y, collision) * SLOW) + 'px');
+      hero.style.setProperty('--hero-fade', String(1 - p));
+    }
+    header.classList.toggle('is-solid', y >= collision - 1 || (menu && menu.classList.contains('open')));
   };
   window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update);
+  window.addEventListener('resize', measure);
+  window.addEventListener('load', measure);
   if (navToggle) navToggle.addEventListener('click', () => setTimeout(update, 0));
-  update();
+  measure();
 }
