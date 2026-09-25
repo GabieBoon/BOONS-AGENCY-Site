@@ -1356,3 +1356,34 @@ section{ padding-top: 5rem; padding-bottom: 5rem; }
   .artist-hero-inner .artist-name{ font-size: clamp(2.8rem, 6vw, 4rem); }
   .artist-hero-inner .artist-lead{ font-size: 0.92rem; margin-bottom: 0.9rem; }
 }
+
+/* ============================================
+   Artist hero: ONE content style on every screen size.
+   Only the layout changes (photo right on wide screens, photo on top on
+   phones); sizes scale smoothly with clamp(). Nothing jumps at a breakpoint.
+   ============================================ */
+.artist-hero-inner .artist-intro{ width: 100%; max-width: 470px; }
+.artist-hero-inner .eyebrow{ display: block; margin-bottom: 0.4rem; font-size: 0.74rem; }
+.artist-hero-inner .artist-name{ font-size: clamp(3rem, 6.5vw, 6rem); line-height: 0.95; }
+.artist-hero-inner .artist-tagline{ margin: 0.6rem 0 0.4rem; font-size: clamp(0.7rem, 1vw, 0.8rem); }
+/* genres as one line of text */
+.artist-hero-inner .tag-row{ gap: 0; margin-bottom: 1rem; flex-wrap: wrap; }
+.artist-hero-inner .tag-row .tag{ border: 0; padding: 0; background: none; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; }
+.artist-hero-inner .tag-row .tag + .tag::before{ content: '·'; margin: 0 0.55rem; color: var(--muted); }
+.artist-hero-inner .artist-lead{ font-size: clamp(0.95rem, 1.2vw, 1.05rem); line-height: 1.55; margin-bottom: 1.2rem; max-width: none; }
+/* buttons: Book full width of the text column, Listen + Press kit below */
+.artist-hero-inner .artist-actions{ display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; width: 100%; }
+.artist-hero-inner .artist-actions .btn{ justify-content: center; }
+.artist-hero-inner .artist-actions .btn-primary{ grid-column: 1 / -1; }
+.artist-hero-inner .artist-actions .btn-outline{ padding: 0.8rem 0.6rem; }
+/* socials as one quiet line */
+.artist-hero-inner .artist-socials{ margin-top: 1.2rem; gap: 0; flex-wrap: wrap; }
+.artist-hero-inner .artist-social{ border: 0; padding: 0.3rem 0; font-size: 0; background: none; }
+.artist-hero-inner .artist-social .mono{ font-size: 0.72rem; color: var(--fg); border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+.artist-hero-inner .artist-social:hover .mono{ color: var(--yellow); border-color: var(--yellow); }
+.artist-hero-inner .artist-social + .artist-social::before{ content: '·'; font-size: 0.8rem; color: var(--muted); margin: 0 0.6rem; }
+/* phones: back link hidden (the header has the menu), content full width */
+@media (max-width: 700px){
+  .artist-hero-inner .back-link{ display: none; }
+  .artist-hero-inner .artist-intro{ max-width: none; }
+}
