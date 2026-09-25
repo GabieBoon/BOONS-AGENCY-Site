@@ -336,13 +336,6 @@ document.querySelectorAll('.shows').forEach(section => {
 });
 
 
-// Date check on the artist pages: no dates in the past
-document.querySelectorAll('.date-check input[type="date"]').forEach(input => {
-  const now = new Date();
-  now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-  input.min = now.toISOString().slice(0, 10);
-});
-
 // Booking page: pre-fill the date that came from an artist page (?date=2026-11-14).
 // Only a valid, future yyyy-mm-dd date is used; anything else is ignored.
 const bookDate = document.getElementById('date');

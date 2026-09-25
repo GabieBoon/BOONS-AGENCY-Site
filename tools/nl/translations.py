@@ -40,8 +40,6 @@ COMMON = [
 # Shared by the artist pages (gibbs.html, burney.html). Optional per page.
 ARTIST = [
     ('← All artists', '← Alle artiesten'),
-    ('Got a date?</label>', 'Heb je een datum?</label>'),
-    ('Check availability →', 'Check beschikbaarheid →'),
     # "Also on the roster" block
     ('<p class="eyebrow mono">Also on the roster</p>', '<p class="eyebrow mono">Ook bij BOONS</p>'),
     ('<h2>Double the energy.</h2>', '<h2>Dubbele energie.</h2>'),
