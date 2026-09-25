@@ -435,3 +435,24 @@ if (bookingForm && bookingForm.querySelector('.form-step')) {
   }, true);
   show(0, false);
 }
+
+
+// Homepage: header floats over the hero video, becomes a solid bar once you scroll into it.
+if (document.body.classList.contains('has-overlay-nav')) {
+  const header = document.querySelector('.site-header');
+  const hero = document.querySelector('.hero');
+  const menu = document.getElementById('mobileNav');
+  // turn solid as soon as the hero content (the big BOONS logo) reaches the bar,
+  // so white text never slides under white navigation
+  const logo = document.querySelector('.hero-logo-mark');
+  const update = () => {
+    const past = logo
+      ? logo.getBoundingClientRect().top < header.offsetHeight + 12
+      : window.scrollY > (hero ? hero.offsetHeight - header.offsetHeight - 10 : 80);
+    header.classList.toggle('is-solid', past || (menu && menu.classList.contains('open')));
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  if (navToggle) navToggle.addEventListener('click', () => setTimeout(update, 0));
+  update();
+}

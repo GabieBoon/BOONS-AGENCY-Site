@@ -1319,6 +1319,25 @@ section{ padding: 7rem 2rem; max-width: var(--container); margin: 0 auto; paddin
   @view-transition{ navigation: none; }
 }
 
-/* Homepage: agency numbers under the roster */
-.agency-stats{ padding-top: 0; padding-bottom: 3.5rem; }
-.agency-stats .stat-row{ margin-top: 0; }
+
+/* ============================================
+   Homepage: the navigation floats over the hero video (transparent, no bar)
+   and turns into a solid bar once you scroll past the video.
+   ============================================ */
+body.has-overlay-nav{ scroll-padding-top: 90px; }
+body.has-overlay-nav .site-header{
+  position: fixed; top: 0; left: 0; right: 0;
+  background: linear-gradient(180deg, rgba(11,10,15,0.6) 0%, rgba(11,10,15,0) 100%);
+  border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none;
+  transition: background .35s ease, border-color .35s ease, backdrop-filter .35s ease;
+}
+body.has-overlay-nav .site-header.is-solid{
+  background: rgba(11,10,15,0.85); border-bottom-color: var(--line);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+body.has-overlay-nav .site-header:not(.is-solid) .site-nav a{ color: var(--fg); text-shadow: 0 1px 10px rgba(0,0,0,0.5); }
+body.has-overlay-nav .hero{ min-height: 100svh; }
+body.has-overlay-nav .mobile-nav{ position: fixed; left: 0; right: 0; top: 70px; }
+@media (prefers-reduced-motion: reduce){ body.has-overlay-nav .site-header{ transition: none; } }
+/* the gradient must not repeat into the (transparent) bottom border: that drew a dark 1px line */
+body.has-overlay-nav .site-header{ background-origin: border-box; background-repeat: no-repeat; }
