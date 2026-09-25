@@ -1364,3 +1364,6 @@ html{ scroll-padding-top: 96px; }
 .listen-item iframe, .listen-item-wide iframe{ height: 166px; }
 .listen-item-wide{ margin-bottom: 1.6rem; }
 .listen-grid{ gap: 1.6rem; }
+
+/* credit line under the homepage clips */
+.clips-credit{ margin-top: 1.4rem; }
