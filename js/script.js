@@ -372,10 +372,10 @@ if (clipPlayer) {
     if (v.preload === 'none') v.preload = 'metadata';
     v.currentTime = 0;
     videos.forEach((x, k) => x.classList.toggle('is-active', k === current));
+    clipPlayer.style.setProperty('--progress', '0%');
     tabs.forEach((x, k) => {
       x.classList.toggle('is-active', k === current);
       x.setAttribute('aria-pressed', String(k === current));
-      x.style.setProperty('--progress', '0%');
     });
     if (insta && v.dataset.insta) insta.href = v.dataset.insta;
     playCurrent();
@@ -385,7 +385,7 @@ if (clipPlayer) {
     v.loop = videos.length === 1;
     v.addEventListener('ended', () => show(k + 1));
     v.addEventListener('timeupdate', () => {
-      if (k === current && v.duration) tabs[k].style.setProperty('--progress', (v.currentTime / v.duration * 100) + '%');
+      if (k === current && v.duration) clipPlayer.style.setProperty('--progress', (v.currentTime / v.duration * 100) + '%');
     });
   });
   tabs.forEach((tab, k) => tab.addEventListener('click', () => { started = true; show(k); }));

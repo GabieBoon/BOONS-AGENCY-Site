@@ -1060,11 +1060,15 @@ html[lang="nl"] .lang-en, html:not([lang="nl"]) .lang-nl{ display: none !importa
 
 .clip-tab:hover, .clip-tab.is-active{ color: var(--fg); }
 
-.clip-tab-bar{ position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--line); border-radius: 2px; overflow: hidden; }
+/* which clip is playing: a line on each tab, in the gradient for the active one */
+.clip-tab::before{ content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2px; border-radius: 2px; background: var(--line); transition: background .2s ease; }
 
-.clip-tab-bar span{ display: block; height: 100%; width: 0; background: linear-gradient(90deg, #FFC93C, #FF4D1C, #E01B24); }
+.clip-tab.is-active::before{ background: linear-gradient(90deg, #FFC93C, #FF4D1C, #E01B24); }
 
-.clip-tab.is-active .clip-tab-bar span{ width: var(--progress, 0%); }
+/* how far the clip is: a thin bar along the bottom of the video, like Stories and YouTube */
+.clip-progress{ position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255, 255, 255, 0.15); pointer-events: none; }
+
+.clip-progress span{ display: block; height: 100%; width: var(--progress, 0%); background: linear-gradient(90deg, #FFC93C, #FF4D1C, #E01B24); }
 
 .clip-tab-num{ font-size: 0.7rem; color: var(--red-text); }
 
@@ -1084,7 +1088,9 @@ html[lang="nl"] .lang-en, html:not([lang="nl"]) .lang-nl{ display: none !importa
   .clip-screen{ grid-column: 1; grid-row: 1; }
   .clip-tabs{ grid-column: 2; grid-row: 1; grid-auto-flow: row; grid-auto-columns: auto; gap: 1.1rem; margin-top: 0; }
   .clip-meta{ grid-column: 1; grid-row: 2; }
-  .clip-tab{ flex-direction: column; gap: 0.25rem; padding-top: 0.8rem; }
+  .clip-tab{ flex-direction: column; gap: 0.25rem; padding: 0.35rem 0 0.35rem 1.1rem; }
+  .clip-tab::before{ top: 0; bottom: 0; right: auto; width: 2px; height: auto; }
+  .clip-tab.is-active::before{ background: linear-gradient(180deg, #FFC93C, #FF4D1C, #E01B24); }
   .clip-tab-venue{ font-size: 1.05rem; }
 }
 
