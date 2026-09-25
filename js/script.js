@@ -5,6 +5,17 @@ const NL = document.documentElement.lang === 'nl';
 const t = (en, nl) => (NL ? nl : en);
 const BASE = NL ? '/nl' : '';
 
+// Visitor stats (GoatCounter, cookieless): events show up next to the pages in the dashboard.
+// Downloads, press kit photos and the share button count themselves via data-goatcounter-click;
+// track() covers the rest. sendBeacon in count.js makes it survive a page change.
+const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const PAGE = slug(location.pathname.replace(/^\/nl/, '').replace(/\.html$/, '')) || 'home';
+const track = (name, title) => {
+  if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+    window.goatcounter.count({ path: name, title: title || name, event: true });
+  }
+};
+
 // Mobile nav toggle
 const navToggle = document.getElementById('navToggle');
 const mobileNav = document.getElementById('mobileNav');
@@ -54,6 +65,7 @@ if (bookingForm) {
         const target = new URL(BASE + '/thanks', window.location.href);
         const chosen = bookingForm.querySelector('#artist');
         if (chosen && chosen.value) target.searchParams.set('artist', chosen.value);
+        track('booking-sent-' + slug(chosen && chosen.value ? chosen.value : 'unknown'), 'Booking request sent');
         window.location.href = target.href;
         return;
       }
@@ -301,7 +313,7 @@ document.querySelectorAll('.clip-sound').forEach(btn => {
   const label = btn.querySelector('.clip-sound-label');
   btn.addEventListener('click', () => {
     video.muted = !video.muted;
-    if (!video.muted) video.play().catch(() => {});
+    if (!video.muted) { video.play().catch(() => {}); track('clip-sound-on', 'Clip sound turned on'); }
     btn.setAttribute('aria-pressed', String(!video.muted));
     label.textContent = video.muted ? t('Sound on', 'Geluid aan') : t('Sound off', 'Geluid uit');
   });
@@ -466,3 +478,25 @@ if (document.body.classList.contains('has-overlay-nav')) {
   if (navToggle) navToggle.addEventListener('click', () => setTimeout(update, 0));
   update();
 }
+
+// Which Book button gets used, and where people leave to (socials, SoundCloud, email).
+document.addEventListener('click', e => {
+  const link = e.target.closest('a[href]');
+  if (!link || link.hasAttribute('data-goatcounter-click')) return;
+  const url = new URL(link.href, location.href);
+  if (url.protocol === 'mailto:') { track('email-' + PAGE, 'Email link on ' + PAGE); return; }
+  if (url.host !== location.host) {
+    const site = url.hostname.replace(/^www\./, '').split('.')[0];
+    track('out-' + site + '-' + PAGE, 'To ' + url.hostname + ' from ' + PAGE);
+    return;
+  }
+  if (/^(\/nl)?\/book\/?$/.test(url.pathname) && PAGE !== 'book') {
+    const spot = link.closest('.site-header') ? 'nav'
+      : link.closest('.mobile-nav') ? 'menu'
+      : link.closest('#stickyBook') ? 'sticky'
+      : link.closest('.b2b-card') ? 'b2b'
+      : link.closest('.hero, .artist-hero') ? 'hero'
+      : 'page';
+    track('book-' + PAGE + '-' + spot, 'Book button: ' + PAGE + ', ' + spot);
+  }
+});
