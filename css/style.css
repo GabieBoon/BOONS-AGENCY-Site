@@ -1415,3 +1415,13 @@ section{ padding-top: 5rem; padding-bottom: 5rem; }
   .reveal{ opacity: 1; transform: none; transition: none; }
   .roster-tile:hover, .photo-card:hover, .record-card:hover, .about-cta-card:hover, .b2b-card:hover{ transform: none; }
 }
+
+/* Artist hero, calmer: one red button, Listen / Press kit as text links */
+.artist-hero-inner .artist-actions{ display: flex; flex-wrap: wrap; align-items: center; gap: 0.9rem 1.6rem; }
+.artist-hero-inner .artist-actions .btn-primary{ flex: 1 1 100%; }
+.hero-link{ font-size: 0.78rem; color: var(--fg); border-bottom: 1px solid var(--line); padding-bottom: 3px; }
+.hero-link:hover{ color: var(--yellow); border-color: var(--yellow); }
+
+/* Date check now lives in the closing booking block */
+.date-check-cta{ max-width: 460px; margin: 0 auto 2.4rem; text-align: left; }
+.date-check-cta .date-check-label{ text-align: center; }
