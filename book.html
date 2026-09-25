@@ -29,6 +29,12 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="stylesheet" href="css/style.css?v=ce586646">
+<!-- Open the next page before the click: when someone hovers a link (or starts tapping it),
+     the browser prepares that page in the background. Chrome/Edge; other browsers ignore it.
+     GoatCounter only counts a page once it is actually shown. -->
+<script type="speculationrules">
+{"prerender": [{"where": {"and": [{"href_matches": "/*"}, {"not": {"href_matches": "/*.*"}}, {"not": {"selector_matches": "[download], [target=_blank]"}}]}, "eagerness": "moderate"}]}
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -208,7 +214,7 @@
   </div>
 </footer>
 
-<script src="js/script.js?v=e6ed79a8"></script>
+<script src="js/script.js?v=b60b539d"></script>
 <script data-goatcounter="https://boons-agency.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

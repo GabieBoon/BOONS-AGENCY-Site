@@ -8,6 +8,7 @@
 
 <link rel="preload" href="assets/fonts/unbounded-latin-06f2e4.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/space-grotesk-latin-ecea81.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/images/hero-poster.jpg" as="image" fetchpriority="high">
 <link rel="stylesheet" href="css/fonts.css?v=461787aa">
 
 <link rel="icon" href="assets/images/favicon.ico" sizes="any">
@@ -46,6 +47,12 @@
     { "@type": "Person", "name": "BURNEY", "url": "https://boons-agency.nl/burney", "jobTitle": "DJ" }
   ]
 }
+</script>
+<!-- Open the next page before the click: when someone hovers a link (or starts tapping it),
+     the browser prepares that page in the background. Chrome/Edge; other browsers ignore it.
+     GoatCounter only counts a page once it is actually shown. -->
+<script type="speculationrules">
+{"prerender": [{"where": {"and": [{"href_matches": "/*"}, {"not": {"href_matches": "/*.*"}}, {"not": {"selector_matches": "[download], [target=_blank]"}}]}, "eagerness": "moderate"}]}
 </script>
 </head>
 <body class="has-overlay-nav">
@@ -286,7 +293,7 @@
   </div>
 </footer>
 
-<script src="js/script.js?v=e6ed79a8"></script>
+<script src="js/script.js?v=b60b539d"></script>
 <script data-goatcounter="https://boons-agency.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

@@ -398,7 +398,11 @@ if (clipPlayer) {
     v.loop = videos.length === 1;
     v.addEventListener('ended', () => show(k + 1));
     v.addEventListener('timeupdate', () => {
-      if (k === current && v.duration) clipPlayer.style.setProperty('--progress', (v.currentTime / v.duration * 100) + '%');
+      if (k !== current || !v.duration) return;
+      clipPlayer.style.setProperty('--progress', (v.currentTime / v.duration * 100) + '%');
+      // halfway through: start loading the next clip, so the switch is seamless
+      const upNext = videos[(k + 1) % videos.length];
+      if (v.currentTime / v.duration > 0.5 && upNext !== v && upNext.preload !== 'auto') upNext.preload = 'auto';
     });
   });
   tabs.forEach((tab, k) => tab.addEventListener('click', () => { started = true; show(k); }));
