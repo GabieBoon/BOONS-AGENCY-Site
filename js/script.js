@@ -343,44 +343,98 @@ if (NL && document.body.classList.contains('page-404')) {
 }
 
 
-// "On the floor" clips: only play while on screen (saves data and battery).
-// People who ask for reduced motion get the still image; a tap plays the clip.
-const clips = document.querySelectorAll('.clip-card video');
-if (clips.length) {
+// "On the floor" clip player: one clip at a time, the next one starts when a clip ends.
+// Plays only while on screen (saves data and battery). Clips start muted, because browsers
+// only autoplay without sound; once someone turns the sound on, it stays on for the next clip.
+// People who ask for reduced motion get the posters and start a clip themselves.
+const clipPlayer = document.getElementById('clipPlayer');
+if (clipPlayer) {
+  const videos = [...clipPlayer.querySelectorAll('.clip-video')];
+  const tabs = [...clipPlayer.querySelectorAll('.clip-tab')];
+  const soundBtn = clipPlayer.querySelector('.clip-sound');
+  const insta = document.getElementById('clipInsta');
   const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (still || !('IntersectionObserver' in window)) {
-    clips.forEach(v => { v.controls = true; });
+  let current = 0;
+  let soundOn = false;
+  let inView = false;
+  let started = !still;          // reduced motion: nothing plays until someone asks for it
+
+  const playCurrent = () => {
+    const v = videos[current];
+    v.muted = !soundOn;
+    if (inView && started) v.play().catch(() => {});
+  };
+  const show = (i) => {
+    const old = videos[current];
+    old.pause();
+    current = (i + videos.length) % videos.length;
+    const v = videos[current];
+    if (v.preload === 'none') v.preload = 'metadata';
+    v.currentTime = 0;
+    videos.forEach((x, k) => x.classList.toggle('is-active', k === current));
+    tabs.forEach((x, k) => {
+      x.classList.toggle('is-active', k === current);
+      x.setAttribute('aria-pressed', String(k === current));
+      x.style.setProperty('--progress', '0%');
+    });
+    if (insta && v.dataset.insta) insta.href = v.dataset.insta;
+    playCurrent();
+  };
+
+  videos.forEach((v, k) => {
+    v.loop = videos.length === 1;
+    v.addEventListener('ended', () => show(k + 1));
+    v.addEventListener('timeupdate', () => {
+      if (k === current && v.duration) tabs[k].style.setProperty('--progress', (v.currentTime / v.duration * 100) + '%');
+    });
+  });
+  tabs.forEach((tab, k) => tab.addEventListener('click', () => { started = true; show(k); }));
+  const prev = clipPlayer.querySelector('.clip-prev');
+  const next = clipPlayer.querySelector('.clip-next');
+  if (videos.length < 2) { [prev, next].forEach(b => b && b.remove()); clipPlayer.querySelector('.clip-tabs').hidden = true; }
+  if (prev) prev.addEventListener('click', () => { started = true; show(current - 1); });
+  if (next) next.addEventListener('click', () => { started = true; show(current + 1); });
+
+  if (soundBtn) {
+    soundBtn.addEventListener('click', () => {
+      soundOn = !soundOn;
+      started = true;
+      soundBtn.setAttribute('aria-pressed', String(soundOn));
+      soundBtn.querySelector('.clip-sound-label').textContent = soundOn ? t('Sound off', 'Geluid uit') : t('Sound on', 'Geluid aan');
+      if (soundOn) track('clip-sound-on', 'Clip sound turned on');
+      playCurrent();
+    });
+  }
+
+  // a tap on the clip itself plays or pauses it
+  clipPlayer.querySelector('.clip-screen').addEventListener('click', e => {
+    if (e.target.closest('button')) return;
+    const v = videos[current];
+    started = true;
+    if (v.paused) { v.muted = !soundOn; v.play().catch(() => {}); } else { v.pause(); }
+  });
+
+  // swipe left / right on phones
+  let touchX = null;
+  const screen = clipPlayer.querySelector('.clip-screen');
+  screen.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  screen.addEventListener('touchend', e => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    touchX = null;
+    if (Math.abs(dx) > 50 && videos.length > 1) { started = true; show(current + (dx < 0 ? 1 : -1)); }
+  });
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(entries => {
+      inView = entries[0].isIntersecting;
+      if (inView) playCurrent(); else videos[current].pause();
+    }, { threshold: 0.4 }).observe(screen);
   } else {
-    const watcher = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.play().catch(() => {}); }
-        else { e.target.pause(); }
-      });
-    }, { threshold: 0.4 });
-    clips.forEach(v => watcher.observe(v));
+    inView = true;
+    playCurrent();
   }
 }
-
-// Clips with sound: they start muted (browsers only autoplay without sound), one tap for sound.
-// Only one clip plays with sound at a time: turning one on mutes the others.
-const soundBtns = [...document.querySelectorAll('.clip-sound')];
-const setSound = (btn, on) => {
-  const video = btn.closest('.clip-frame').querySelector('video');
-  video.muted = !on;
-  btn.setAttribute('aria-pressed', String(on));
-  btn.querySelector('.clip-sound-label').textContent = on ? t('Sound off', 'Geluid uit') : t('Sound on', 'Geluid aan');
-  if (on) video.play().catch(() => {});
-};
-soundBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const on = btn.getAttribute('aria-pressed') !== 'true';
-    if (on) {
-      soundBtns.forEach(other => { if (other !== btn) setSound(other, false); });
-      track('clip-sound-on', 'Clip sound turned on');
-    }
-    setSound(btn, on);
-  });
-});
 
 
 // Artist pages on phones: a "Book <artist>" bar at the bottom of the screen, shown
@@ -437,7 +491,7 @@ if (bookDate && document.getElementById('bookingForm')) {
 // everything is simply visible.
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
   const targets = document.querySelectorAll(
-    'main > section:not(.hero):not(.artist-hero) .section-head, .roster-tile:not(.roster-tile-large), .clip-card, .about-item, ' +
+    'main > section:not(.hero):not(.artist-hero) .section-head, .roster-tile:not(.roster-tile-large), .clip-player, .about-item, ' +
     '.timeline li, .year-block, .record-card, .photo-card, .stat, .team-card, .about-cta-card, ' +
     '.b2b-card, .book-cta-inner, .home-book-inner, .about-story-grid > *, .bio-inner, .listen-item'
   );

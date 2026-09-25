@@ -28,7 +28,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="stylesheet" href="css/style.css?v=d8d6eeaa">
+<link rel="stylesheet" href="css/style.css?v=b42d37d0">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -169,62 +169,37 @@
     </div>
   </section>
 
-  <!-- ON THE FLOOR: short clips from the artists' Instagram.
-       Make a clip with: python tools/make-clip.py <video> <name> [start] [length]
-       then point the <source>, poster, caption and Instagram link below at it. -->
+  <!-- ON THE FLOOR: professional clips from the dancefloor (filmed by Thomas) -->
   <section class="clips" id="clips">
     <div class="section-head">
       <p class="eyebrow mono">On the floor</p>
       <h2>See the energy.</h2>
       <p class="section-lead">Straight from the dancefloor. This is what a night with our artists looks like.</p>
     </div>
-    <div class="clip-grid">
-      <figure class="clip-card">
-        <div class="clip-frame">
-          <video muted loop playsinline preload="metadata" poster="assets/video/clips/showcase-1.jpg" aria-label="BURNEY B2B GIBBS at Zomerpop Festival">
-            <source src="assets/video/clips/showcase-1.mp4" type="video/mp4">
-          </video>
-          <button type="button" class="clip-sound mono" aria-pressed="false"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path class="clip-sound-waves" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="clip-sound-x" d="M16.5 9.5l5 5M21.5 9.5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="clip-sound-label">Sound on</span></button>
-        </div>
-        <figcaption>
-          <span class="clip-venue">Zomerpop Festival</span>
-          <a href="https://www.instagram.com/p/DdEiMnRjqfn/" class="clip-link mono" target="_blank" rel="noopener">Instagram →</a>
-        </figcaption>
-      </figure>
-      <figure class="clip-card">
-        <div class="clip-frame">
-          <video muted loop playsinline preload="metadata" poster="assets/video/clips/showcase-2.jpg" aria-label="Clip from De Kelder">
-            <source src="assets/video/clips/showcase-2.mp4" type="video/mp4">
-          </video>
-          <button type="button" class="clip-sound mono" aria-pressed="false"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path class="clip-sound-waves" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="clip-sound-x" d="M16.5 9.5l5 5M21.5 9.5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="clip-sound-label">Sound on</span></button>
-        </div>
-        <figcaption>
-          <span class="clip-venue">De Kelder</span>
-          <a href="https://www.instagram.com/p/DVtYXGxjT7R/" class="clip-link mono" target="_blank" rel="noopener">Instagram →</a>
-        </figcaption>
-      </figure>
-      <figure class="clip-card">
-        <video muted loop playsinline preload="none" poster="assets/video/clips/placeholder-3.jpg" aria-label="Placeholder clip">
-          <source src="assets/video/clips/placeholder-3.mp4" type="video/mp4">
+    <!-- Clip player: one big clip at a time, the next starts when one ends.
+         New clip: encode it to assets/video/clips/showcase-N.mp4 + .jpg (1280x720, with audio),
+         then add a <video class="clip-video"> and a matching tab below. -->
+    <div class="clip-player" id="clipPlayer">
+      <div class="clip-screen">
+        <video class="clip-video is-active" muted playsinline preload="metadata" poster="assets/video/clips/showcase-1.jpg" data-insta="https://www.instagram.com/p/DdEiMnRjqfn/" aria-label="BURNEY B2B GIBBS at Zomerpop Festival">
+          <source src="assets/video/clips/showcase-1.mp4" type="video/mp4">
         </video>
-        <figcaption>
-          <span class="clip-artist mono">BOONS</span>
-          <span class="clip-venue">Placeholder clip</span>
-          <a href="https://www.instagram.com/boons.agency/" class="clip-link mono" target="_blank" rel="noopener">Instagram →</a>
-        </figcaption>
-      </figure>
-      <figure class="clip-card">
-        <video muted loop playsinline preload="none" poster="assets/video/clips/placeholder-4.jpg" aria-label="Placeholder clip">
-          <source src="assets/video/clips/placeholder-4.mp4" type="video/mp4">
+        <video class="clip-video" muted playsinline preload="none" poster="assets/video/clips/showcase-2.jpg" data-insta="https://www.instagram.com/p/DVtYXGxjT7R/" aria-label="Clip from De Kelder">
+          <source src="assets/video/clips/showcase-2.mp4" type="video/mp4">
         </video>
-        <figcaption>
-          <span class="clip-artist mono">BOONS</span>
-          <span class="clip-venue">Placeholder clip</span>
-          <a href="https://www.instagram.com/boons.agency/" class="clip-link mono" target="_blank" rel="noopener">Instagram →</a>
-        </figcaption>
-      </figure>
+        <button type="button" class="clip-nav clip-prev" aria-label="Previous clip">←</button>
+        <button type="button" class="clip-nav clip-next" aria-label="Next clip">→</button>
+        <button type="button" class="clip-sound mono" aria-pressed="false"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path class="clip-sound-waves" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="clip-sound-x" d="M16.5 9.5l5 5M21.5 9.5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="clip-sound-label">Sound on</span></button>
+      </div>
+      <div class="clip-tabs">
+        <button type="button" class="clip-tab is-active" aria-pressed="true"><span class="clip-tab-bar"><span></span></span><span class="clip-tab-num mono">01</span><span class="clip-tab-venue">Zomerpop Festival</span></button>
+        <button type="button" class="clip-tab" aria-pressed="false"><span class="clip-tab-bar"><span></span></span><span class="clip-tab-num mono">02</span><span class="clip-tab-venue">De Kelder</span></button>
+      </div>
+      <div class="clip-meta">
+        <a href="https://www.instagram.com/p/DdEiMnRjqfn/" class="clip-link mono" id="clipInsta" target="_blank" rel="noopener">Watch on Instagram →</a>
+        <p class="presskit-credit mono">Filmed by <a href="https://www.instagram.com/thomkolden/" target="_blank" rel="noopener">Thomas (@thomkolden)</a></p>
+      </div>
     </div>
-    <p class="presskit-credit mono clips-credit">Filmed by <a href="https://www.instagram.com/thomkolden/" target="_blank" rel="noopener">Thomas (@thomkolden)</a></p>
   </section>
 
   <!-- WHY BOONS + HOW BOOKING WORKS -->
@@ -306,7 +281,7 @@
   </div>
 </footer>
 
-<script src="js/script.js?v=d4b80939"></script>
+<script src="js/script.js?v=a7ab31dd"></script>
 <script data-goatcounter="https://boons-agency.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
