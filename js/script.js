@@ -361,15 +361,24 @@ if (clips.length) {
   }
 }
 
-// Showcase clip: starts muted (browsers only autoplay without sound), one tap for sound.
-document.querySelectorAll('.clip-sound').forEach(btn => {
+// Clips with sound: they start muted (browsers only autoplay without sound), one tap for sound.
+// Only one clip plays with sound at a time: turning one on mutes the others.
+const soundBtns = [...document.querySelectorAll('.clip-sound')];
+const setSound = (btn, on) => {
   const video = btn.closest('.clip-frame').querySelector('video');
-  const label = btn.querySelector('.clip-sound-label');
+  video.muted = !on;
+  btn.setAttribute('aria-pressed', String(on));
+  btn.querySelector('.clip-sound-label').textContent = on ? t('Sound off', 'Geluid uit') : t('Sound on', 'Geluid aan');
+  if (on) video.play().catch(() => {});
+};
+soundBtns.forEach(btn => {
   btn.addEventListener('click', () => {
-    video.muted = !video.muted;
-    if (!video.muted) { video.play().catch(() => {}); track('clip-sound-on', 'Clip sound turned on'); }
-    btn.setAttribute('aria-pressed', String(!video.muted));
-    label.textContent = video.muted ? t('Sound on', 'Geluid aan') : t('Sound off', 'Geluid uit');
+    const on = btn.getAttribute('aria-pressed') !== 'true';
+    if (on) {
+      soundBtns.forEach(other => { if (other !== btn) setSound(other, false); });
+      track('clip-sound-on', 'Clip sound turned on');
+    }
+    setSound(btn, on);
   });
 });
 
