@@ -1409,3 +1409,7 @@ section{ padding-top: 5rem; padding-bottom: 5rem; }
 .hero-link{ font-size: 0.78rem; color: var(--fg); border-bottom: 1px solid var(--line); padding-bottom: 3px; }
 .hero-link:hover{ color: var(--yellow); border-color: var(--yellow); }
 
+/* Listen / Press kit back as outlined buttons: Book full width, the two below side by side */
+.artist-hero-inner .artist-actions{ display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+.artist-hero-inner .artist-actions .btn{ justify-content: center; }
+.artist-hero-inner .artist-actions .btn-primary{ grid-column: 1 / -1; }
