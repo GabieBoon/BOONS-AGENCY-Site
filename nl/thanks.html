@@ -17,7 +17,7 @@
 <link rel="alternate" hreflang="en" href="https://boons-agency.nl/thanks">
 <link rel="alternate" hreflang="nl" href="https://boons-agency.nl/nl/thanks">
 <link rel="alternate" hreflang="x-default" href="https://boons-agency.nl/thanks">
-<link rel="stylesheet" href="../css/style.css?v=cef1bb3f">
+<link rel="stylesheet" href="../css/style.css?v=30abbeaf">
 <style>[hidden]{ display: none !important; }</style>
 </head>
 <body>
@@ -56,12 +56,24 @@
 
       <div class="pass-top">
         <span class="pass-label mono">Aanvraag ontvangen</span>
-        <span class="pass-label mono">✓</span>
+        <span class="pass-label mono" id="passRef">✓</span>
       </div>
 
       <div class="thanks-body">
         <h1 class="thanks-title">Binnen.</h1>
         <p class="thanks-lead">Bedankt voor je bericht. Je aanvraag<span id="forArtist"></span> is binnengekomen en wordt gelezen door een echt mens, niet door een automatisch antwoord.</p>
+
+        <!-- Filled in from this browser tab only (sessionStorage), never sent anywhere again -->
+        <div class="thanks-summary" id="requestSummary" hidden>
+          <dl>
+            <div><dt class="mono">Referentie</dt><dd id="sumRef"></dd></div>
+            <div><dt class="mono">Artiest</dt><dd id="sumArtist"></dd></div>
+            <div><dt class="mono">Datum</dt><dd id="sumDate"></dd></div>
+            <div><dt class="mono">Event</dt><dd id="sumEvent"></dd></div>
+            <div class="thanks-summary-wide"><dt class="mono">We reageren naar</dt><dd id="sumEmail"></dd></div>
+          </dl>
+          <p class="thanks-summary-note">Typfout in je e-mailadres? Mail <a href="mailto:Bookings@boons-agency.nl">Bookings@boons-agency.nl</a> met je referentie, dan gebruiken we het juiste adres.</p>
+        </div>
 
         <div class="thanks-steps">
           <div class="thanks-step">
@@ -84,6 +96,7 @@
       <div class="thanks-bottom">
         <a href="/nl/#roster" class="btn btn-primary">Terug naar de artiesten →</a>
         <a href="#" class="btn btn-outline" id="presskitLink" hidden>Press kit</a>
+        <button type="button" class="btn btn-outline" id="saveCopy" hidden>Bewaar een kopie</button>
       </div>
 
     </div>
@@ -118,7 +131,7 @@
   </div>
 </footer>
 
-<script src="../js/script.js?v=fe38d7c0"></script>
+<script src="../js/script.js?v=1852500e"></script>
 <script data-goatcounter="https://boons-agency.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script>
 (function () {

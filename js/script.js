@@ -53,10 +53,23 @@ if (bookingForm) {
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = t('Sending...', 'Versturen...'); }
     if (formNote) { formNote.textContent = ''; formNote.classList.remove('form-note-error'); }
 
+    // Reference like BOONS-2609-4821 (year, month, 4 random digits): it goes into the
+    // subject of Finn's email and onto the thank-you page, so both sides can refer to it.
+    const val = id => { const el = bookingForm.querySelector('#' + id); return el ? el.value.trim() : ''; };
+    const now = new Date();
+    const rand = window.crypto && crypto.getRandomValues
+      ? crypto.getRandomValues(new Uint32Array(1))[0] % 10000
+      : Math.floor(Math.random() * 10000);
+    const ref = 'BOONS-' + String(now.getFullYear()).slice(2) + String(now.getMonth() + 1).padStart(2, '0')
+      + '-' + String(rand).padStart(4, '0');
+    const data = new FormData(bookingForm);
+    data.set('reference', ref);
+    data.set('_subject', 'Booking request ' + ref + ': ' + [val('artist'), val('date'), val('event')].filter(Boolean).join(', '));
+
     try {
       const res = await fetch(bookingForm.action, {
         method: 'POST',
-        body: new FormData(bookingForm),
+        body: data,
         headers: { 'Accept': 'application/json' }
       });
 
@@ -65,6 +78,13 @@ if (bookingForm) {
         const target = new URL(BASE + '/thanks', window.location.href);
         const chosen = bookingForm.querySelector('#artist');
         if (chosen && chosen.value) target.searchParams.set('artist', chosen.value);
+        target.searchParams.set('ref', ref);
+        // the summary on the thank-you page; sessionStorage is gone when the tab closes
+        try {
+          sessionStorage.setItem('boons-request', JSON.stringify({
+            ref, artist: val('artist'), date: val('date'), event: val('event'), city: val('city'), email: val('email')
+          }));
+        } catch (_) { /* storage blocked: the page just shows the reference */ }
         track('booking-sent-' + slug(chosen && chosen.value ? chosen.value : 'unknown'), 'Booking request sent');
         window.location.href = target.href;
         return;
@@ -121,6 +141,40 @@ if (presskitLink || forArtist) {
     presskitLink.setAttribute('href', PAGES[key]);
     presskitLink.textContent = t(key + ' press kit', 'Press kit van ' + key);
     presskitLink.hidden = false;
+  }
+}
+
+
+// Thank-you page: reference number, a summary of the request and "Save a copy" (print / PDF).
+// Everything is written with textContent, so nothing from the URL or storage becomes markup.
+const passRef = document.getElementById('passRef');
+if (passRef) {
+  const ref = new URLSearchParams(window.location.search).get('ref') || '';
+  if (/^BOONS-\d{4}-\d{4}$/.test(ref)) {
+    passRef.textContent = ref;
+    let req = null;
+    try { req = JSON.parse(sessionStorage.getItem('boons-request') || 'null'); } catch (_) { /* no storage */ }
+    const summary = document.getElementById('requestSummary');
+    if (summary && req && req.ref === ref) {
+      const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text || '–'; };
+      let when = req.date;
+      const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(req.date || '');
+      if (m) {
+        when = new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString(NL ? 'nl-NL' : 'en-GB',
+          { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+      }
+      set('sumRef', ref);
+      set('sumArtist', req.artist);
+      set('sumDate', when);
+      set('sumEvent', [req.event, req.city].filter(Boolean).join(', '));
+      set('sumEmail', req.email);
+      summary.hidden = false;
+      const save = document.getElementById('saveCopy');
+      if (save) {
+        save.hidden = false;
+        save.addEventListener('click', () => { track('request-saved', 'Request copy saved'); window.print(); });
+      }
+    }
   }
 }
 

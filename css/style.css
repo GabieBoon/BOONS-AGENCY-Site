@@ -374,6 +374,36 @@ main{ width: 100%; }
 
 .thanks-card .pass-barcode{ margin: 0.6rem 1.6rem 0; }
 
+/* request summary on the thank-you page, like the fields on a ticket */
+.thanks-summary{ margin: -0.6rem 0 2.2rem; padding: 1.2rem 0; border-top: 1px dashed var(--line); border-bottom: 1px dashed var(--line); }
+
+.thanks-summary dl{ display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.4rem; margin: 0; }
+
+.thanks-summary dt{ font-size: 0.66rem; color: var(--muted); margin-bottom: 0.25rem; }
+
+.thanks-summary dd{ margin: 0; color: var(--fg); font-size: 0.98rem; overflow-wrap: anywhere; }
+
+.thanks-summary-wide{ grid-column: 1 / -1; }
+
+.thanks-summary-note{ margin-top: 1rem; font-size: 0.82rem; color: var(--muted); }
+
+.thanks-summary-note a{ color: var(--fg); border-bottom: 1px solid var(--line); }
+
+@media (max-width: 420px){
+  .thanks-summary dl{ grid-template-columns: 1fr; }
+}
+
+/* "Save a copy": the ticket alone, black on white, fits one A4 */
+@media print{
+  html:root{ --fg: #000; --muted: #444; --bg-card: #fff; --line: #999; --magenta: #000; --yellow: #000; --red-text: #000; }
+  body{ background: #fff !important; color: #000; }
+  .site-header, .mobile-nav, .site-footer, .skip-link, .thanks-bottom, .thanks-note, .pass-barcode{ display: none !important; }
+  .thanks{ min-height: 0; padding: 0; }
+  .thanks-card{ border: 1px solid #000; box-shadow: none; }
+  .thanks-summary-note a, .thanks-step a{ color: #000; }
+}
+
+
 .thanks-bottom{ display: flex; gap: 0.8rem; flex-wrap: wrap; padding: 1.6rem; }
 
 .thanks-note{ font-size: 0.68rem; color: var(--muted); max-width: 620px; margin-top: 1.6rem; line-height: 1.7; text-transform: none; letter-spacing: 0.02em; }

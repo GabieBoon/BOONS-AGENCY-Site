@@ -17,7 +17,7 @@
 <link rel="alternate" hreflang="en" href="https://boons-agency.nl/thanks">
 <link rel="alternate" hreflang="nl" href="https://boons-agency.nl/nl/thanks">
 <link rel="alternate" hreflang="x-default" href="https://boons-agency.nl/thanks">
-<link rel="stylesheet" href="css/style.css?v=cef1bb3f">
+<link rel="stylesheet" href="css/style.css?v=30abbeaf">
 <style>[hidden]{ display: none !important; }</style>
 </head>
 <body>
@@ -56,13 +56,25 @@
 
       <div class="pass-top">
         <span class="pass-label mono">Request received</span>
-        <span class="pass-label mono">✓</span>
+        <span class="pass-label mono" id="passRef">✓</span>
       </div>
 
       <div class="thanks-body">
         <h1 class="thanks-title">That's in.</h1>
         <p class="thanks-lead">Thanks for reaching out. Your request<span id="forArtist"></span>
         landed in our inbox and a real person will read it, not an autoresponder.</p>
+
+        <!-- Filled in from this browser tab only (sessionStorage), never sent anywhere again -->
+        <div class="thanks-summary" id="requestSummary" hidden>
+          <dl>
+            <div><dt class="mono">Reference</dt><dd id="sumRef"></dd></div>
+            <div><dt class="mono">Artist</dt><dd id="sumArtist"></dd></div>
+            <div><dt class="mono">Date</dt><dd id="sumDate"></dd></div>
+            <div><dt class="mono">Event</dt><dd id="sumEvent"></dd></div>
+            <div class="thanks-summary-wide"><dt class="mono">We reply to</dt><dd id="sumEmail"></dd></div>
+          </dl>
+          <p class="thanks-summary-note">Typo in your email address? Mail <a href="mailto:Bookings@boons-agency.nl">Bookings@boons-agency.nl</a> with your reference and we'll use the right one.</p>
+        </div>
 
         <div class="thanks-steps">
           <div class="thanks-step">
@@ -86,6 +98,7 @@
       <div class="thanks-bottom">
         <a href="/#roster" class="btn btn-primary">Back to the artists →</a>
         <a href="#" class="btn btn-outline" id="presskitLink" hidden>Press kit</a>
+        <button type="button" class="btn btn-outline" id="saveCopy" hidden>Save a copy</button>
       </div>
 
     </div>
@@ -121,7 +134,7 @@
   </div>
 </footer>
 
-<script src="js/script.js?v=fe38d7c0"></script>
+<script src="js/script.js?v=1852500e"></script>
 <script data-goatcounter="https://boons-agency.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script>
 (function () {
