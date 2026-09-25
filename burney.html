@@ -74,15 +74,13 @@
 <main id="main">
 
   <!-- ARTIST HERO -->
-  <section class="artist-hero">
-    <a href="/#roster" class="mono back-link">← All artists</a>
-
-    <div class="artist-hero-grid">
-      <div class="artist-portrait">
-        <picture><source type="image/webp" srcset="assets/images/burney-480.webp 480w, assets/images/burney-720.webp 720w" sizes="(max-width: 860px) 320px, 360px"><img src="assets/images/burney.jpg" alt="BURNEY" width="924" height="1620" onerror="this.closest('.artist-portrait').classList.add('no-photo')"></picture>
-        <span class="pass-photo-fallback mono">FOTO VOLGT</span>
-      </div>
-
+  <section class="artist-hero artist-hero-wide">
+    <picture class="artist-hero-photo">
+      <source type="image/webp" srcset="assets/images/burney-hero-800.webp 800w, assets/images/burney-hero-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 60vw">
+      <img src="assets/images/burney-hero.jpg" alt="BURNEY" width="1400" height="2100" fetchpriority="high">
+    </picture>
+    <div class="artist-hero-inner">
+      <a href="/#roster" class="mono back-link">← All artists</a>
       <div class="artist-intro">
         <p class="eyebrow mono">№ 02</p>
         <h1 class="artist-name">BURNEY</h1>
@@ -108,7 +106,9 @@
         </div>
       </div>
     </div>
+  </section>
 
+  <section class="artist-stats">
     <div class="stat-row stat-row-3">
       <div class="stat">
         <span class="stat-num">2.7K</span>

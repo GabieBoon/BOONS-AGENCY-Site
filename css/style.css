@@ -1207,3 +1207,38 @@ section{ padding-top: 5rem; padding-bottom: 5rem; }
 /* "Also on the roster" now comes after the closing booking block: quieter, a last option */
 .book-cta + .more-artists{ padding-top: 4rem; }
 .more-artists .section-head h2{ font-size: clamp(1.6rem, 3vw, 2.2rem); }
+
+/* ============================================
+   Artist pages: wide hero. The photo fills the right side and fades into the
+   page; name and details sit large on the left.
+   ============================================ */
+.artist-hero-wide{
+  position: relative; max-width: none; min-height: min(88vh, 900px);
+  padding: 0; display: flex; align-items: center; overflow: hidden;
+}
+.artist-hero-photo{ position: absolute; top: 0; right: 0; bottom: 0; width: 60%; }
+.artist-hero-photo img{ width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
+.artist-hero-photo::after{
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, var(--bg) 0%, rgba(11,10,15,0.8) 18%, rgba(11,10,15,0) 55%),
+              linear-gradient(0deg, var(--bg) 0%, rgba(11,10,15,0) 30%);
+}
+.artist-hero-inner{
+  position: relative; z-index: 2; width: 100%;
+  max-width: var(--container); margin: 0 auto; padding: 4rem 2rem;
+}
+.artist-hero-inner .artist-intro{ max-width: 540px; }
+.artist-hero-inner .artist-name{ font-size: clamp(4rem, 10vw, 8rem); }
+.artist-stats{ padding-top: 0; }
+.artist-stats .stat-row{ margin-top: 0; }
+
+/* phones: the photo becomes a banner on top, the text runs below it */
+@media (max-width: 860px){
+  .artist-hero-wide{ display: block; min-height: 0; }
+  .artist-hero-photo{ position: relative; width: 100%; height: 62vh; min-height: 380px; max-height: 620px; }
+  .artist-hero-photo img{ object-position: center 18%; }
+  .artist-hero-photo::after{ background: linear-gradient(0deg, var(--bg) 0%, rgba(11,10,15,0) 45%); }
+  .artist-hero-inner{ margin-top: -5.5rem; padding: 0 1.2rem 2.5rem; }
+  .artist-hero-inner .back-link{ display: none; }
+  .artist-hero-inner .artist-name{ font-size: clamp(3.2rem, 15vw, 5rem); }
+}
