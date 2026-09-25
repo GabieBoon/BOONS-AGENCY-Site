@@ -438,35 +438,19 @@ if (bookingForm && bookingForm.querySelector('.form-step')) {
 
 
 // Homepage: the navigation floats over the hero video without its own logo
-// (the big BOONS logo in the video is the brand there). Scrolling down, the hero
-// content drifts up slower than the page and fades out; the moment it's gone the
-// bar turns solid and the small logo fades in: the logo "moves" into the bar.
+// (the big BOONS logo in the video is the brand there). The hero content sits
+// low in the video and scrolls with it; the moment it reaches the bar, the bar
+// turns solid and the small logo fades in: the logo "moves" into the bar.
 if (document.body.classList.contains('has-overlay-nav')) {
   const header = document.querySelector('.site-header');
-  const hero = document.querySelector('.hero');
   const mark = document.querySelector('.hero-logo-mark');
   const menu = document.getElementById('mobileNav');
-  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const SLOW = 0.75;                // hero content moves at 25% of the scroll speed
-  let collision = 80;               // scroll position where the logo would reach the bar
-  const measure = () => {
-    hero.style.setProperty('--hero-shift', '0px');
-    const top = mark.getBoundingClientRect().top + window.scrollY;
-    collision = Math.max(40, (top - header.offsetHeight - 8) / (still ? 1 : 1 - SLOW));
-    update();
-  };
   const update = () => {
-    const y = window.scrollY;
-    if (!still) {
-      const p = Math.min(1, Math.max(0, y / collision));
-      hero.style.setProperty('--hero-shift', (Math.min(y, collision) * SLOW) + 'px');
-      hero.style.setProperty('--hero-fade', String(1 - p));
-    }
-    header.classList.toggle('is-solid', y >= collision - 1 || (menu && menu.classList.contains('open')));
+    const reached = mark.getBoundingClientRect().top < header.offsetHeight + 12;
+    header.classList.toggle('is-solid', reached || (menu && menu.classList.contains('open')));
   };
   window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', measure);
-  window.addEventListener('load', measure);
+  window.addEventListener('resize', update);
   if (navToggle) navToggle.addEventListener('click', () => setTimeout(update, 0));
-  measure();
+  update();
 }

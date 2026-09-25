@@ -1345,8 +1345,14 @@ body.has-overlay-nav .site-header{ background-origin: border-box; background-rep
 /* Homepage overlay nav: no small logo while the big one is on screen; it fades in with the solid bar */
 body.has-overlay-nav .site-header .wordmark{ transition: opacity .35s ease, transform .35s ease; }
 body.has-overlay-nav .site-header:not(.is-solid) .wordmark{ opacity: 0; transform: translateY(-6px); pointer-events: none; }
-/* hero content drifts up slower than the page and fades (values set by script.js) */
-body.has-overlay-nav .hero-logo-mark, body.has-overlay-nav .hero-actions{
-  translate: 0 var(--hero-shift, 0px); opacity: var(--hero-fade, 1); will-change: opacity, translate;
-}
 @media (prefers-reduced-motion: reduce){ body.has-overlay-nav .site-header .wordmark{ transition: none; } }
+
+/* Homepage hero: content in the lower part of the video (like a poster), so the
+   transparent navigation has the whole video to float over */
+body.has-overlay-nav .hero{ justify-content: flex-end; padding-bottom: clamp(3.5rem, 11vh, 7.5rem); }
+body.has-overlay-nav .hero-logo-mark{ margin-top: 0; }
+/* a soft dark fade at the bottom of the video, so the text and buttons read well */
+body.has-overlay-nav .hero::after{
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 60%; z-index: 2; pointer-events: none;
+  background: linear-gradient(0deg, rgba(11,10,15,0.75) 0%, rgba(11,10,15,0) 100%);
+}
