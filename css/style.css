@@ -1347,9 +1347,8 @@ body.has-overlay-nav .site-header .wordmark{ transition: opacity .35s ease, tran
 body.has-overlay-nav .site-header:not(.is-solid) .wordmark{ opacity: 0; transform: translateY(-6px); pointer-events: none; }
 @media (prefers-reduced-motion: reduce){ body.has-overlay-nav .site-header .wordmark{ transition: none; } }
 
-/* Homepage hero: content in the lower part of the video (like a poster), so the
-   transparent navigation has the whole video to float over */
-body.has-overlay-nav .hero{ justify-content: flex-end; padding-bottom: clamp(3.5rem, 11vh, 7.5rem); }
+/* Homepage hero: logo, line and buttons centred together on the video */
+body.has-overlay-nav .hero{ justify-content: center; padding-top: 0; padding-bottom: 6vh; }   /* whole block centred, a touch above the middle */
 body.has-overlay-nav .hero-logo-mark{ margin-top: 0; }
 /* a soft dark fade at the bottom of the video, so the text and buttons read well */
 body.has-overlay-nav .hero::after{
