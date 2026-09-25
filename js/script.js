@@ -334,3 +334,46 @@ document.querySelectorAll('.shows').forEach(section => {
   });
   years[years.length - 1].after(btn);
 });
+
+
+// Date check on the artist pages: no dates in the past
+document.querySelectorAll('.date-check input[type="date"]').forEach(input => {
+  const now = new Date();
+  now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+  input.min = now.toISOString().slice(0, 10);
+});
+
+// Booking page: pre-fill the date that came from an artist page (?date=2026-11-14).
+// Only a valid, future yyyy-mm-dd date is used; anything else is ignored.
+const bookDate = document.getElementById('date');
+if (bookDate && document.getElementById('bookingForm')) {
+  const wantedDate = new URLSearchParams(window.location.search).get('date') || '';
+  if (/^\d{4}-\d{2}-\d{2}$/.test(wantedDate) && (!bookDate.min || wantedDate >= bookDate.min)) bookDate.value = wantedDate;
+}
+
+
+// Scroll reveal: sections fade up gently as they come into view.
+// Off for people who ask for reduced motion, and without JavaScript
+// everything is simply visible.
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+  const targets = document.querySelectorAll(
+    'main > section:not(.hero):not(.artist-hero) .section-head, .roster-tile, .clip-card, .about-item, ' +
+    '.timeline li, .year-block, .record-card, .photo-card, .stat, .team-card, .about-cta-card, ' +
+    '.b2b-card, .book-cta-inner, .home-book-inner, .about-story-grid > *, .bio-inner, .listen-item'
+  );
+  const seen = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('is-in');
+      seen.unobserve(e.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  targets.forEach(el => {
+    // cards in the same row come in one after another
+    const siblings = [...el.parentElement.children].filter(c => c.matches && targets.length && [...targets].includes(c));
+    const i = siblings.indexOf(el);
+    if (i > 0) el.style.transitionDelay = Math.min(i, 4) * 70 + 'ms';
+    el.classList.add('reveal');
+    seen.observe(el);
+  });
+}

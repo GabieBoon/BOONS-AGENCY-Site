@@ -66,6 +66,8 @@ def localise(html, page):
     html = html.replace('value="' + SITE + '/thanks"', 'value="' + SITE + '/nl/thanks"')
     # links to pages -> /nl/ versions (assets and absolute URLs untouched)
     html = re.sub(r'href="/(?!nl/|assets/|css/|js/)([^"]*)"', lambda m: 'href="/nl/' + m.group(1) + '"', html)
+    # form actions (the date check on the artist pages) -> Dutch pages too
+    html = re.sub(r'action="/(?!nl/)([^"]*)"', lambda m: 'action="/nl/' + m.group(1) + '"', html)
     # relative paths to files: one folder deeper now
     html = re.sub(r'((?:href|src|poster)=")((?:assets|css|js)/)', r'\1../\2', html)
     html = re.sub(r'srcset="([^"]*)"',
