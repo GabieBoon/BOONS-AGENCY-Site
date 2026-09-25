@@ -350,7 +350,7 @@ if (bookDate && document.getElementById('bookingForm')) {
 // everything is simply visible.
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
   const targets = document.querySelectorAll(
-    'main > section:not(.hero):not(.artist-hero) .section-head, .roster-tile, .clip-card, .about-item, ' +
+    'main > section:not(.hero):not(.artist-hero) .section-head, .roster-tile:not(.roster-tile-large), .clip-card, .about-item, ' +
     '.timeline li, .year-block, .record-card, .photo-card, .stat, .team-card, .about-cta-card, ' +
     '.b2b-card, .book-cta-inner, .home-book-inner, .about-story-grid > *, .bio-inner, .listen-item'
   );

@@ -1303,3 +1303,18 @@ section{ padding: 7rem 2rem; max-width: var(--container); margin: 0 auto; paddin
 .form-progress-bar{ display: block; height: 3px; border-radius: 3px; background: var(--line); overflow: hidden; }
 .form-progress-bar span{ display: block; height: 100%; width: var(--progress, 50%); background: linear-gradient(90deg, #FFC93C, #FF4D1C, #E01B24); transition: width .35s ease; }
 @media (max-width: 860px){ .form-step{ grid-template-columns: 1fr; } }
+
+/* ============================================
+   Page transitions (View Transitions API, Chrome/Edge/Safari; other browsers
+   simply switch pages like before). Pages cross-fade, the header stays put,
+   and an artist photo grows from its tile into the artist page hero.
+   ============================================ */
+@view-transition{ navigation: auto; }
+.site-header{ view-transition-name: site-header; }
+::view-transition-group(*){ animation-duration: .45s; animation-timing-function: cubic-bezier(.2, .8, .2, 1); }
+::view-transition-old(root), ::view-transition-new(root){ animation-duration: .3s; }
+::view-transition-group(.artist-photo){ overflow: hidden; border-radius: 10px; }
+::view-transition-old(.artist-photo), ::view-transition-new(.artist-photo){ height: 100%; object-fit: cover; }
+@media (prefers-reduced-motion: reduce){
+  @view-transition{ navigation: none; }
+}
