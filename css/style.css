@@ -389,8 +389,42 @@ main{ width: 100%; }
 
 .thanks-summary-note a{ color: var(--fg); border-bottom: 1px solid var(--line); }
 
-@media (max-width: 420px){
-  .thanks-summary dl{ grid-template-columns: 1fr; }
+/* wider ticket: summary and the three steps side by side, so it all fits on one laptop screen */
+.thanks{ padding-top: 3rem; padding-bottom: 3rem; }
+
+.thanks-card, .thanks-note{ max-width: 880px; }
+
+.thanks-note{ width: 100%; }
+
+.thanks-step a{ white-space: nowrap; }
+
+.thanks-body{ padding: 2rem 2rem 1.4rem; }
+
+.thanks-lead{ max-width: 60ch; margin-bottom: 1.6rem; }
+
+.thanks-summary{ margin: 0 0 1.6rem; }
+
+@media (min-width: 700px){
+  .thanks-summary dl{ grid-template-columns: repeat(3, 1fr); }
+  .thanks-summary-wide{ grid-column: span 2; }
+  .thanks-steps{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; }
+  .thanks-step{ grid-template-columns: 1fr; gap: 0.4rem; }
+  .thanks-step p{ font-size: 0.88rem; }
+  .thanks-card .pass-barcode{ margin: 0.4rem 2rem 0; }
+  .thanks-card .thanks-bottom{ padding: 1.4rem 2rem 1.8rem; }
+}
+
+/* phones: two columns for the short fields, a bit less air */
+@media (max-width: 699px){
+  .thanks{ padding-top: 2rem; }
+  .thanks-body{ padding: 1.6rem 1.3rem 1.2rem; }
+  .thanks-lead{ font-size: 1rem; }
+  .thanks-summary dl{ grid-template-columns: 1fr 1fr; gap: 0.9rem 1rem; }
+  .thanks-summary dd{ font-size: 0.92rem; }
+  .thanks-summary-ref{ display: none; }   /* already in the ticket's top bar */
+  .thanks-summary-event{ grid-column: 1 / -1; }
+  .thanks-steps{ gap: 0.9rem; }
+  .thanks-step p{ font-size: 0.88rem; }
 }
 
 /* "Save a copy": the ticket alone, black on white, fits one A4 */
