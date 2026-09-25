@@ -1036,7 +1036,7 @@ html[lang="nl"] .lang-en, html:not([lang="nl"]) .lang-nl{ display: none !importa
 /* Homepage: "On the floor" clip player. One big 16:9 clip at a time with the gradient
    border of the artist tiles; tabs with a progress line underneath, the next clip starts
    when one ends. */
-.clip-player{ max-width: 1000px; margin: 0 auto; }
+.clip-player{ max-width: 664px; }   /* same width as the two artist tiles above, left-aligned like the rest */
 
 .clip-screen{ position: relative; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 2px solid transparent; background-image: linear-gradient(var(--bg-card), var(--bg-card)), linear-gradient(165deg, #FFC93C 0%, #FF9E2C 30%, #FF4D1C 65%, #E01B24 100%); background-origin: border-box; background-clip: padding-box, border-box; box-shadow: 0 18px 50px rgba(224, 27, 36, 0.22); }
 
