@@ -148,7 +148,7 @@ PAGES = {
         ('Straight from the dancefloor. This is what a night with our artists looks like.',
          'Rechtstreeks van de dansvloer. Zo ziet een avond met onze artiesten eruit.'),
         ('Placeholder clip', 'Placeholder-clip'),
-        ('aria-label="Showcase clip from the dancefloor"', 'aria-label="Showcase-clip van de dansvloer"'),
+        ('aria-label="BURNEY B2B GIBBS at Zomerpop Festival"', 'aria-label="BURNEY B2B GIBBS op Zomerpop Festival"'),
         ('<span class="clip-sound-label">Sound on</span>', '<span class="clip-sound-label">Geluid aan</span>'),
         ('Filmed by <a href="https://www.instagram.com/thomkolden/"', 'Gefilmd door <a href="https://www.instagram.com/thomkolden/"'),
     ],
