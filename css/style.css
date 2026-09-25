@@ -1318,3 +1318,7 @@ section{ padding: 7rem 2rem; max-width: var(--container); margin: 0 auto; paddin
 @media (prefers-reduced-motion: reduce){
   @view-transition{ navigation: none; }
 }
+
+/* Homepage: agency numbers under the roster */
+.agency-stats{ padding-top: 0; padding-bottom: 3.5rem; }
+.agency-stats .stat-row{ margin-top: 0; }
