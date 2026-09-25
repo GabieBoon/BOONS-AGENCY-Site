@@ -1094,6 +1094,13 @@ html[lang="nl"] .lang-en, html:not([lang="nl"]) .lang-nl{ display: none !importa
   .clip-tab-venue{ font-size: 1.05rem; }
 }
 
+/* below desktop: the tabs are one row you can swipe, so long venue names stay on one line */
+@media (max-width: 899px){
+  .clip-tabs{ display: flex; gap: 1.4rem; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x proximity; }
+  .clip-tabs::-webkit-scrollbar{ display: none; }
+  .clip-tab{ flex: none; white-space: nowrap; scroll-snap-align: start; }
+}
+
 /* touch screens have no hover: keep the arrows visible, a bit smaller */
 @media (hover: none){
   .clip-nav{ opacity: 1; width: 38px; height: 38px; font-size: 1rem; }

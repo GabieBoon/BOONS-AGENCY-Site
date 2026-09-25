@@ -378,6 +378,12 @@ if (clipPlayer) {
       x.setAttribute('aria-pressed', String(k === current));
     });
     if (insta && v.dataset.insta) insta.href = v.dataset.insta;
+    // on phones the tabs are a swipeable row: bring the playing one into view (sideways only)
+    const row = tabs[current].parentElement;
+    if (row.scrollWidth > row.clientWidth) {
+      const left = row.scrollLeft + tabs[current].getBoundingClientRect().left - row.getBoundingClientRect().left;
+      row.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+    }
     playCurrent();
   };
 
