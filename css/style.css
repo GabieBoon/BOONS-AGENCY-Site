@@ -844,9 +844,15 @@ html[lang="nl"] .lang-en, html:not([lang="nl"]) .lang-nl{ display: none !importa
   .more-grid{ grid-template-columns: 1fr 1fr; }
 }
 
+/* phones: photo and b2b card stacked at the same full width; the photo becomes a wide crop so the section stays short */
 @media (max-width: 560px){
-  .more-grid{ grid-template-columns: 1fr; }
-  .more-grid .roster-tile{ max-width: 260px; }
+  .more-grid{ grid-template-columns: 1fr; gap: 1rem; }
+  .more-grid .roster-tile{ aspect-ratio: 16/10; }
+  .more-grid .roster-tile img{ object-position: 50% 22%; }
+  .b2b-card{ padding: 1.6rem 1.4rem; }
+  .b2b-name{ font-size: 1.7rem; }
+  .b2b-text{ margin-bottom: 1.3rem; }
+  .b2b-card .btn{ width: 100%; justify-content: center; }
 }
 
 /* Homepage: short booking block, the form itself lives on /book */
