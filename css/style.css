@@ -1324,7 +1324,7 @@ section{ padding: 7rem 2rem; max-width: var(--container); margin: 0 auto; paddin
    Homepage: the navigation floats over the hero video (transparent, no bar)
    and turns into a solid bar once you scroll past the video.
    ============================================ */
-body.has-overlay-nav{ scroll-padding-top: 90px; }
+/* (scroll offset for the fixed header: see html{ scroll-padding-top } below) */
 body.has-overlay-nav .site-header{
   position: fixed; top: 0; left: 0; right: 0;
   background: linear-gradient(180deg, rgba(11,10,15,0.6) 0%, rgba(11,10,15,0) 100%);
@@ -1355,3 +1355,7 @@ body.has-overlay-nav .hero::after{
   content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 60%; z-index: 2; pointer-events: none;
   background: linear-gradient(0deg, rgba(11,10,15,0.75) 0%, rgba(11,10,15,0) 100%);
 }
+
+/* Links to a section (#roster, #listen, #presskit...) land below the header instead of under it */
+html{ scroll-padding-top: 96px; }
+@media (max-width: 860px){ html{ scroll-padding-top: 80px; } }
