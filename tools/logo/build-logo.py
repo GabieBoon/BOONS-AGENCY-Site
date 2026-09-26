@@ -9,13 +9,14 @@ so every edge is a clean line or curve at any size.
   assets/images/brand/boons-logo-white.svg  white, cropped to the letters
   assets/images/brand/boons-logo-black.svg  dark, cropped to the letters
 
-All measurements are in pixels of the original logo.png (1062 x 319), taken from its edges.
+All measurements are in pixels of the original logo.png (1062 x 319). The shapes were
+measured from its edges and then fitted to it (Powell optimisation on the rendered pixels),
+so the rebuilt logo lands within about half a pixel of the original everywhere.
 The design, as measured:
-  - one cap height for every letter: top 71.3, bottom 257.0
-  - the O's are squircles (superellipse, exponent 2.5), their counters the same shape, smaller;
-    a horizontal bar runs through both O's and joins them
-  - the B is mirrored (bowls on the left), the S is built like a B with bowls on the right
-    and an open top bowl
+  - the O's are rounded rectangles with big elliptical corners (flat on top and at the sides),
+    their counters the same kind of shape; a horizontal bar runs through both O's and joins them
+  - the B is mirrored (bowls on the left) and sits 1px lower than the other letters, as in the original
+  - the S is built like a B with bowls on the right and an open top bowl
   - the N's two cut-outs have parallel diagonals
 """
 import sys
@@ -23,10 +24,10 @@ from pathlib import Path
 import pathops
 
 ROOT = Path(__file__).resolve().parents[2]
-K_SQUIRCLE = 0.69       # bezier handle for a quarter superellipse n=2.5 (fitted to the old PNG)
+K_SQUIRCLE = 0.69
 K_ELLIPSE = 0.5523      # bezier handle for a quarter ellipse
 
-TOP, BOTTOM = 71.3, 257.0
+TOP, BOTTOM = 71.37, 256.66
 MID = (TOP + BOTTOM) / 2
 
 
@@ -84,33 +85,41 @@ def minus(a, *cuts):
 
 # ---------- the letters ----------
 
-# corner (rx, ry, bezier handle) of the bowls
-# (fitted against the old PNG: tools/logo/build-logo.py --check)
-B_UP_TL, B_UP_BL = (64, 60, 0.62), (36, 48, 0.55)
-B_LO_TL, B_LO_BL = (31, 44, 0.55), (53, 54, 0.57)
-S_UP_TR, S_LO_TR, S_LO_BR = (64, 61, 0.6), (64, 56, 0.63), (58, 60, 0.6)
+# ---- B (mirrored: bowls on the left). Corners are (rx, ry, bezier handle). ----
+B_TOP, B_BOTTOM, B_RIGHT = 72.51, 258.06, 288.09
+B_UP = (104.63, 174.28)            # upper bowl: left edge, bottom
+B_LO = (112.36, 154.26)            # lower bowl: left edge, top
+B_UP_TL, B_UP_BL = (58.9, 62.56, 0.63), (35.37, 48.31, 0.55)
+B_LO_TL, B_LO_BL = (30.71, 44.14, 0.55), (56.85, 51.7, 0.56)
+B_CU = (157.77, 115.74, 235.21, 141.5, 9.37)   # upper counter x0, y0, x1, y1, radius of the rounded (left) end
+B_CL = (163.96, 185.5, 235.24, 215, 12.54)
 
 
 def letter_b():
-    """Mirrored B: two bowls on the left, straight spine on the right."""
-    right = 288.1
-    upper = rounded_rect(105.0, TOP, right, 175.1, tl=B_UP_TL, bl=B_UP_BL)
-    lower = rounded_rect(111.8, 155.5, right, BOTTOM, tl=B_LO_TL, bl=B_LO_BL)
-    counter_up = rounded_rect(157.8, 115.6, 235.2, 141.3, tl=(10, 10), bl=(10, 10), tr=(1.5, 1.5), br=(1.5, 1.5))
-    counter_lo = rounded_rect(164.0, 185.7, 235.2, 215.1, tl=(12, 12), bl=(12, 12), tr=(1.5, 1.5), br=(1.5, 1.5))
-    return minus(union(upper, lower), counter_up, counter_lo)
+    upper = rounded_rect(B_UP[0], B_TOP, B_RIGHT, B_UP[1], tl=B_UP_TL, bl=B_UP_BL)
+    lower = rounded_rect(B_LO[0], B_LO[1], B_RIGHT, B_BOTTOM, tl=B_LO_TL, bl=B_LO_BL)
+    cu = rounded_rect(*B_CU[:4], tl=(B_CU[4],) * 2, bl=(B_CU[4],) * 2, tr=(1.5, 1.5), br=(1.5, 1.5))
+    cl = rounded_rect(*B_CL[:4], tl=(B_CL[4],) * 2, bl=(B_CL[4],) * 2, tr=(1.5, 1.5), br=(1.5, 1.5))
+    return minus(union(upper, lower), cu, cl)
 
 
-O_A, O_B = 97.0, 93.1                          # outer squircle half-width / half-height (a hair taller than
-                                               # the straight letters: optical overshoot, as in the original)
-C_A, C_B = 47.6, 49.8                          # counter squircle
-BAR_TOP, BAR_BOTTOM = 140.7, 185.2             # the horizontal bar through the O's
-O1_X, O2_X = 376.7, 577.3
+# The O's: rounded rectangles with big elliptical corners (a flat stretch on top and on the
+# sides), not pure ellipses. Counters: the same kind of shape, smaller. Values fitted to the PNG.
+O_A, O_B, O_RX, O_RY, O_K = 98.34, 92.92, 83.76, 82.35, 0.57       # half-width, half-height, corner rx/ry, handle
+C_A, C_B, C_RX, C_RY, C_K = 46.22, 49.41, 38.95, 39.35, 0.58
+O_Y = 164.29
+BAR_TOP, BAR_BOTTOM = 141, 184.64             # the horizontal bar through the O's
+O1_X, O2_X = 376.43, 577.04
+
+
+def o_shape(cx, cy, a, b, rx, ry, k):
+    corner = (min(rx, a), min(ry, b), k)
+    return rounded_rect(cx - a, cy - b, cx + a, cy + b, corner, corner, corner, corner)
 
 
 def letter_o(cx):
-    outer = squircle(cx, MID, O_A, O_B)
-    counter = squircle(cx, MID, C_A, C_B)
+    outer = o_shape(cx, O_Y, O_A, O_B, O_RX, O_RY, O_K)
+    counter = o_shape(cx, O_Y, C_A, C_B, C_RX, C_RY, C_K)
     bar = rounded_rect(cx - C_A - 1, BAR_TOP, cx + C_A + 1, BAR_BOTTOM)
     return minus(outer, minus(counter, bar))
 
@@ -119,26 +128,30 @@ def bar_between_os():
     return rounded_rect(O1_X, BAR_TOP, O2_X, BAR_BOTTOM)
 
 
+# ---- N and S (they share one solid block: the N's right stem is the S's left side) ----
+N_LEFT, N_INNER_LEFT, N_INNER_RIGHT = 661.82, 714.34, 785.98
+N_SLOPE = 0.61                   # the N's two diagonals are parallel (x per y)
+N_TOP_CUT = 721.25                # x where the top cut-out's diagonal meets the top
+N_BOTTOM_CUT = 777.4             # x where the bottom cut-out's diagonal meets the bottom
+S_UPPER = (950.94, 132.5)         # upper bowl: right edge, bottom (it is open underneath)
+S_LOWER = (142.58, 953.25)         # lower bowl: top, right edge
+S_UP_TR, S_LO_TR, S_LO_BR = (62.64, 61.13, 0.6), (65.14, 56.51, 0.64), (58.4, 59.2, 0.6)
+S_CU = (837.37, 114.75, 898.64, 141.36, 11.37, 14.31)   # upper counter x0, y0, x1, y1, left radius, top-right radius
+S_CL = (836.33, 185.73, 900.75, 215)              # lower counter; its right end is a half circle
+
+
 def letter_n_and_s():
-    """The N and the S share one solid block (the N's right stem is the S's left side)."""
-    slope = 0.61                                 # the N's diagonals, x per y
-    n_left, n_inner_left, n_inner_right = 661.8, 714.7, 786.0
-    top_cut_x = 733.1 - slope * (90 - TOP)       # diagonal edge of the top cut-out, at the top
-    top_tip_y = 90 + (n_inner_right - 733.1) / slope
-    bot_tip_y = 190 - (736.8 - n_inner_left) / slope
-    bot_cut_x = 736.8 + slope * (BOTTOM - 190)
-
-    # S: straight left side, bowls on the right; the upper bowl is open underneath
-    s_upper = rounded_rect(n_left, TOP, 951.0, 132.8, tr=S_UP_TR, br=(2, 2))
-    s_lower = rounded_rect(n_left, 142.6, 953.1, BOTTOM, tr=S_LO_TR, br=S_LO_BR)
-    # the solid block left of the S counters; it stops before the bowls start curving
-    body = union(rounded_rect(n_left, TOP, 850.0, BOTTOM), s_upper, s_lower)
-
-    n_top_cut = polygon((top_cut_x, TOP - 1), (n_inner_right, TOP - 1), (n_inner_right, top_tip_y))
-    n_bottom_cut = polygon((n_inner_left, bot_tip_y), (n_inner_left, BOTTOM + 1), (bot_cut_x, BOTTOM + 1))
-    s_counter_up = rounded_rect(837.6, 114.3, 899.0, 142.6, tl=(10, 10), bl=(10, 10), tr=(8, 8))
-    s_counter_lo = rounded_rect(836.3, 185.7, 900.2, 215.1, tr=(14.7, 14.7), br=(14.7, 14.7))
-    return minus(body, n_top_cut, n_bottom_cut, s_counter_up, s_counter_lo)
+    body = union(rounded_rect(N_LEFT, TOP, 850.0, BOTTOM),
+                 rounded_rect(N_LEFT, TOP, S_UPPER[0], S_UPPER[1], tr=S_UP_TR, br=(2, 2)),
+                 rounded_rect(N_LEFT, S_LOWER[0], S_LOWER[1], BOTTOM, tr=S_LO_TR, br=S_LO_BR))
+    top_tip_y = TOP + (N_INNER_RIGHT - N_TOP_CUT) / N_SLOPE
+    bot_tip_y = BOTTOM - (N_BOTTOM_CUT - N_INNER_LEFT) / N_SLOPE
+    n_top_cut = polygon((N_TOP_CUT - N_SLOPE, TOP - 1), (N_INNER_RIGHT, TOP - 1), (N_INNER_RIGHT, top_tip_y))
+    n_bottom_cut = polygon((N_INNER_LEFT, bot_tip_y), (N_INNER_LEFT, BOTTOM + 1), (N_BOTTOM_CUT + N_SLOPE, BOTTOM + 1))
+    r = (S_CL[3] - S_CL[1]) / 2
+    s_cu = rounded_rect(*S_CU[:4], tl=(S_CU[4],) * 2, bl=(S_CU[4],) * 2, tr=(S_CU[5],) * 2)
+    s_cl = rounded_rect(*S_CL, tr=(r, r), br=(r, r))
+    return minus(body, n_top_cut, n_bottom_cut, s_cu, s_cl)
 
 
 def logo():
