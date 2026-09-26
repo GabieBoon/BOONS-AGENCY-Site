@@ -92,7 +92,7 @@ Get-ChildItem $root -Directory | ForEach-Object {
         if ($grid.Success) {
             $intro = [regex]::Match($html, '(?s)<p class="rider-intro">(.*?)</p>').Groups[1].Value -replace '\s+', ' '
             $date  = (Get-Date).ToString('MMMM yyyy', [Globalization.CultureInfo]::InvariantCulture)
-            $logo  = ([Uri](Join-Path $site 'assets\images\logo.png')).AbsoluteUri
+            $logo  = ([Uri](Join-Path $site 'assets\images\logo.svg')).AbsoluteUri
             $doc   = [IO.File]::ReadAllText((Join-Path $PSScriptRoot 'rider-template.html'))
             $doc   = $doc.Replace('{{ARTIST}}', $name).Replace('{{SLUG}}', $slug).Replace('{{INTRO}}', $intro).
                           Replace('{{GRID}}', $grid.Groups[1].Value).Replace('{{LOGO}}', $logo).Replace('{{DATE}}', $date)
@@ -115,7 +115,7 @@ Get-ChildItem $root -Directory | ForEach-Object {
         $doc     = [IO.File]::ReadAllText((Join-Path $PSScriptRoot 'social-template.html'))
         $doc     = $doc.Replace('{{ARTIST}}', $name).Replace('{{TAGLINE}}', $tagline).Replace('{{TAGS}}', $tags).
                        Replace('{{PHOTO}}', ([Uri](Join-Path $thumbs $first.Name)).AbsoluteUri).
-                       Replace('{{LOGO}}', ([Uri](Join-Path $site 'assets\images\logo.png')).AbsoluteUri)
+                       Replace('{{LOGO}}', ([Uri](Join-Path $site 'assets\images\logo.svg')).AbsoluteUri)
         $tmp     = Join-Path ([IO.Path]::GetTempPath()) "social-$slug.html"
         $png     = Join-Path ([IO.Path]::GetTempPath()) "social-$slug.png"
         [IO.File]::WriteAllText($tmp, $doc, (New-Object System.Text.UTF8Encoding $false))
