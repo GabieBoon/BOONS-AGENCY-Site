@@ -12,7 +12,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 EDGE = r'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'
 
 html = (ROOT / 'tools' / 'social-home-template.html').read_text(encoding='utf-8')
-for key, rel in (('LOGO', 'assets/images/logo.png'), ('BURNEY', 'assets/images/burney.jpg'), ('GIBBS', 'assets/images/gibbs.jpg')):
+for key, rel in (('LOGO', 'assets/images/logo.svg'), ('BURNEY', 'assets/images/burney.jpg'), ('GIBBS', 'assets/images/gibbs.jpg')):
     html = html.replace('{{' + key + '}}', (ROOT / rel).as_uri())
 
 with tempfile.TemporaryDirectory() as tmp:
