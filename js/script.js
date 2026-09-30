@@ -36,6 +36,9 @@ if (navToggle) {
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+// Turnstile (spam check): a token is used once, so a failed send needs a fresh one
+const resetHumanCheck = () => { try { if (window.turnstile) window.turnstile.reset(); } catch (_) { /* no widget */ } };
+
 // Booking form: sent in the background to our own form server (form.boons-agency.nl),
 // which mails Finn and sends the promoter a confirmation. Then on to the thank-you page.
 // Without JavaScript the form posts normally and the server redirects to the same page.
@@ -99,12 +102,14 @@ if (bookingForm) {
           : t('Something went wrong. Please mail Bookings@boons-agency.nl instead.',
               'Er ging iets mis. Mail ons in plaats daarvan op Bookings@boons-agency.nl.');
         formNote.classList.add('form-note-error');
+        resetHumanCheck();
       }
     } catch (_) {
       if (formNote) {
         formNote.textContent = t('No connection. Please check your internet, or mail Bookings@boons-agency.nl.',
                               'Geen verbinding. Check je internet, of mail naar Bookings@boons-agency.nl.');
         formNote.classList.add('form-note-error');
+        resetHumanCheck();
       }
     } finally {
       if (submitBtn) { submitBtn.disabled = false; if (originalLabel) submitBtn.textContent = originalLabel; }
@@ -143,6 +148,7 @@ if (collectiveForm) {
       note.textContent = t('Something went wrong. Please mail Bookings@boons-agency.nl instead.',
                            'Er ging iets mis. Mail ons in plaats daarvan op Bookings@boons-agency.nl.');
       note.classList.add('form-note-error');
+      resetHumanCheck();
       btn.disabled = false; btn.textContent = label;
     }
   });

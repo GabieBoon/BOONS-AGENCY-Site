@@ -3,3 +3,9 @@
 
 # Python cache
 __pycache__/
+
+# the Turnstile secret key lives only on the form server, never in this public repo
+tools/form/turnstile-secret.php
+
+# local email previews
+tools/form/preview-*.html

@@ -165,6 +165,35 @@ foreach (['name', 'artist_name', 'city', 'event', 'set_time', 'lineup', 'sound',
 }
 if ($countLinks((string) ($_POST['message'] ?? '')) > 1) reply(200, ['ok' => true], $wantsJson);
 
+// Cloudflare Turnstile: is there a person behind this form? The secret key sits in
+// turnstile-secret.php on this server only (not in the public repo). No key file: check skipped.
+$secretFile = __DIR__ . '/turnstile-secret.php';
+$secret = is_file($secretFile) ? include $secretFile : '';
+if (is_string($secret) && $secret !== '' && strpos($secret, 'PASTE_') === false) {
+    $token = (string) ($_POST['cf-turnstile-response'] ?? '');
+    if ($token === '') {
+        fail($t('Please wait a second for the spam check, then send again.',
+                'Wacht even op de spamcheck en verstuur het dan opnieuw.'), $wantsJson, 403);
+    }
+    $payload = http_build_query(['secret' => $secret, 'response' => $token, 'remoteip' => $_SERVER['REMOTE_ADDR'] ?? '']);
+    $url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+    $answer = false;
+    if (function_exists('curl_init')) {
+        $ch = curl_init($url);
+        curl_setopt_array($ch, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => $payload, CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 8]);
+        $answer = curl_exec($ch);
+        curl_close($ch);
+    } else {
+        $answer = @file_get_contents($url, false, stream_context_create(['http' => [
+            'method' => 'POST', 'header' => "Content-Type: application/x-www-form-urlencoded\r\n", 'content' => $payload, 'timeout' => 8]]));
+    }
+    // Cloudflare unreachable: let it through (the other checks still apply) rather than lose a real booking.
+    if ($answer !== false && (json_decode((string) $answer, true)['success'] ?? false) !== true) {
+        fail($t('The spam check did not pass. Please try again, or mail Bookings@boons-agency.nl.',
+                'De spamcheck ging niet goed. Probeer het opnieuw, of mail naar Bookings@boons-agency.nl.'), $wantsJson, 403);
+    }
+}
+
 // At most CONFIRMATIONS_PER_ADDRESS confirmation emails per address per day, so nobody can use
 // the form to flood someone's inbox. Stored as a hash, never the address itself.
 function confirmation_allowed(string $email): bool {

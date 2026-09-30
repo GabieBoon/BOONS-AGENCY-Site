@@ -32,6 +32,8 @@
 <script type="speculationrules">
 {"prerender": [{"where": {"and": [{"href_matches": "/*"}, {"not": {"href_matches": "/*.*"}}, {"not": {"selector_matches": "[download], [target=_blank]"}}]}, "eagerness": "moderate"}]}
 </script>
+<!-- spam check on the form (Cloudflare Turnstile): invisible unless Cloudflare is unsure -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -226,6 +228,7 @@
         <input type="hidden" name="lang" value="en">
         <input type="hidden" name="form" value="BOONS COLLECTIVE">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+        <div class="cf-turnstile form-row-full" data-sitekey="0x4AAAAAAFKPwmfwNB0qX8qt" data-theme="dark" data-appearance="interaction-only" data-language="en"></div>
         <p class="form-legal form-row-full">We only use your details to contact you about the collective. See our <a href="/terms#privacy">privacy terms</a>.</p>
         <button type="submit" class="btn btn-primary">Join the collective →</button>
         <p class="form-note form-row-full" id="collectiveNote" role="status" aria-live="polite"></p>
@@ -261,7 +264,7 @@
   </div>
 </footer>
 
-<script src="js/script.js?v=609a67c0"></script>
+<script src="js/script.js?v=c7b9ff51"></script>
 <script data-goatcounter="https://boons-agency.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
