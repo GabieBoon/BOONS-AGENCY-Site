@@ -1558,3 +1558,11 @@ html{ scroll-padding-top: 96px; }
 .collective-criteria li{ position: relative; padding-left: 1.4rem; color: var(--fg); }
 
 .collective-criteria li::before{ content: '→'; position: absolute; left: 0; color: var(--red-text); }
+
+/* collective members: role above the name; new members link to their Instagram */
+.member-role{ font-size: 0.66rem; letter-spacing: 0.08em; color: var(--yellow); }
+
+.member-initial{ position: absolute; inset: 2px; border-radius: 8px; display: flex; align-items: center; justify-content: center; padding-bottom: 3rem; background: var(--bg-card); font-family: var(--font-display); font-weight: 800; font-size: 5rem; color: var(--red-text); }
+
+/* the role label must stay readable on light photos */
+.collective-members .roster-tile-overlay{ background: linear-gradient(to top, rgba(11,10,15,0.95), rgba(11,10,15,0.75) 55%, rgba(11,10,15,0) 100%); padding-top: 3rem; }

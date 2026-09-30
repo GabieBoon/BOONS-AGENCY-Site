@@ -236,12 +236,14 @@ if (($_POST['form'] ?? '') === 'BOONS COLLECTIVE') {
     if (!preg_match('/^\+?[0-9 ()\-]{8,20}$/', $c['phone'])) fail($t('That phone number does not look right.', 'Dat telefoonnummer klopt niet.'), $wantsJson);
     if (!in_array($c['role'], ROLES, true)) fail($t('Please choose what you do.', 'Kies wat je doet.'), $wantsJson);
     if (($_POST['age_18'] ?? '') !== 'yes') fail($t('The collective is for people aged 18 or older.', 'Het collective is voor mensen van 18 jaar of ouder.'), $wantsJson);
+    if (($_POST['listed_ok'] ?? '') !== 'yes') fail($t('Members are listed on the Collective page. Please tick that box to join.',
+                                                     'Leden staan op de Collective-pagina. Vink dat vakje aan om je aan te melden.'), $wantsJson);
 
     // 1. To Bookings@ (plain text, for handling)
     $rows = ['Role' => $c['role'], 'Artist name' => $c['artist_name'], 'Name' => $c['name'], 'Email' => $c['email'],
              'Phone / WhatsApp' => $c['phone'], 'City' => $c['city'], 'Sound / style' => $c['sound'],
              'Instagram' => $c['instagram'], 'Portfolio / mix' => $c['mix'], 'Looking for' => implode(', ', $picked),
-             'Found us via' => $c['source'], '18 or older' => 'yes', 'Site language' => strtoupper($lang)];
+             'Found us via' => $c['source'], '18 or older' => 'yes', 'OK to be listed' => 'yes', 'Site language' => strtoupper($lang)];
     $body = "New BOONS COLLECTIVE sign-up via boons-agency.nl\n\n";
     foreach ($rows as $label => $value) {
         if ($value !== '') $body .= $label . ': ' . $value . "\n";

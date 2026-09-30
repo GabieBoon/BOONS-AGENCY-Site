@@ -26,7 +26,7 @@
 <link rel="alternate" hreflang="en" href="https://boons-agency.nl/collective">
 <link rel="alternate" hreflang="nl" href="https://boons-agency.nl/nl/collective">
 <link rel="alternate" hreflang="x-default" href="https://boons-agency.nl/collective">
-<link rel="stylesheet" href="../css/style.css?v=856c9678">
+<link rel="stylesheet" href="../css/style.css?v=f788bd23">
 <!-- Open the next page before the click: when someone hovers a link (or starts tapping it),
      the browser prepares that page in the background. Chrome/Edge; other browsers ignore it.
      GoatCounter only counts a page once it is actually shown. -->
@@ -114,6 +114,7 @@
       <a href="/nl/gibbs" class="roster-tile">
         <picture><source type="image/webp" srcset="../assets/images/gibbs-480.webp 480w, ../assets/images/gibbs-720.webp 720w" sizes="(max-width: 860px) 45vw, 240px"><img src="../assets/images/gibbs.jpg" alt="GIBBS" width="924" height="1620" loading="lazy" onerror="this.closest('.roster-tile').classList.add('no-photo')"></picture>
         <span class="roster-tile-overlay">
+          <span class="member-role mono">DJ · Op het roster</span>
           <span class="roster-tile-name">GIBBS</span>
           <span class="roster-tile-cta mono">Bekijk profiel →</span>
         </span>
@@ -121,10 +122,24 @@
       <a href="/nl/burney" class="roster-tile">
         <picture><source type="image/webp" srcset="../assets/images/burney-480.webp 480w, ../assets/images/burney-720.webp 720w" sizes="(max-width: 860px) 45vw, 240px"><img src="../assets/images/burney.jpg" alt="BURNEY" width="924" height="1620" loading="lazy" onerror="this.closest('.roster-tile').classList.add('no-photo')"></picture>
         <span class="roster-tile-overlay">
+          <span class="member-role mono">DJ · Op het roster</span>
           <span class="roster-tile-name">BURNEY</span>
           <span class="roster-tile-cta mono">Bekijk profiel →</span>
         </span>
       </a>
+      <!-- A new member (not on the agency roster): links to their Instagram, no page of their own.
+           Only artist name, role and city are shown, never a real name or contact details.
+           With a photo (square or portrait, about 720px wide, in assets/images/collective/):
+      <a href="https://www.instagram.com/HANDLE/" class="roster-tile member-card" target="_blank" rel="noopener">
+        <picture><img src="../assets/images/collective/HANDLE.jpg" alt="ARTIST NAME" width="720" height="960" loading="lazy"></picture>
+        <span class="roster-tile-overlay">
+          <span class="member-role mono">Videographer · Haarlem</span>
+          <span class="roster-tile-name">ARTIST NAME</span>
+          <span class="roster-tile-cta mono">Instagram ↗</span>
+        </span>
+      </a>
+           Without a photo: replace the <picture> line with <span class="member-initial" aria-hidden="true">A</span>
+      -->
       <a href="#join" class="collective-you">
         <span class="collective-you-plus" aria-hidden="true">+</span>
         <span class="collective-you-name">Jouw naam hier?</span>
@@ -146,6 +161,7 @@
           <li>Je bent actief in de scene: je draait, fotografeert, filmt of maakt.</li>
           <li>Je werk brengt de energie.</li>
           <li>Je helpt anderen net zo graag als zij jou.</li>
+          <li>Je vindt het prima om op deze pagina te staan: met je artiestennaam, rol en Instagram, nooit je echte naam of contactgegevens.</li>
         </ul>
       </div>
 
@@ -224,6 +240,7 @@
           <textarea id="c_message" name="message" rows="4" placeholder="Waar draai je, waar ben je mee bezig?"></textarea>
         </div>
         <label class="check-line form-row-full"><input type="checkbox" name="age_18" value="yes" required><span>Ik ben 18 jaar of ouder</span></label>
+        <label class="check-line form-row-full"><input type="checkbox" name="listed_ok" value="yes" required><span>Als ik erbij kom, mag ik op deze pagina getoond worden</span></label>
         <input type="hidden" name="lang" value="nl">
         <input type="hidden" name="form" value="BOONS COLLECTIVE">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
