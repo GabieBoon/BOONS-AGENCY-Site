@@ -26,7 +26,7 @@
 <link rel="alternate" hreflang="en" href="https://boons-agency.nl/collective">
 <link rel="alternate" hreflang="nl" href="https://boons-agency.nl/nl/collective">
 <link rel="alternate" hreflang="x-default" href="https://boons-agency.nl/collective">
-<link rel="stylesheet" href="../css/style.css?v=0573d570">
+<link rel="stylesheet" href="../css/style.css?v=4d2af069">
 <!-- Open the next page before the click: when someone hovers a link (or starts tapping it),
      the browser prepares that page in the background. Chrome/Edge; other browsers ignore it.
      GoatCounter only counts a page once it is actually shown. -->
@@ -138,7 +138,8 @@
       <h2 class="about-h2">Sluit je aan bij het collective.</h2>
       <p class="section-lead">Vertel wie je bent en laat je werk zien. We nemen contact met je op om je erbij te halen.</p>
 
-      <form class="booking-form" id="collectiveForm" action="https://formspree.io/f/moevdyqg" method="POST">        <div class="form-row">
+      <form class="booking-form" id="collectiveForm" action="https://formspree.io/f/moevdyqg" method="POST">
+        <div class="form-row">
           <label class="mono" for="c_role">Ik ben</label>
           <select id="c_role" name="role" required>
             <option value="" disabled selected>Maak een keuze…</option>
@@ -159,9 +160,17 @@
           <input type="text" id="dj_name" name="artist_name" required>
         </div>
         <div class="form-row">
+          <label class="mono" for="c_name">Je naam</label>
+          <input type="text" id="c_name" name="name" required autocomplete="name">
+        </div>
+        <div class="form-row">
           <label class="mono" for="c_email">E-mail</label>
           <input type="email" id="c_email" name="email" required autocomplete="email"
             pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}" title="Vul een volledig e-mailadres in, zoals naam@voorbeeld.nl">
+        </div>
+        <div class="form-row">
+          <label class="mono" for="c_phone">Telefoon / WhatsApp</label>
+          <input type="tel" id="c_phone" name="phone" required autocomplete="tel" placeholder="bijv. +31 6 12345678">
         </div>
         <div class="form-row">
           <label class="mono" for="c_city">Stad</label>
@@ -179,10 +188,31 @@
           <label class="mono" for="c_mix">Portfolio- of mixlink <span class="form-optional">(optioneel)</span></label>
           <input type="url" id="c_mix" name="mix" placeholder="SoundCloud, website, Vimeo…">
         </div>
+        <div class="form-row">
+          <label class="mono" for="c_source">Hoe ken je ons? <span class="form-optional">(optioneel)</span></label>
+          <select id="c_source" name="source">
+            <option value="" selected>Maak een keuze…</option>
+            <option value="Instagram">Instagram</option>
+            <option value="A friend or member">Via een vriend of lid</option>
+            <option value="At a party">Op een feest</option>
+            <option value="Google">Google</option>
+            <option value="Other">Iets anders</option>
+          </select>
+        </div>
+        <fieldset class="form-row form-row-full check-group">
+          <legend class="mono">Wat zoek je? <span class="form-optional">(optioneel)</span></legend>
+          <div class="check-pills">
+            <label class="check-pill"><input type="checkbox" name="looking_for[]" value="Gigs"><span>Gigs</span></label>
+            <label class="check-pill"><input type="checkbox" name="looking_for[]" value="B2B partners"><span>B2B-partners</span></label>
+            <label class="check-pill"><input type="checkbox" name="looking_for[]" value="Collaborations"><span>Samenwerkingen</span></label>
+            <label class="check-pill"><input type="checkbox" name="looking_for[]" value="Feedback and network"><span>Feedback &amp; netwerk</span></label>
+          </div>
+        </fieldset>
         <div class="form-row form-row-full">
           <label class="mono" for="c_message">Iets over jou <span class="form-optional">(optioneel)</span></label>
           <textarea id="c_message" name="message" rows="4" placeholder="Waar draai je, waar ben je mee bezig?"></textarea>
         </div>
+        <label class="check-line form-row-full"><input type="checkbox" name="age_18" value="yes" required><span>Ik ben 18 jaar of ouder</span></label>
         <input type="hidden" name="_subject" value="Collective sign-up via boons-agency.nl">
         <input type="hidden" name="form" value="BOONS COLLECTIVE">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
