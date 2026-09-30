@@ -36,11 +36,9 @@ if (navToggle) {
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// Booking form.
-// Formspree's own redirect (_next) is a paid feature, so we submit via fetch and
-// send people to our own thank-you page ourselves. If JavaScript doesn't run, the
-// form still posts normally and lands on Formspree's default page - nothing breaks,
-// the confirmation is just less pretty.
+// Booking form: sent in the background to our own form server (form.boons-agency.nl),
+// which mails Finn and sends the promoter a confirmation. Then on to the thank-you page.
+// Without JavaScript the form posts normally and the server redirects to the same page.
 const bookingForm = document.getElementById('bookingForm');
 const formNote = document.getElementById('formNote');
 if (bookingForm) {
@@ -64,7 +62,6 @@ if (bookingForm) {
       + '-' + String(rand).padStart(4, '0');
     const data = new FormData(bookingForm);
     data.set('reference', ref);
-    data.set('_subject', 'Booking request ' + ref + ': ' + [val('artist'), val('date'), val('event')].filter(Boolean).join(', '));
 
     try {
       const res = await fetch(bookingForm.action, {
@@ -128,9 +125,7 @@ if (collectiveForm) {
     btn.disabled = true; btn.textContent = t('Sending...', 'Versturen...');
     note.textContent = ''; note.classList.remove('form-note-error');
     const name = collectiveForm.querySelector('#dj_name').value.trim();
-    const data = new FormData(collectiveForm);    const role = collectiveForm.querySelector('#c_role').value;
-    data.set('_subject', 'Collective sign-up: ' + name + (role ? ' (' + role + ')' : ''));
-    try {
+    const data = new FormData(collectiveForm);    try {
       const res = await fetch(collectiveForm.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
       if (!res.ok) throw new Error('not ok');
       track('collective-signup', 'Collective sign-up sent');
@@ -151,17 +146,6 @@ if (collectiveForm) {
       btn.disabled = false; btn.textContent = label;
     }
   });
-}
-
-
-// Formspree redirect: resolve the thank-you page against wherever this site is
-// actually hosted, so moving to a custom domain needs no edit. The hardcoded
-// value in the HTML stays as the fallback if JS doesn't run.
-const nextField = document.querySelector('#bookingForm input[name="_next"]');
-if (nextField) {
-  try {
-    nextField.value = new URL(BASE + '/thanks', window.location.href).href;
-  } catch (e) { /* keep the hardcoded fallback */ }
 }
 
 

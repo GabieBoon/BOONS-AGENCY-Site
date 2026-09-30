@@ -1,0 +1,7 @@
+# form.boons-agency.nl: only send.php and the two email images are reachable;
+# the mail template and the rate-limit files in /data are not.
+Options -Indexes
+RedirectMatch 404 ^/data(/|$)
+<FilesMatch "^(?!(send\.php|boons-logo\.png|gradient\.png|bg-page\.png|bg-card\.png)$).+">
+  Require all denied
+</FilesMatch>

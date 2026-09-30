@@ -87,7 +87,7 @@
           <p class="contact-note">Elke aanvraag komt bij Finn terecht. Hij regelt je boeking van het eerste bericht tot de avond zelf, en je hoort binnen twee werkdagen van hem.</p>        </div>
       </div>
 
-      <form class="booking-form" id="bookingForm" action="https://formspree.io/f/moevdyqg" method="POST">
+      <form class="booking-form" id="bookingForm" action="https://form.boons-agency.nl/send.php" method="POST">
         <p class="form-progress mono" id="formProgress" hidden><span class="form-progress-bar"><span></span></span><span class="form-progress-label"></span></p>
         <fieldset class="form-step" data-step="1">
           <legend class="sr-only">Jij en de datum</legend>
@@ -175,9 +175,7 @@
             <textarea id="message" name="message" rows="4" placeholder="Vertel iets over je event..."></textarea>
           </div>
         </fieldset>
-        <input type="hidden" name="_subject" value="Boekingsaanvraag via boons-agency.nl (NL)">
-        <input type="hidden" name="language" value="NL">
-        <input type="hidden" name="_next" value="https://boons-agency.nl/nl/thanks">
+        <input type="hidden" name="lang" value="nl">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
         <div class="form-actions"><button type="button" class="btn btn-outline form-back" hidden>← Terug</button>
         <button type="submit" class="btn btn-primary btn-large">Aanvraag versturen →</button></div>
@@ -215,7 +213,7 @@
   </div>
 </footer>
 
-<script src="../js/script.js?v=fb0943aa"></script>
+<script src="../js/script.js?v=609a67c0"></script>
 <script data-goatcounter="https://boons-agency.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
