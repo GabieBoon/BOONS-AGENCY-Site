@@ -128,8 +128,8 @@ if (collectiveForm) {
     btn.disabled = true; btn.textContent = t('Sending...', 'Versturen...');
     note.textContent = ''; note.classList.remove('form-note-error');
     const name = collectiveForm.querySelector('#dj_name').value.trim();
-    const data = new FormData(collectiveForm);
-    data.set('_subject', 'Collective sign-up: ' + name);
+    const data = new FormData(collectiveForm);    const role = collectiveForm.querySelector('#c_role').value;
+    data.set('_subject', 'Collective sign-up: ' + name + (role ? ' (' + role + ')' : ''));
     try {
       const res = await fetch(collectiveForm.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
       if (!res.ok) throw new Error('not ok');

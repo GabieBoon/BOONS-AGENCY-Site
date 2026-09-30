@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Collective | BOONS AGENCY</title>
-<meta name="description" content="BOONS COLLECTIVE is een netwerk van DJ's die elkaar steunen en elkaar meenemen naar boekingen. Open voor elke DJ die de energie brengt.">
+<meta name="description" content="BOONS COLLECTIVE is een netwerk van DJ's, VJ's, fotografen, videografen en iedereen die de scene maakt. We steunen elkaar en nemen elkaar mee naar boekingen.">
 <link rel="canonical" href="https://boons-agency.nl/nl/collective">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nl_NL">
 <meta property="og:url" content="https://boons-agency.nl/nl/collective">
 <meta property="og:title" content="BOONS COLLECTIVE | Sluit je aan">
-<meta property="og:description" content="Een netwerk van DJ's die elkaar steunen en elkaar meenemen naar boekingen. Open voor elke DJ die de energie brengt.">
+<meta property="og:description" content="Een netwerk van DJ's, VJ's, fotografen, videografen en iedereen die de scene maakt, die elkaar meenemen naar boekingen.">
 <meta property="og:image" content="https://boons-agency.nl/assets/images/social-card.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -71,8 +71,8 @@
   <!-- INTRO -->
   <section class="about-intro">
     <p class="eyebrow mono">BOONS COLLECTIVE</p>
-    <h1 class="about-title">DJ's die elkaar omhoog trekken.</h1>
-    <p class="about-lead">BOONS COLLECTIVE is een netwerk van DJ's die elkaar steunen. We delen gigs, tips en contacten, en nemen elkaar mee naar boekingen. Open voor elke DJ die de energie brengt.</p>
+    <h1 class="about-title">De scene die elkaar omhoog trekt.</h1>
+    <p class="about-lead">BOONS COLLECTIVE is een netwerk van DJ's, VJ's, fotografen, videografen en iedereen die de scene maakt. We delen gigs, tips en contacten, en nemen elkaar mee naar boekingen. Open voor iedereen die de energie brengt.</p>
     <a href="#join" class="btn btn-primary">Sluit je aan ↓</a>
   </section>
 
@@ -85,17 +85,17 @@
         <div class="about-item">
           <span class="about-num mono">01</span>
           <h3>Steunen</h3>
-          <p>Feedback op een mix, advies over een gig, een tip over een avond die bij je past. Vragen gaan de groep rond.</p>
+          <p>Feedback op een mix of een edit, advies over een gig, een tip over een avond die bij je past. Vragen gaan de groep rond.</p>
         </div>
         <div class="about-item">
           <span class="about-num mono">02</span>
           <h3>Elkaar meenemen</h3>
-          <p>Kun je een datum niet? Raad iemand uit het collective aan. Een slot te vullen? Vraag het eerst aan de groep.</p>
+          <p>Kun je een datum niet? Raad iemand uit het collective aan. Een DJ, visuals of iemand die je avond vastlegt nodig? Vraag het eerst aan de groep.</p>
         </div>
         <div class="about-item">
           <span class="about-num mono">03</span>
           <h3>Samen groeien</h3>
-          <p>Nieuwe contacten, nieuwe zalen en nieuwe b2b-partners. Wat één van ons leert, kan de rest gebruiken.</p>
+          <p>Nieuwe contacten, nieuwe zalen en nieuwe samenwerkingen: een DJ die visuals zoekt, een videograaf die een avond zoekt om te filmen.</p>
         </div>
       </div>
       <p class="collective-note">Het collective staat los van BOONS AGENCY: het is een netwerk, geen management of boekingsbureau. Aansluiten is gratis en betekent niet dat de agency je vertegenwoordigt. Op zoek naar vertegenwoordiging? <a href="/nl/about#join">Meld je aan voor het roster</a>.</p>
@@ -136,12 +136,27 @@
     <div class="contact-inner">
       <p class="eyebrow mono">Aansluiten</p>
       <h2 class="about-h2">Sluit je aan bij het collective.</h2>
-      <p class="section-lead">Vertel wie je bent en stuur een mix. We nemen contact met je op om je erbij te halen.</p>
+      <p class="section-lead">Vertel wie je bent en laat je werk zien. We nemen contact met je op om je erbij te halen.</p>
 
-      <form class="booking-form" id="collectiveForm" action="https://formspree.io/f/moevdyqg" method="POST">
+      <form class="booking-form" id="collectiveForm" action="https://formspree.io/f/moevdyqg" method="POST">        <div class="form-row">
+          <label class="mono" for="c_role">Ik ben</label>
+          <select id="c_role" name="role" required>
+            <option value="" disabled selected>Maak een keuze…</option>
+            <option value="DJ">DJ</option>
+            <option value="Producer">Producer</option>
+            <option value="VJ">VJ</option>
+            <option value="Light jockey">Light jockey</option>
+            <option value="Photographer">Fotograaf</option>
+            <option value="Videographer">Videograaf</option>
+            <option value="Graphic designer">Grafisch ontwerper</option>
+            <option value="Content creator">Content creator</option>
+            <option value="Promoter / organiser">Promoter / organisator</option>
+            <option value="Other">Iets anders</option>
+          </select>
+        </div>
         <div class="form-row">
-          <label class="mono" for="dj_name">DJ-naam</label>
-          <input type="text" id="dj_name" name="dj_name" required>
+          <label class="mono" for="dj_name">Artiestennaam</label>
+          <input type="text" id="dj_name" name="artist_name" required>
         </div>
         <div class="form-row">
           <label class="mono" for="c_email">E-mail</label>
@@ -153,16 +168,16 @@
           <input type="text" id="c_city" name="city" required autocomplete="address-level2" placeholder="bijv. Haarlem">
         </div>
         <div class="form-row">
-          <label class="mono" for="c_sound">Jouw sound</label>
-          <input type="text" id="c_sound" name="sound" required placeholder="bijv. hard house, trance, UKG">
+          <label class="mono" for="c_sound">Jouw sound of stijl</label>
+          <input type="text" id="c_sound" name="sound" required placeholder="bijv. hard house, trance / live visuals / flitsfotografie">
         </div>
         <div class="form-row">
           <label class="mono" for="c_instagram">Instagram</label>
           <input type="text" id="c_instagram" name="instagram" required placeholder="@jouwnaam">
         </div>
         <div class="form-row">
-          <label class="mono" for="c_mix">Mix / SoundCloud-link <span class="form-optional">(optioneel)</span></label>
-          <input type="url" id="c_mix" name="mix" placeholder="https://soundcloud.com/…">
+          <label class="mono" for="c_mix">Portfolio- of mixlink <span class="form-optional">(optioneel)</span></label>
+          <input type="url" id="c_mix" name="mix" placeholder="SoundCloud, website, Vimeo…">
         </div>
         <div class="form-row form-row-full">
           <label class="mono" for="c_message">Iets over jou <span class="form-optional">(optioneel)</span></label>
@@ -206,7 +221,7 @@
   </div>
 </footer>
 
-<script src="../js/script.js?v=4ef98a3b"></script>
+<script src="../js/script.js?v=7a8cbc85"></script>
 <script data-goatcounter="https://boons-agency.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

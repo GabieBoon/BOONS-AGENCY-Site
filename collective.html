@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Collective | BOONS AGENCY</title>
-<meta name="description" content="BOONS COLLECTIVE is a network of DJs who support each other and bring each other along to bookings. Open to every DJ who brings the energy.">
+<meta name="description" content="BOONS COLLECTIVE is a network of DJs, VJs, photographers, videographers and everyone else who makes the scene. We support each other and bring each other along to bookings.">
 <link rel="canonical" href="https://boons-agency.nl/collective">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://boons-agency.nl/collective">
 <meta property="og:title" content="BOONS COLLECTIVE | Join the network">
-<meta property="og:description" content="A network of DJs who support each other and bring each other along to bookings. Open to every DJ who brings the energy.">
+<meta property="og:description" content="A network of DJs, VJs, photographers, videographers and everyone else who makes the scene, bringing each other along to bookings.">
 <meta property="og:image" content="https://boons-agency.nl/assets/images/social-card.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -70,9 +70,8 @@
   <!-- INTRO -->
   <section class="about-intro">
     <p class="eyebrow mono">BOONS COLLECTIVE</p>
-    <h1 class="about-title">DJs who pull each other up.</h1>
-    <p class="about-lead">BOONS COLLECTIVE is a network of DJs who support each other. We share gigs, tips and
-    contacts, and bring each other along to bookings. Open to every DJ who brings the energy.</p>
+    <h1 class="about-title">The scene, pulling each other up.</h1>
+    <p class="about-lead">BOONS COLLECTIVE is a network of DJs, VJs, photographers, videographers and everyone else who makes the scene. We share gigs, tips and contacts, and bring each other along to bookings. Open to everyone who brings the energy.</p>
     <a href="#join" class="btn btn-primary">Join the collective ↓</a>
   </section>
 
@@ -85,17 +84,17 @@
         <div class="about-item">
           <span class="about-num mono">01</span>
           <h3>Support</h3>
-          <p>Feedback on a mix, advice on a gig, a heads-up on a night that fits you. Questions go round the group.</p>
+          <p>Feedback on a mix or an edit, advice on a gig, a heads-up on a night that fits you. Questions go round the group.</p>
         </div>
         <div class="about-item">
           <span class="about-num mono">02</span>
           <h3>Pull each other along</h3>
-          <p>Can't make a date? Recommend someone from the collective. Got a slot to fill? Ask the group first.</p>
+          <p>Can't make a date? Recommend someone from the collective. Need a DJ, visuals or someone to shoot your night? Ask the group first.</p>
         </div>
         <div class="about-item">
           <span class="about-num mono">03</span>
           <h3>Grow together</h3>
-          <p>New contacts, new rooms and new b2b partners. What one of us learns, the rest can use.</p>
+          <p>New contacts, new rooms and new collaborations: a DJ who needs visuals, a videographer who needs a night to film.</p>
         </div>
       </div>
       <p class="collective-note">The collective is separate from BOONS AGENCY: it is a network, not management or a
@@ -138,12 +137,27 @@
     <div class="contact-inner">
       <p class="eyebrow mono">Join</p>
       <h2 class="about-h2">Join the collective.</h2>
-      <p class="section-lead">Tell us who you are and send a mix. We'll get back to you to get you in.</p>
+      <p class="section-lead">Tell us who you are and show us your work. We'll get back to you to get you in.</p>
 
-      <form class="booking-form" id="collectiveForm" action="https://formspree.io/f/moevdyqg" method="POST">
+      <form class="booking-form" id="collectiveForm" action="https://formspree.io/f/moevdyqg" method="POST">        <div class="form-row">
+          <label class="mono" for="c_role">I am a</label>
+          <select id="c_role" name="role" required>
+            <option value="" disabled selected>Make a selection…</option>
+            <option value="DJ">DJ</option>
+            <option value="Producer">Producer</option>
+            <option value="VJ">VJ</option>
+            <option value="Light jockey">Light jockey</option>
+            <option value="Photographer">Photographer</option>
+            <option value="Videographer">Videographer</option>
+            <option value="Graphic designer">Graphic designer</option>
+            <option value="Content creator">Content creator</option>
+            <option value="Promoter / organiser">Promoter / organiser</option>
+            <option value="Other">Something else</option>
+          </select>
+        </div>
         <div class="form-row">
-          <label class="mono" for="dj_name">DJ name</label>
-          <input type="text" id="dj_name" name="dj_name" required>
+          <label class="mono" for="dj_name">Artist name</label>
+          <input type="text" id="dj_name" name="artist_name" required>
         </div>
         <div class="form-row">
           <label class="mono" for="c_email">Email</label>
@@ -155,16 +169,16 @@
           <input type="text" id="c_city" name="city" required autocomplete="address-level2" placeholder="e.g. Haarlem">
         </div>
         <div class="form-row">
-          <label class="mono" for="c_sound">Your sound</label>
-          <input type="text" id="c_sound" name="sound" required placeholder="e.g. hard house, trance, UKG">
+          <label class="mono" for="c_sound">Your sound or style</label>
+          <input type="text" id="c_sound" name="sound" required placeholder="e.g. hard house, trance / live visuals / flash photography">
         </div>
         <div class="form-row">
           <label class="mono" for="c_instagram">Instagram</label>
           <input type="text" id="c_instagram" name="instagram" required placeholder="@yourname">
         </div>
         <div class="form-row">
-          <label class="mono" for="c_mix">Mix / SoundCloud link <span class="form-optional">(optional)</span></label>
-          <input type="url" id="c_mix" name="mix" placeholder="https://soundcloud.com/…">
+          <label class="mono" for="c_mix">Portfolio or mix link <span class="form-optional">(optional)</span></label>
+          <input type="url" id="c_mix" name="mix" placeholder="SoundCloud, website, Vimeo…">
         </div>
         <div class="form-row form-row-full">
           <label class="mono" for="c_message">A bit about you <span class="form-optional">(optional)</span></label>
@@ -208,7 +222,7 @@
   </div>
 </footer>
 
-<script src="js/script.js?v=4ef98a3b"></script>
+<script src="js/script.js?v=7a8cbc85"></script>
 <script data-goatcounter="https://boons-agency.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
