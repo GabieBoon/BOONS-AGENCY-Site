@@ -140,8 +140,8 @@ if (collectiveForm) {
       const h = document.createElement('h3');
       h.textContent = t('Welcome, ' + name + '.', 'Welkom, ' + name + '.');
       const p = document.createElement('p');
-      p.textContent = t("Your sign-up is in. We'll get back to you to get you into the collective.",
-                        'Je aanmelding is binnen. We nemen contact met je op om je aan het collective toe te voegen.');
+      p.textContent = t('Your sign-up is in. We look at every sign-up personally and will let you know either way.',
+                        'Je aanmelding is binnen. We bekijken elke aanmelding zelf en laten je hoe dan ook iets weten.');
       done.append(h, p);
       collectiveForm.replaceChildren(done);
     } catch (_) {

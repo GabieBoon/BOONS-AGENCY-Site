@@ -1547,3 +1547,14 @@ html{ scroll-padding-top: 96px; }
 .check-line{ display: flex; align-items: center; gap: 0.7rem; cursor: pointer; font-size: 0.95rem; color: var(--fg); }
 
 .check-line input{ width: 20px; height: 20px; margin: 0; accent-color: #E01B24; flex-shrink: 0; }
+
+/* collective: what we look for, above the sign-up form */
+.collective-criteria{ margin-top: 2rem; padding: 1.4rem 1.6rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg-card); max-width: 640px; }
+
+.collective-criteria .eyebrow{ margin-bottom: 0.8rem; }
+
+.collective-criteria ul{ margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+
+.collective-criteria li{ position: relative; padding-left: 1.4rem; color: var(--fg); }
+
+.collective-criteria li::before{ content: '→'; position: absolute; left: 0; color: var(--red-text); }
