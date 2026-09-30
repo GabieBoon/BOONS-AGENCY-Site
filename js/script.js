@@ -116,6 +116,44 @@ if (bookingForm) {
 }
 
 
+// BOONS COLLECTIVE sign-up: sent in the background, then a thank-you right in place of the form.
+const collectiveForm = document.getElementById('collectiveForm');
+if (collectiveForm) {
+  const note = document.getElementById('collectiveNote');
+  collectiveForm.addEventListener('submit', async (e) => {
+    if (!collectiveForm.checkValidity()) return;
+    e.preventDefault();
+    const btn = collectiveForm.querySelector('button[type="submit"]');
+    const label = btn.textContent;
+    btn.disabled = true; btn.textContent = t('Sending...', 'Versturen...');
+    note.textContent = ''; note.classList.remove('form-note-error');
+    const name = collectiveForm.querySelector('#dj_name').value.trim();
+    const data = new FormData(collectiveForm);
+    data.set('_subject', 'Collective sign-up: ' + name);
+    try {
+      const res = await fetch(collectiveForm.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+      if (!res.ok) throw new Error('not ok');
+      track('collective-signup', 'Collective sign-up sent');
+      const done = document.createElement('div');
+      done.className = 'collective-sent';
+      done.setAttribute('role', 'status');
+      const h = document.createElement('h3');
+      h.textContent = t('Welcome, ' + name + '.', 'Welkom, ' + name + '.');
+      const p = document.createElement('p');
+      p.textContent = t("Your sign-up is in. We'll get back to you to get you into the collective.",
+                        'Je aanmelding is binnen. We nemen contact met je op om je aan het collective toe te voegen.');
+      done.append(h, p);
+      collectiveForm.replaceChildren(done);
+    } catch (_) {
+      note.textContent = t('Something went wrong. Please mail Bookings@boons-agency.nl instead.',
+                           'Er ging iets mis. Mail ons in plaats daarvan op Bookings@boons-agency.nl.');
+      note.classList.add('form-note-error');
+      btn.disabled = false; btn.textContent = label;
+    }
+  });
+}
+
+
 // Formspree redirect: resolve the thank-you page against wherever this site is
 // actually hosted, so moving to a custom domain needs no edit. The hardcoded
 // value in the HTML stays as the fallback if JS doesn't run.

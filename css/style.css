@@ -1490,3 +1490,37 @@ html{ scroll-padding-top: 96px; }
 
 .clip-sound[aria-pressed="true"] .clip-sound-x{ display: none; }
 
+
+/* Collective page */
+.about-intro .btn{ margin-top: 2rem; }
+
+.collective-note{ margin-top: 3rem; padding-top: 1.6rem; border-top: 1px solid var(--line); color: var(--muted); max-width: 70ch; }
+
+.collective-note a{ color: var(--fg); border-bottom: 1px solid var(--magenta); }
+
+.collective-note a:hover{ color: var(--magenta); }
+
+.collective-members{ display: grid; grid-template-columns: repeat(3, minmax(0, 240px)); gap: 1.5rem; }
+
+.collective-members .roster-tile{ display: block; }
+
+.collective-you{ display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.6rem; aspect-ratio: 3/4; border: 1px dashed rgba(245, 241, 232, 0.25); border-radius: 10px; color: var(--muted); text-align: center; padding: 1.2rem; transition: border-color .2s ease, color .2s ease; }
+
+.collective-you:hover, .collective-you:focus-visible{ border-color: #FF9E2C; color: var(--fg); }
+
+.collective-you-plus{ font-family: var(--font-display); font-size: 2.6rem; line-height: 1; color: var(--red-text); }
+
+.collective-you-name{ font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1.1rem; color: var(--fg); }
+
+.collective-you .mono{ font-size: 0.68rem; color: var(--yellow); }
+
+.collective-sent{ grid-column: 1 / -1; padding: 1.6rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg-card); }
+
+.collective-sent h3{ text-transform: uppercase; margin-bottom: 0.5rem; }
+
+.collective-sent p{ color: var(--muted); }
+
+@media (max-width: 700px){
+  .collective-members{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .collective-you{ grid-column: 1 / -1; aspect-ratio: auto; padding: 1.6rem; }
+}

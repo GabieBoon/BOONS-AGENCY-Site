@@ -26,6 +26,7 @@ SITE = 'https://boons-agency.nl'
 PAGES = {  # file -> English URL
     'index.html': '/', 'gibbs.html': '/gibbs', 'burney.html': '/burney',
     'about.html': '/about', 'book.html': '/book', 'terms.html': '/terms', 'thanks.html': '/thanks',
+    'collective.html': '/collective',
 }
 ARTIST_PAGES = {'gibbs.html', 'burney.html'}
 
