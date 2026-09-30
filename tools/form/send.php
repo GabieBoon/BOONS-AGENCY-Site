@@ -3,9 +3,10 @@
  * BOONS form endpoint: booking requests (/book) and BOONS COLLECTIVE sign-ups (/collective).
  * Lives on the Vimexx hosting at https://form.boons-agency.nl/send.php
  * Upload to domains/form.boons-agency.nl/public_html: send.php, .htaccess, mail-template.html,
- * boons-logo.png and gradient.png (the last three make the styled emails).
+ * boons-logo.png, gradient.png, bg-page.png and bg-card.png (the last five make the styled emails).
  *
- * 1. checks the request (honeypot, rate limit per IP, required fields)
+ * 1. checks the request: honeypot, rate limit per IP, other websites refused, an hourly emergency
+ *    brake, link spam ignored, at most 3 confirmation emails per address per day, required fields
  * 2. mails it to Bookings@boons-agency.nl, Reply-To = the sender, so Finn can answer directly
  * 3. mails the sender a styled confirmation (HTML, with a plain-text version inside)
  * 4. answers JSON for the site's own JavaScript, or redirects back when posted without JavaScript
@@ -20,6 +21,8 @@ const SITE         = 'https://boons-agency.nl';
 const ALLOWED_ORIGINS = ['https://boons-agency.nl', 'https://www.boons-agency.nl', 'http://127.0.0.1:8000'];
 const RATE_LIMIT   = 5;      // requests per IP ...
 const RATE_WINDOW  = 3600;   // ... per hour
+const GLOBAL_LIMIT = 40;     // requests per hour from everyone together (emergency brake)
+const CONFIRMATIONS_PER_ADDRESS = 3;   // confirmation emails per address per day
 const ARTISTS      = ['GIBBS', 'BURNEY', 'BURNEY b2b GIBBS', 'Not sure yet'];
 const ROLES        = ['DJ', 'Producer', 'VJ', 'Light jockey', 'Photographer', 'Videographer', 'Graphic designer',
                       'Content creator', 'Promoter / organiser', 'Other'];
@@ -141,6 +144,40 @@ if (count($hits) >= RATE_LIMIT) {
 $hits[] = $now;
 @file_put_contents($ipFile, json_encode($hits), LOCK_EX);
 
+// A request that visibly comes from another website: refuse.
+if ($origin !== '' && !in_array($origin, ALLOWED_ORIGINS, true)) fail('Not allowed', $wantsJson, 403);
+
+// Emergency brake: more than GLOBAL_LIMIT requests in an hour, from anywhere, is never real traffic.
+$allFile = $dir . '/_all.json';
+$all = is_file($allFile) ? (json_decode((string) @file_get_contents($allFile), true) ?: []) : [];
+$all = array_values(array_filter($all, fn($ts) => $ts > $now - RATE_WINDOW));
+if (count($all) >= GLOBAL_LIMIT) {
+    fail($t('The form is very busy right now. Please mail Bookings@boons-agency.nl directly.',
+            'Het formulier is nu erg druk. Mail ons direct op Bookings@boons-agency.nl.'), $wantsJson, 429);
+}
+$all[] = $now;
+@file_put_contents($allFile, json_encode($all), LOCK_EX);
+
+// Link spam: a link in a name-like field, or more than one link in the free text. Pretend it worked, send nothing.
+$countLinks = fn(string $s): int => preg_match_all('~(https?://|www\.|\[url|<a\s)~i', $s);
+foreach (['name', 'artist_name', 'city', 'event', 'set_time', 'lineup', 'sound', 'phone'] as $k) {
+    if ($countLinks((string) ($_POST[$k] ?? '')) > 0) reply(200, ['ok' => true], $wantsJson);
+}
+if ($countLinks((string) ($_POST['message'] ?? '')) > 1) reply(200, ['ok' => true], $wantsJson);
+
+// At most CONFIRMATIONS_PER_ADDRESS confirmation emails per address per day, so nobody can use
+// the form to flood someone's inbox. Stored as a hash, never the address itself.
+function confirmation_allowed(string $email): bool {
+    $file = __DIR__ . '/data/m-' . hash('sha256', strtolower(trim($email)) . 'boons') . '.json';
+    $now = time();
+    $sent = is_file($file) ? (json_decode((string) @file_get_contents($file), true) ?: []) : [];
+    $sent = array_values(array_filter($sent, fn($ts) => $ts > $now - 86400));
+    if (count($sent) >= CONFIRMATIONS_PER_ADDRESS) return false;
+    $sent[] = $now;
+    @file_put_contents($file, json_encode($sent), LOCK_EX);
+    return true;
+}
+
 
 // ---------- BOONS COLLECTIVE sign-up (the form on /collective) ----------
 
@@ -210,7 +247,7 @@ if (($_POST['form'] ?? '') === 'BOONS COLLECTIVE') {
         'outro' => $outro, 'button_text' => $t('See the collective', 'Bekijk het collective'),
         'button_url' => $base . '/collective', 'sender' => 'BOONS COLLECTIVE', 'notice' => $notice,
     ]);
-    send($c['email'], $subject, $text, TO_ADDRESS, $html, 'BOONS COLLECTIVE');
+    if (confirmation_allowed($c['email'])) send($c['email'], $subject, $text, TO_ADDRESS, $html, 'BOONS COLLECTIVE');
 
     if ($wantsJson) reply(200, ['ok' => true], true);
     header('Location: ' . $base . '/collective?joined=1#join', true, 303);
@@ -323,7 +360,8 @@ $html = mail_html([
     'intro' => $intro, 'rows' => $details, 'outro' => $outro,
     'button_text' => $buttonText, 'button_url' => $buttonUrl, 'sender' => 'BOONS AGENCY', 'notice' => $notice,
 ]);
-send($d['email'], $confirmSubject, $text, TO_ADDRESS, $html);   // a failed confirmation does not fail the request
+// a failed or skipped confirmation does not fail the request: Bookings@ has it either way
+if (confirmation_allowed($d['email'])) send($d['email'], $confirmSubject, $text, TO_ADDRESS, $html);
 
 // 3. Answer
 if ($wantsJson) reply(200, ['ok' => true, 'reference' => $ref], true);
